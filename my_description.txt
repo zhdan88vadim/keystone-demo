@@ -1,2 +1,7 @@
 user: admin@admin.com
 pass: admin
+--
+
+email:admin@admin.com
+password:$2a$10$jVCr4RYPdSJIUXGRzvP2S.y18.c.X7QannVjEUWXt9zBfX6qZUQju
+
