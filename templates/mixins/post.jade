@@ -1,9 +1,12 @@
 mixin post(post)
-	article(data-ks-editable=editable(user, { list: 'Post', id: post.id })).media
+	article(data-ks-editable=editable(user, { list: 'Post', id: post.id, image: post.image.filename })).media
+		div
+		img(src=post.image.filename).media-object
+		div
 		.media-left
 			a(href='/blog/post/' + post.key)
-				if post.image.exists
-					img(src=post._.image.fit(80,80)).media-object
+				if '/uploads/images/' + post.image.filename.exists
+					img(src='/uploads/images/' + post.image.filename).media-object
 				else
 					img(src="http://placehold.it/80x80").media-object
 		.media-body
