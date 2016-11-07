@@ -5,3 +5,18 @@ pass: admin
 email:admin@admin.com
 password:$2a$10$jVCr4RYPdSJIUXGRzvP2S.y18.c.X7QannVjEUWXt9zBfX6qZUQju
 
+--
+
+API
+
+https://gist.github.com/JedWatson/9741171
+https://github.com/zhdan88vadim/keystonejs-ng-skeleton/tree/master/routes/api
+
+
+UI
+
+https://github.com/mhart/react-server-example
+https://github.com/zhdan88vadim/angular2-starter
+https://github.com/antonybudianto/angular2-starter
+
+--
