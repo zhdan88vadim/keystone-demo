@@ -26,6 +26,7 @@ Post.add({
         extended: {type: Types.Html, wysiwyg: true, height: 400},
     },
     categories: {type: Types.Relationship, ref: 'PostCategory', many: true},
+    tags: {type: Types.Relationship, ref: 'Tag', many: true},
 });
 
 Post.schema.virtual('content.full').get(function () {
