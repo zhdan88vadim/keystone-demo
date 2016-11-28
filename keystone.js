@@ -2,8 +2,8 @@ var keystone = require('keystone');
 
 keystone.init({
 
-	'name': 'Keystone Demo',
-	'brand': 'Demo',
+	'name': 'ZHV keystonejs site',
+	'brand': 'ZHV',
 
 	'favicon': 'public/favicon.ico',
 	'less': 'public',
@@ -13,7 +13,7 @@ keystone.init({
 	'view engine': 'jade',
 
 	'auto update': true,
-	'mongo': process.env.MONGO_URI || process.env.MONGOLAB_URI || 'mongodb://localhost/keystone-demo',
+	'mongo': process.env.MONGO_URI || process.env.MONGOLAB_URI || 'mongodb://localhost/keystone-zhv-site',
 	'cloudinary config': 'cloudinary://333779167276662:_8jbSi9FB3sWYrfimcl8VKh34rI@keystone-demo',
 
 	'session': true,

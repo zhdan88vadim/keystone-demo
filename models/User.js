@@ -1,6 +1,15 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
 
+var myStorage = new keystone.Storage({
+	adapter: keystone.Storage.Adapters.FS,
+	fs: {
+		path: keystone.expandPath('./public/uploads/posts/img'), // required; path where the files should be stored
+		publicPath: './public/uploads/posts/img' // path where files will be served
+	}
+});
+
+
 var User = new keystone.List('User', {
 	// nodelete prevents people deleting the demo admin user
 	nodelete: true,
@@ -10,7 +19,7 @@ User.add({
 	name: { type: Types.Name, required: true, index: true },
 	email: { type: Types.Email, initial: true, required: true, index: true, unique: true },
 	phone: { type: String, width: 'short' },
-	photo: { type: Types.CloudinaryImage, collapse: true },
+	photo: { type: Types.File, storage: myStorage, collapse: true },
 	password: { type: Types.Password, initial: true, required: false },
 }, 'Permissions', {
 	isProtected: { type: Boolean, noedit: true },
