@@ -1,6 +1,22 @@
 extends ../layouts/default
 
 block content
+
+	h2 Tags
+	div
+		each tag in model.tags
+			a(href='/?tag=' + tag.key)= tag.name
+			br
+
+
+	h2 Authors
+	div
+		each user in model.users
+			a(href='/?author=' + user.email)= user.name.full
+			br
+
+
+
 	div(style="padding-left: 5vw; padding-right: 5vw;").jumbotron
 		h1 KeystoneJS Demo
 		.lead This site demonstrates common patterns in <a href='http://keystonejs.com', target='_blank'>KeystoneJS</a>.

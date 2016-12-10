@@ -1,4 +1,6 @@
 var keystone = require('keystone');
+var ImageConverting = require('../services/image-converting');
+
 var Types = keystone.Field.Types;
 
 var Post = new keystone.List('Post', {
@@ -34,6 +36,32 @@ Post.schema.virtual('content.full').get(function () {
 });
 
 Post.relationship({path: 'comments', ref: 'PostComment', refPath: 'post'});
+
+
+
+
+
+// You can specify virtuals, methods, statics as well as pre and post hooks for your Lists using the schema.
+// You can also use mongoose plugins from the plugins website.
+//
+// http://keystonejs.com/docs/database/#lists-plugins
+// http://mongoosejs.com/docs/middleware.html
+
+
+Post.schema.post('save', function(next) {
+    //var nextFn = next;
+
+    console.log('post save');
+
+    var filename = './public/uploads/posts/img/' + this.image.filename
+    var outputDir = './public/uploads/posts/img/preview/' + this.image.filename;
+
+    ImageConverting.createPreviewImage(filename, outputDir, function() {
+        //nextFn();
+    });
+
+});
+
 
 Post.track = true;
 Post.defaultColumns = 'name, state|20%, author|20%, publishedDate|20%';

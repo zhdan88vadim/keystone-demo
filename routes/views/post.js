@@ -58,8 +58,31 @@ exports = module.exports = function (req, res) {
             });
     });
 
+
+    // view.on(true, function (next) {
+    //     console.log('all!');
+    //     next();
+    // });
+    //
+    //
+    //
+    view.on('get', function (next) {
+        console.log('GOT!');
+        next();
+    });
+
+
+    view.on('post', function (next) {
+        console.log('post!');
+        next();
+    });
+
+
+
     // Create a Comment
-    view.on('post', {action: 'comment.create'}, function (next) {
+    view.on('post', function (next) { //{action: 'comment.create'},
+
+        console.log('test post from post action');
 
         var newComment = new PostComment.model({
             state: 'published',
