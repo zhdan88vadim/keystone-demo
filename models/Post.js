@@ -1,6 +1,9 @@
 var keystone = require('keystone');
 var ImageConverting = require('../services/image-converting');
 
+const postImgDir = './public/uploads/posts/img/';
+var postPreviewImgDir = postImgDir + '/preview/';
+
 var Types = keystone.Field.Types;
 
 var Post = new keystone.List('Post', {
@@ -10,8 +13,8 @@ var Post = new keystone.List('Post', {
 var myStorage = new keystone.Storage({
     adapter: keystone.Storage.Adapters.FS,
     fs: {
-        path: keystone.expandPath('./public/uploads/posts/img'), // required; path where the files should be stored
-        publicPath: './public/uploads/posts/img' // path where files will be served
+        path: keystone.expandPath(postImgDir), // required; path where the files should be stored
+        publicPath: postImgDir // path where files will be served
     }
 });
 
@@ -53,8 +56,8 @@ Post.schema.post('save', function(next) {
 
     console.log('post save');
 
-    var filename = './public/uploads/posts/img/' + this.image.filename
-    var outputDir = './public/uploads/posts/img/preview/' + this.image.filename;
+    var filename = postImgDir + this.image.filename
+    var outputDir = postPreviewImgDir + this.image.filename;
 
     ImageConverting.createPreviewImage(filename, outputDir, function() {
         //nextFn();
