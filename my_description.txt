@@ -20,3 +20,98 @@ https://github.com/zhdan88vadim/angular2-starter
 https://github.com/antonybudianto/angular2-starter
 
 --
+
+
+
+
+https://groups.google.com/forum/#!msg/keystonejs/fchL0EcNeQ0/_vo1-Qm-qfgJ
+--
+
+I'd recommend the mongoose docs for SubDocuments for a good overview on how to set up nested schemas in your application.
+
+Remember when you create a Keystone List, you can use any mongoose functionality you like by accessing MyList.schema before you call the register method.
+
+So to rewrite the first example in the mongoose docs I linked above using KeystoneJS, it would be:
+
+var keystone = require('keystone'),
+	mongoose = keystone.mongoose;
+
+var ChildList = new mongoose.Schema({ name: 'string' });
+
+var ParentList = new keystone.List();
+parentList.schema.add({
+  children: [childSchema]
+});
+
+--
+
+https://groups.google.com/forum/#!topic/keystonejs/OhtBSqIrltA
+
+--
+
+http://stackoverflow.com/questions/22534919/how-can-i-create-the-array-of-strings-in-keystone-js-database-odm
+
+
+There is a field type for this:
+
+Things.add({
+  manyStrings: { type: Types.TextArray }
+});
+There is a similar field for numbers called Types.NumberArray.
+
+If you want something more sophisticated, your best bet is creating a separate List and using the Relationship field.
+
+
+--
+
+How nested query relational data in keystone.js(mongoose)?
+
+http://stackoverflow.com/questions/28216810/how-nested-query-relational-data-in-keystone-jsmongoose
+
+--
+
+http://stackoverflow.com/questions/22063884/how-to-add-virtual-property-of-type-array-using-keystone-js
+
+
+Both are possible by modifying the mongoose schema directly, rather than using Keystone's add method on the List.
+
+Info.add({
+    title: { type: String, required: true, initial: true },
+    subtitle: { type: String, initial: true },
+    content: { type: Types.Markdown, height: 500, initial: true },
+    author: { type: Types.Relationship, ref: 'User', initial: true },
+    date: { type: Types.Date, default: Date.now, initial: true },
+    published: { type: Boolean, default: false, initial: true }
+});
+
+Info.schema.add({
+    tokens: { type: [String] }
+});
+
+
+By accessing the schema you bypass Keystone's list, which means the fields won't show up in the Admin UI. 
+There's an issue to add support for custom templates in the Admin UI though which will allow this in the future.
+
+
+On a related note, all the functionality mongoose offers is available via the schema so you can define things like custom methods, 
+statics and pre / post save hooks too. For more about what you can do with mongoose schemas, check out the guide.
+
+--
+
+
+https://groups.google.com/forum/#!topic/keystonejs/fchL0EcNeQ0
+
+It is possible to add nested schemas to lists, but they're not supported in the Admin UI. 
+It's something that I'd like to add though! You're right, it'll make for clearer schemas and simplify content management.
+
+--
+
+textarray
+
+https://github.com/keystonejs/keystone/tree/master/fields/types
+
+
+
+
+
+
