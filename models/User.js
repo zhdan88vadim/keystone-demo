@@ -13,6 +13,7 @@ var myStorage = new keystone.Storage({
 var User = new keystone.List('User', {
 	// nodelete prevents people deleting the demo admin user
 	nodelete: true,
+	autokey: { from: 'name', path: 'key', unique: true }
 });
 
 User.add({

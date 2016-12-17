@@ -4,6 +4,12 @@ var fs = require('fs');
 var Gallery = keystone.list('Gallery');
 
 
+// var fullFileName = keystone.expandPath(filename);
+// var fullOutputFile = keystone.expandPath(outputFile);
+
+var galleryFilePath = 'w:\\work_new\\keystonejs\\my\\public\\uploads\\gallery\\img\\';
+
+
 exports.getAll = function (callback) {
     Gallery.model.find().sort('sortOrder').exec(function (err, results) {
         if (err) {
@@ -38,56 +44,7 @@ exports.getImagesByGalleryName = function (name, callback) {
 
 exports.updateGallery = function (err, callback) {
 
-
-    function searchFiles(dir, callback) {
-
-        try {
-            var files = fs.readdirSync(dir);
-
-            files.forEach(function (file) {
-                if (!err) {
-                    var stats = fs.lstatSync(dir + '\\' + file);
-                    var isDir = stats.isDirectory();
-
-                    callback(null, {
-                        isDir: isDir,
-                        fullPath: dir + '\\' + file,
-                        filename: file
-                    });
-                } else {
-                    callback(err);
-                }
-            });
-
-        } catch (e) {
-            console.log('searchFiles: ', e);
-        }
-    }
-
-
-    function createAlbum(name, files) {
-        var newGallery = new Gallery.model({
-            name: name
-        });
-
-        files.forEach(function (file) {
-            newGallery.uploadFiles.push({filename: file});
-        });
-
-        newGallery.save(function (err) {
-
-        });
-    }
-
-
-    // var fullFileName = keystone.expandPath(filename);
-    // var fullOutputFile = keystone.expandPath(outputFile);
-
-    var galleryFilePath = 'w:\\work_new\\keystonejs\\my\\public\\uploads\\gallery\\img\\';
-
-    Gallery.model.find().remove(function (err) {
-        console.log(err);
-    });
+    DeleteAllGallaries();
 
     searchFiles(galleryFilePath, function (err, result) {
         var files = [];
@@ -104,5 +61,49 @@ exports.updateGallery = function (err, callback) {
             createAlbum(result.filename, files);
         }
     });
+}
 
+function searchFiles(dir, callback) {
+
+    try {
+        var files = fs.readdirSync(dir);
+
+        files.forEach(function (file) {
+            if (!err) {
+                var stats = fs.lstatSync(dir + '\\' + file);
+                var isDir = stats.isDirectory();
+
+                callback(null, {
+                    isDir: isDir,
+                    fullPath: dir + '\\' + file,
+                    filename: file
+                });
+            } else {
+                callback(err);
+            }
+        });
+
+    } catch (e) {
+        console.log('searchFiles: ', e);
+    }
+}
+
+function createAlbum(name, files) {
+    var newGallery = new Gallery.model({
+        name: name
+    });
+
+    files.forEach(function (file) {
+        newGallery.uploadFiles.push({filename: file});
+    });
+
+    newGallery.save(function (err) {
+
+    });
+}
+
+function DeleteAllGallaries() {
+    Gallery.model.find().remove(function (err) {
+        console.log(err);
+    });
 }
