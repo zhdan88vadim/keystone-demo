@@ -1,6 +1,8 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
 
+var mongoose = keystone.mongoose;
+
 var myStorage = new keystone.Storage({
 	adapter: keystone.Storage.Adapters.FS,
 	fs: {
@@ -19,6 +21,13 @@ Gallery.add({
 	name: { type: String, required: true },
 	publishedDate: { type: Types.Date, default: Date.now },
 	images: { type: Types.File, storage: myStorage },
+	stringArray: { type: Types.TextArray }
+});
+
+var UploadFileListSchema = new mongoose.Schema({ filename: 'string' });
+
+Gallery.schema.add({
+	uploadFiles: [UploadFileListSchema]
 });
 
 Gallery.track = true;

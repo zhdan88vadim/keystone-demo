@@ -3,13 +3,26 @@
 
 var fs = require('fs');
 
-fs.readdir('D:\\work\\images\\', function(err, files) {
+var galleryFilePath = 'w:\\work_new\\keystonejs\\my\\public\\uploads\\gallery\\img\\';
+
+
+
+
+fs.readdir(galleryFilePath, function(err, files) {
     if (err) throw err;
 
     files.forEach(function(file) {
-        fs.lstat('D:\\work\\images\\' + file, function(err, stats) {
+        fs.lstat(galleryFilePath + file, function(err, stats) {
             if (!err && stats.isDirectory()) {
                 console.log('folder: ' + file);
+
+                //
+                // createAlbum(file);
+                // populateFiles();
+
+
+
+
             } else {
                 console.log('file: ' + file);
             }
