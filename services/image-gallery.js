@@ -1,5 +1,6 @@
 var keystone = require('keystone');
 var fs = require('fs');
+var ImageConverting = require('../services/image-converting');
 
 var Gallery = keystone.list('Gallery');
 
@@ -37,7 +38,7 @@ exports.getImagesByGalleryName = function (name, callback) {
                 fileUrls.push(file.filename);
             });
 
-            callback(null, fileUrls);
+            callback(null, item.name, fileUrls);
         }
     });
 }
@@ -69,21 +70,19 @@ function searchFiles(dir, callback) {
         var files = fs.readdirSync(dir);
 
         files.forEach(function (file) {
-            if (!err) {
-                var stats = fs.lstatSync(dir + '\\' + file);
-                var isDir = stats.isDirectory();
 
-                callback(null, {
-                    isDir: isDir,
-                    fullPath: dir + '\\' + file,
-                    filename: file
-                });
-            } else {
-                callback(err);
-            }
+            var stats = fs.lstatSync(dir + '\\' + file);
+            var isDir = stats.isDirectory();
+
+            callback(null, {
+                isDir: isDir,
+                fullPath: dir + '\\' + file,
+                filename: file
+            });
         });
 
     } catch (e) {
+        callback(err);
         console.log('searchFiles: ', e);
     }
 }
@@ -98,8 +97,25 @@ function createAlbum(name, files) {
     });
 
     newGallery.save(function (err) {
-
+        if (!err) {
+            createPreviewImg(name, files)
+        }
     });
+}
+
+function createPreviewImg(galleryName, files) {
+    var albumDir = galleryFilePath + galleryName + '\\';
+
+    files.forEach(function (file) {
+
+        ImageConverting.createPreviewImage(albumDir + file,
+            albumDir + 'preview\\' + file,
+            function () {
+                //nextFn();
+            });
+    });
+
+
 }
 
 function DeleteAllGallaries() {

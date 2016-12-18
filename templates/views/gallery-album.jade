@@ -9,12 +9,8 @@ block content
         h1 Album
 
     if images.length
-        -- console.log('images', images)
         each image, i in images
-            h3
-                | #{image.filename}
-                small.text-muted= image._.publishedDate.format('Do MMM YYYY')
-
+            img(src='/uploads/gallery/img/' + galleryName + '/preview/' + image max-height='200px')
 
     else
         .jumbotron.text-center

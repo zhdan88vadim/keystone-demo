@@ -44,7 +44,8 @@ exports.album = function (req, res) {
 
     view.on('get', function (next) {
 
-        ImageGallery.getImagesByGalleryName(locals.filters.album, function(err, images) {
+        ImageGallery.getImagesByGalleryName(locals.filters.album, function(err, galleryName, images) {
+            locals.galleryName = galleryName;
             locals.images = images;
 
             console.log('album', images);
