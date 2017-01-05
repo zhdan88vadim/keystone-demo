@@ -5,14 +5,14 @@ block content
 	h2 Tags
 	div
 		each tag in model.tags
-			a(href='/?tag=' + tag.key)= tag.name
+			a(href='blog/tag/' + tag.key)= tag.name
 			br
 
 
 	h2 Authors
 	div
 		each user in model.users
-			a(href='/?author=' + user.email)= user.name.full
+			a(href='blog/author/' + user.key)= user.name.full
 			br
 
 

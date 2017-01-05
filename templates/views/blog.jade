@@ -52,7 +52,7 @@ block content
 						a(href='/blog') All
 					each cat in categories
 						li(role="presentation" class=category && category.id === cat.id ? 'active' : null)
-							a(href='/blog/' + cat.key)
+							a(href='/blog/category/' + cat.key)
 								=cat.name
 								if cat.postCount
 									span.badge.pull-right= cat.postCount

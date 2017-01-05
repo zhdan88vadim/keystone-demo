@@ -3,13 +3,15 @@ var async = require('async');
 var Post = keystone.list('Post');
 var PostCategory = keystone.list('PostCategory');
 
-exports = module.exports = function (req, res) {
+var PostService = require('../../services/post');
 
+
+exports.category = function (req, res) {
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
 
 	// Init locals
-	locals.section = 'blog';
+	locals.section = 'blog category';
 	locals.filters = {
 		category: req.params.category,
 	};
@@ -59,10 +61,10 @@ exports = module.exports = function (req, res) {
 	view.on('init', function (next) {
 
 		var q = Post.paginate({
-				page: req.query.page || 1,
- 				perPage: 10,
- 				maxPages: 10,
-			})
+			page: req.query.page || 1,
+			perPage: 10,
+			maxPages: 10,
+		})
 			.where('state', 'published')
 			.sort('-publishedDate')
 			.populate('author categories');
@@ -82,3 +84,57 @@ exports = module.exports = function (req, res) {
 	view.render('blog');
 
 }
+
+
+exports.tag = function (req, res) {
+	var view = new keystone.View(req, res);
+	var locals = res.locals;
+
+	// Init locals
+	locals.section = 'blog tag';
+	locals.filters = {
+		tag: req.params.tag,
+	};
+	locals.posts = {};
+	locals.categories = [];
+
+	// Load all categories
+	view.on('init', function (next) {
+
+		PostService.getPostListByTagKey(locals.filters.tag, function(err, results) {
+			locals.posts.results = results;
+			next(err);
+		});
+	});
+
+
+	// Render the view
+	view.render('blog');
+}
+
+exports.author = function (req, res) {
+	var view = new keystone.View(req, res);
+	var locals = res.locals;
+
+	// Init locals
+	locals.section = 'blog author';
+	locals.filters = {
+		author: req.params.author,
+	};
+	locals.posts = {};
+	locals.categories = [];
+
+	// Load all categories
+	view.on('init', function (next) {
+
+		PostService.getPostListByAuthorKey(locals.filters.author, function(err, results) {
+			locals.posts.results = results;
+			next(err);
+		});
+	});
+
+
+	// Render the view
+	view.render('blog');
+}
+
