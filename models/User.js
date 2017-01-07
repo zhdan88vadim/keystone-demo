@@ -4,8 +4,8 @@ var Types = keystone.Field.Types;
 var myStorage = new keystone.Storage({
 	adapter: keystone.Storage.Adapters.FS,
 	fs: {
-		path: keystone.expandPath('./public/uploads/posts/img'), // required; path where the files should be stored
-		publicPath: './public/uploads/posts/img' // path where files will be served
+		path: keystone.expandPath('./public/uploads/users/img'), // required; path where the files should be stored
+		publicPath: './public/uploads/users/img' // path where files will be served
 	}
 });
 

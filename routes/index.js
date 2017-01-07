@@ -64,10 +64,12 @@ exports = module.exports = function(app) {
     // Views
     app.all('/', routes.views.index);
 
-    app.get('/blog/tag/:tag?', routes.views.blog.tag);
-    app.get('/blog/category/:category?', routes.views.blog.category);
-    app.get('/blog/author/:author?', routes.views.blog.author);
-    app.get('/blog', routes.views.blog.category);
+    app.get('/blog/tag/:tag', routes.views.blog.tag);
+    app.get('/blog/category/:category', routes.views.blog.category);
+    app.get('/blog/category/:category/tag/:tag', routes.views.blog.category);
+
+    app.get('/blog/author/:author', routes.views.blog.author);
+    //app.get('/blog', routes.views.blog.category);
 
 
 
@@ -82,7 +84,7 @@ exports = module.exports = function(app) {
     // });
 
 
-    app.all('/blog/post/:post?', routes.views.post); // ?
+    app.all('/blog/post/:post', routes.views.post); // ?
 
 
     app.get('/gallery/:album', routes.views.gallery.album);

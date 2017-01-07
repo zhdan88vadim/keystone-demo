@@ -6,6 +6,7 @@ exports = module.exports = function (req, res) {
 
     var view = new keystone.View(req, res);
     var locals = res.locals;
+    viewModel = locals.viewModel = {};
 
 
     // Init locals
@@ -23,7 +24,7 @@ exports = module.exports = function (req, res) {
         }).populate('author categories');
 
         q.exec(function (err, result) {
-            locals.post = result;
+            viewModel.post = result;
             next(err);
         });
 
@@ -32,10 +33,10 @@ exports = module.exports = function (req, res) {
     // Load other posts
     view.on('init', function (next) {
 
-        var q = Post.model.find().where('state', 'published').sort('-publishedDate').populate('author').limit('4');
+        var q = Post.model.find().where('state', 'published').sort('-publishedDate').populate('author').limit(4);
 
         q.exec(function (err, results) {
-            locals.posts = results;
+            viewModel.relatedPosts = results;
             next(err);
         });
 
@@ -147,6 +148,6 @@ exports = module.exports = function (req, res) {
 
     //locals.currentTheme = 'Bootstrap';
     // Render the view
-    view.render('post');
+    view.render('chlw/article');
 
 }

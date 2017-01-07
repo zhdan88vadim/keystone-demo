@@ -1,17 +1,22 @@
+
+- var blogPostRoute = '/blog/post/';
+
 .big-list
     ul
-
         each listItem, i in items.results
 
             -- console.log('listItem', listItem)
 
             li.list-item
                 h3.entry-title
-                    a(href='/blog/post/' + listItem.key)
+                    a(href=blogPostRoute + listItem.key)
                         | #{listItem.name}
                 .wrap-img
-                    a(href='')
-                        img(src='../assets/img/authors/pastor.jpg', alt='Post Title')
+                    a(href=blogPostRoute + listItem.key)
+                        if listItem.image.filename
+                            img(src='/uploads/posts/img/' + listItem.image.filename)
+                        else
+                            img(src='/uploads/users/img/' + listItem.author.photo.filename, alt=listItem.author.name.full)
                 .info
                     if listItem.publishedDate || listItem.author
                         if listItem.author
@@ -22,18 +27,14 @@
 
                 .entry-container
                     | #{listItem.content.brief}
-                a(href='') читать полностью
-                .tags.cloud-labels
-                    ul
-                        li
-                            a(href='') Достижение цели
-                        li
-                            a(href='') Учеба
-                        li
-                            a(href='') Свидетельства
-                        li
-                            a(href='') Финансы
-                .clear
+                a(href=blogPostRoute + listItem.key) читать полностью
+                if (listItem.tags && listItem.tags.length)
+                    .tags.cloud-labels
+                        ul
+                            each tag, i in listItem.tags
+                                li
+                                    a(href='/blog/category/sermons/tag/' + tag.key)=tag.name
+                    .clear
 
 
 

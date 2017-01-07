@@ -1,6 +1,7 @@
 var keystone = require('keystone');
 var async = require('async');
 var Post = keystone.list('Post');
+var Tag = keystone.list('Tag');
 var PostCategory = keystone.list('PostCategory');
 
 var PostService = require('../../services/post');
@@ -14,6 +15,7 @@ exports.category = function (req, res) {
 	locals.section = 'blog category';
 	locals.filters = {
 		category: req.params.category,
+		tag: req.params.tag,
 	};
 	locals.items = [];
 	locals.categories = [];
@@ -57,6 +59,18 @@ exports.category = function (req, res) {
 		}
 	});
 
+	// Load the current tag filter
+	view.on('init', function (next) {
+		if (req.params.tag) {
+			Tag.model.findOne({ key: locals.filters.tag }).exec(function (err, result) {
+				locals.tag = result;
+				next(err);
+			});
+		} else {
+			next();
+		}
+	});
+
 	// Load the posts
 	view.on('init', function (next) {
 
@@ -67,10 +81,13 @@ exports.category = function (req, res) {
 		})
 			.where('state', 'published')
 			.sort('-publishedDate')
-			.populate('author categories');
+			.populate('author categories tags');
 
 		if (locals.category) {
 			q.where('categories').in([locals.category]);
+		}
+		if (locals.tag) {
+			q.where('tags').in([locals.tag]);
 		}
 
 		q.exec(function (err, results) {
