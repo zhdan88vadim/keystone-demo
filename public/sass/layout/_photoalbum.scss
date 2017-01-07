@@ -1,0 +1,15 @@
+.photo-album {
+
+  ul li {
+    float: left;
+    width: 33%;
+    padding: 10px;
+  }
+
+  ul img {
+    height: 190px;
+    width: 190px;
+    border-radius: 2px;
+  }
+
+}

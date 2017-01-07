@@ -28,7 +28,7 @@ exports.list = function (req, res) {
         next();
     });
 
-    view.render('gallery');
+    view.render('chlw/gallery');
 
 }
 
@@ -53,5 +53,5 @@ exports.album = function (req, res) {
         });
     });
 
-    view.render('gallery-album');
+    view.render('chlw/photo-album');
 }

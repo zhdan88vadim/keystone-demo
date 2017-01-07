@@ -1,0 +1,22 @@
+extends layout.pug
+
+
+block content
+
+    .photo-album
+
+        if images.length
+            each image, i in images
+                ul
+                    li
+                        a(title='Heading Level', href='photo-album.html')
+                            img(src='/uploads/gallery/img/' + galleryName + '/preview/' + image)
+
+        else
+            h3 В этом альбоме еще нет фотографий.
+
+
+
+        //li
+        //    a(title='Heading Level', href='photo-album.html')
+        //        img(src='../assets/img/banner/banner01.jpg')

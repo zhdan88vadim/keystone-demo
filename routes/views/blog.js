@@ -15,7 +15,7 @@ exports.category = function (req, res) {
 	locals.filters = {
 		category: req.params.category,
 	};
-	locals.posts = [];
+	locals.items = [];
 	locals.categories = [];
 
 	// Load all categories
@@ -74,14 +74,14 @@ exports.category = function (req, res) {
 		}
 
 		q.exec(function (err, results) {
-			locals.posts = results;
+			locals.items = results;
 			next(err);
 		});
 
 	});
 
 	// Render the view
-	view.render('blog');
+	view.render('chlw/sermons');
 
 }
 

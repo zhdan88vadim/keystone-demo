@@ -4,21 +4,148 @@ module.exports = function (done) {
 
     var posts = [];
 
-
     for (var i = 0; i < 40; i++) {
 
         posts.push({
             name: 'Тестовый пост: ' + i,
             state: 'published',
-            author: '5838818fdb3115222056a766',
+            author: 'pa',
             publishedDate: '2016-04-12',
             'content.brief': 'Тестовый пост: ' + i + ' Тестовый пост: ' + i,
             'content.extended': 'Тестовый пост: ' + i + ' Тестовый пост: ' + i + ' Тестовый пост: ' + i + ' Тестовый пост: ' + i + ' Тестовый пост: ' + i + ' Тестовый пост: ' + i + ' Тестовый пост: ' + i + ' Тестовый пост: ' + i + ' Тестовый пост: ' + i + ' Тестовый пост: ' + i + ' Тестовый пост: ' + i + ' Тестовый пост: ' + i + ' Тестовый пост: ' + i,
-            categories: 'keystone',
-            tags: ''
+            categories: 'sermons',
+            tags: ['rabota', 'sluzhenie']
         });
-
     }
+
+    posts.push({
+        name: 'Воскресная проповедь — Воля Божья в Библии - часть 1 - 09.10.2016',
+        state: 'published',
+        author: 'vzh',
+        publishedDate: '2016-04-12',
+        'content.brief': 'Ducimus, repudiandae impedit sapiente ex numquam expedita ' +
+        'alias doloribus in expedita alias doloribus in incidunt sequi dignissimos odit ' +
+        'facilis maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus ' +
+        'in incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci... expedita alias doloribus in incidunt sequi dignissimos odit facilis ' +
+        'maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus in ' +
+        'incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci... expedita alias doloribus in incidunt sequi dignissimos odit facilis ' +
+        'maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus in ' +
+        'incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci...',
+
+        'content.extended': 'Ducimus, repudiandae impedit sapiente ex numquam expedita ' +
+        'alias doloribus in expedita alias doloribus in incidunt sequi dignissimos odit ' +
+        'facilis maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus ' +
+        'in incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci... expedita alias doloribus in incidunt sequi dignissimos odit facilis ' +
+        'maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus in ' +
+        'incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci... expedita alias doloribus in incidunt sequi dignissimos odit facilis ' +
+        'maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus in ' +
+        'incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci...',
+        categories: 'sermons',
+        tags: ['rabota', 'sluzhenie', 'dengi', 'semya']
+    });
+
+    posts.push({
+        name: 'Воскресная проповедь — Воля Божья в Библии - часть 2 - 09.10.2016',
+        state: 'published',
+        author: 'vzh',
+        publishedDate: '2016-03-12',
+        'content.brief': 'Ducimus, repudiandae impedit sapiente ex numquam expedita ' +
+        'alias doloribus in expedita alias doloribus in incidunt sequi dignissimos odit ' +
+        'facilis maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus ' +
+        'in incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci... expedita alias doloribus in incidunt sequi dignissimos odit facilis ' +
+        'maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus in ' +
+        'incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci... expedita alias doloribus in incidunt sequi dignissimos odit facilis ' +
+        'maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus in ' +
+        'incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci...',
+
+        'content.extended': 'Ducimus, repudiandae impedit sapiente ex numquam expedita ' +
+        'alias doloribus in expedita alias doloribus in incidunt sequi dignissimos odit ' +
+        'facilis maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus ' +
+        'in incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci... expedita alias doloribus in incidunt sequi dignissimos odit facilis ' +
+        'maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus in ' +
+        'incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci... expedita alias doloribus in incidunt sequi dignissimos odit facilis ' +
+        'maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus in ' +
+        'incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci...',
+        categories: 'sermons',
+        tags: ['rabota', 'sluzhenie', 'dengi', 'semya']
+    });
+
+
+    posts.push({
+        name: 'Материал — Воля Божья в Библии',
+        state: 'published',
+        author: 'vzh',
+        publishedDate: '2016-03-12',
+        'content.brief': 'Ducimus, repudiandae impedit sapiente ex numquam expedita ' +
+        'alias doloribus in expedita alias doloribus in incidunt sequi dignissimos odit ' +
+        'facilis maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus ' +
+        'in incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci... expedita alias doloribus in incidunt sequi dignissimos odit facilis ' +
+        'maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus in ' +
+        'incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci... expedita alias doloribus in incidunt sequi dignissimos odit facilis ' +
+        'maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus in ' +
+        'incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci...',
+
+        'content.extended': 'Ducimus, repudiandae impedit sapiente ex numquam expedita ' +
+        'alias doloribus in expedita alias doloribus in incidunt sequi dignissimos odit ' +
+        'facilis maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus ' +
+        'in incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci... expedita alias doloribus in incidunt sequi dignissimos odit facilis ' +
+        'maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus in ' +
+        'incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci... expedita alias doloribus in incidunt sequi dignissimos odit facilis ' +
+        'maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus in ' +
+        'incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci...',
+        categories: 'materials',
+        tags: ['rabota', 'sluzhenie', 'dengi', 'semya']
+    });
+
+    posts.push({
+        name: 'Материал — Воля Божья в Библии - 4',
+        state: 'published',
+        author: 'oko',
+        publishedDate: '2016-03-12',
+        'content.brief': 'Ducimus, repudiandae impedit sapiente ex numquam expedita ' +
+        'alias doloribus in expedita alias doloribus in incidunt sequi dignissimos odit ' +
+        'facilis maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus ' +
+        'in incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci... expedita alias doloribus in incidunt sequi dignissimos odit facilis ' +
+        'maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus in ' +
+        'incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci... expedita alias doloribus in incidunt sequi dignissimos odit facilis ' +
+        'maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus in ' +
+        'incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci...',
+
+        'content.extended': 'Ducimus, repudiandae impedit sapiente ex numquam expedita ' +
+        'alias doloribus in expedita alias doloribus in incidunt sequi dignissimos odit ' +
+        'facilis maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus ' +
+        'in incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci... expedita alias doloribus in incidunt sequi dignissimos odit facilis ' +
+        'maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus in ' +
+        'incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci... expedita alias doloribus in incidunt sequi dignissimos odit facilis ' +
+        'maxime aperiam aspernatur soluta nulla adipisci... expedita alias doloribus in ' +
+        'incidunt sequi dignissimos odit facilis maxime aperiam aspernatur soluta nulla ' +
+        'adipisci...',
+        categories: 'materials',
+        tags: ['rabota', 'sluzhenie', 'dengi', 'semya']
+    });
 
 
     keystone.createItems({
@@ -57,11 +184,34 @@ module.exports = function (done) {
         }],
 
         PostCategory: [{
-            name: 'Keystone JS',
-            __ref: 'keystone'
+            name: 'sermons',
+            __ref: 'sermons'
         }, {
-            name: 'Node.js',
-            __ref: 'node'
+            name: 'materials',
+            __ref: 'materials'
+        }],
+
+        Tag: [{
+            name: 'Исцеление',
+            __ref: 'iscelenie'
+        }, {
+            name: 'Работа',
+            __ref: 'rabota'
+        }, {
+            name: 'Деньги',
+            __ref: 'dengi'
+        }, {
+            name: 'Семья',
+            __ref: 'semya'
+        }, {
+            name: 'Служение',
+            __ref: 'sluzhenie'
+        }, {
+            name: 'Работа',
+            __ref: 'rabota'
+        }, {
+            name: 'Призвание',
+            __ref: 'prizvanie'
         }],
 
         // db id

@@ -1,0 +1,85 @@
+// -----------------------------------------------------------------------------
+// This file contains very basic styles.
+// -----------------------------------------------------------------------------
+
+/**
+ * Set up a decent box model on the root element
+ */
+html {
+  box-sizing: border-box;
+  font-size: 10px;
+}
+
+/**
+ * Make all elements from the DOM inherit from the parent box-sizing
+ * Since `*` has a specificity of 0, it does not override the `html` value
+ * making all elements inheriting from the root box-sizing value
+ * See: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/**
+ * Basic styles for links
+ */
+a {
+  color: #e05a65;
+  text-decoration: none;
+
+  @include on-event {
+    color: $text-color;
+    text-decoration: underline;
+  }
+}
+
+body {
+  //background-image: url(../assets/img/seigaiha.png);
+  //background: url(../assets/img/flower0.png) no-repeat 36px 0px;
+}
+
+.clear {
+  clear: both;
+}
+
+.ct-wrapper {
+  width: 1024px;
+  margin: 0 auto;
+  //background: #f7f7f7;
+}
+
+.social-holder {
+  width: 200px;
+  float: left;
+}
+
+.social-networks {
+  width: 180px;
+}
+
+.header-wrapper {
+  //width: 980px;
+  //padding: 24px 0px 24px 0px;
+  padding: 50px 0px 0px 0px;
+  margin: 0 auto;
+  overflow: hidden;
+  background: url(../assets/img/flower02.png) no-repeat -10px 0px;
+}
+
+.header-wrapper:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.main-wrapper {
+  float: left;
+  width: 660px;
+}
+
+.sidebar-wrapper {
+  float: right;
+  width: 340px;
+}

@@ -56,7 +56,7 @@ exports = module.exports = function (req, res) {
     });
 
 
-    view.render('index', {
+    view.render('chlw/index', {
         section: 'home',
     });
 
