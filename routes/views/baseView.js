@@ -20,7 +20,7 @@ exports.addBaseActions = function (view, viewModel) {
 
         UserService.getAll(function (err, results) {
             console.log('users', results);
-            viewModel.users = results;
+            viewModel.allUsers = results;
 
             next();
         });

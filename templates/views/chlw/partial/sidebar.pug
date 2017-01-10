@@ -72,23 +72,29 @@
     h2 Авторы
     .widget-content
         ul
-            li
-                a(href='')
-                    img(src='../assets/img/authors/oleg1.jpg', alt='')
-                    span.title ОлегОлег ОлегОлег
-            li
-                a(href='')
-                    img(src='../assets/img/authors/pastor.jpg', alt='')
-                    span.title Пастор Андрей
-            li
-                a(href='')
-                    img(src='../assets/img/authors/oleg1.jpg', alt='')
-                    span.title Пастор Генадий (Польша)
-            li
-                a(href='')
-                    img(src='../assets/img/authors/shitov.jpg', alt='')
-                    span.title Евгений Шитов
-            li
-                a(href='')
-                    img(src='../assets/img/authors/pastor.jpg', alt='')
-                    span.title Пастор Андрей
+            each user in viewModel.allUsers
+                li
+                    a(href='blog/author/' + user.key)
+                        img(src=src='/uploads/users/img/' + user.photo.filename, alt=user.name.full)
+                        span.title=user.name.full
+
+            //li
+            //    a(href='')
+            //        img(src='../assets/img/authors/oleg1.jpg', alt='')
+            //        span.title ОлегОлег ОлегОлег
+            //li
+            //    a(href='')
+            //        img(src='../assets/img/authors/pastor.jpg', alt='')
+            //        span.title Пастор Андрей
+            //li
+            //    a(href='')
+            //        img(src='../assets/img/authors/oleg1.jpg', alt='')
+            //        span.title Пастор Генадий (Польша)
+            //li
+            //    a(href='')
+            //        img(src='../assets/img/authors/shitov.jpg', alt='')
+            //        span.title Евгений Шитов
+            //li
+            //    a(href='')
+            //        img(src='../assets/img/authors/pastor.jpg', alt='')
+            //        span.title Пастор Андрей
