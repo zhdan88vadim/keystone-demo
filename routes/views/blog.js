@@ -3,13 +3,16 @@ var async = require('async');
 var Post = keystone.list('Post');
 var Tag = keystone.list('Tag');
 var PostCategory = keystone.list('PostCategory');
-
+var BaseView = require('./baseView');
 var PostService = require('../../services/post');
 
 
 exports.category = function (req, res) {
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
+	var viewModel = locals.viewModel = {};
+
+	BaseView.addBaseActions(view, viewModel);
 
 	// Init locals
 	locals.section = 'blog category';

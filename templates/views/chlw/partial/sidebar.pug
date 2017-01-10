@@ -33,36 +33,41 @@
     h2 Метки
     .widget-content
         ul
-            li
-                a(href='') Погода
-            li
-                a(href='') Учеба
-            li
-                a(href='') Свидетельства
-            li
-                a(href='') Финансы
-            li
-                a(href='') Здоровье
-            li
-                a(href='') Достижение цели
-            li
-                a(href='') Упорство
-            li
-                a(href='') Борьба
-            li
-                a(href='') Стремление
-            li
-                a(href='') Победа
-            li
-                a(href='') Погода
-            li
-                a(href='') Учеба
-            li
-                a(href='') Свидетельства
-            li
-                a(href='') Победа
-            li
-                a(href='') Погода
+            each tag, i in viewModel.allTags
+                li
+                    a(href='/blog/category/sermons/tag/' + tag.key)=tag.name
+
+
+            //li
+            //    a(href='') Погода
+            //li
+            //    a(href='') Учеба
+            //li
+            //    a(href='') Свидетельства
+            //li
+            //    a(href='') Финансы
+            //li
+            //    a(href='') Здоровье
+            //li
+            //    a(href='') Достижение цели
+            //li
+            //    a(href='') Упорство
+            //li
+            //    a(href='') Борьба
+            //li
+            //    a(href='') Стремление
+            //li
+            //    a(href='') Победа
+            //li
+            //    a(href='') Погода
+            //li
+            //    a(href='') Учеба
+            //li
+            //    a(href='') Свидетельства
+            //li
+            //    a(href='') Победа
+            //li
+            //    a(href='') Погода
 .widget.cloud-authors
     h2 Авторы
     .widget-content

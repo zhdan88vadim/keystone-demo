@@ -1,40 +1,30 @@
 var keystone = require('keystone');
-var TagService = require('../../services/tag');
-var UserService = require('../../services/user');
+var ImageGalleryService = require('../../services/image-gallery');
+var BaseView = require('./baseView');
+
 
 exports = module.exports = function (req, res) {
 
     var view = new keystone.View(req, res);
     var locals = res.locals;
-    var model = locals.model = {};
+    var viewModel = locals.viewModel = {};
 
+    BaseView.addBaseActions(view, viewModel);
 
-    // Load all tags
+    // Load main banner
     view.on('init', function (next) {
 
-        TagService.getAll(function(err, results) {
-            console.log('tags', results);
-            model.tags = results;
+        ImageGalleryService.getImagesByGalleryName('main_baner', function(err, galleryName, results) {
+            console.log('main_baner', results);
+
+            viewModel.mainBanner = {};
+            viewModel.mainBanner.photos = results;
+            viewModel.mainBanner.galleryName = galleryName;
 
             next();
         });
 
     });
-
-    // Load all users
-    view.on('init', function (next) {
-
-        UserService.getAll(function(err, results) {
-            console.log('users', results);
-            model.users = results;
-
-            next();
-        });
-
-    });
-
-
-
 
 
     view.on('get', function (next) {

@@ -1,10 +1,15 @@
 var keystone = require('keystone');
 var Gallery = keystone.list('Gallery');
 var ImageGallery = require('../../services/image-gallery');
+var BaseView = require('./baseView');
+
 
 exports.list = function (req, res) {
     var view = new keystone.View(req, res);
     var locals = res.locals;
+    var viewModel = locals.viewModel = {};
+
+    BaseView.addBaseActions(view, viewModel);
 
     locals.section = 'gallery';
 
@@ -36,6 +41,9 @@ exports.list = function (req, res) {
 exports.album = function (req, res) {
     var view = new keystone.View(req, res);
     var locals = res.locals;
+    var viewModel = locals.viewModel = {};
+
+    BaseView.addBaseActions(view, viewModel);
 
     locals.filters = {
         album: req.params.album,
