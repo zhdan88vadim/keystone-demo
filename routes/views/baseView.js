@@ -7,7 +7,7 @@ exports.addBaseActions = function (view, viewModel) {
     view.on('init', function (next) {
 
         TagService.getAll(function (err, results) {
-            console.log('tags', results);
+            //console.log('tags', results);
             viewModel.allTags = results;
 
             next();
@@ -19,7 +19,7 @@ exports.addBaseActions = function (view, viewModel) {
     view.on('init', function (next) {
 
         UserService.getAll(function (err, results) {
-            console.log('users', results);
+            //console.log('users', results);
             viewModel.allUsers = results;
 
             next();

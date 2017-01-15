@@ -78,3 +78,31 @@ exports.getPostListByCategoryKey = function (categoryKey, callback) {
         });
     });
 };
+
+
+/**
+ * Get PostList for Index Page
+ */
+exports.getPostListForIndexPage = function (callback) {
+
+    var q = Post.paginate({
+        page: 1,   //req.query.page || 1,
+        perPage: 10,
+        maxPages: 10,
+    })
+        .where('state', 'published')
+        .sort('-publishedDate')
+        .populate('author categories tags');
+
+    // if (locals.category) {
+    //     q.where('categories').in([locals.category]);
+    // }
+    // if (locals.tag) {
+    //     q.where('tags').in([locals.tag]);
+    // }
+
+    q.exec(function (err, results) {
+        if (err) return callback('database error', err);
+        callback(null, results);
+    });
+};

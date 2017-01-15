@@ -1,7 +1,8 @@
 var keystone = require('keystone');
 var ImageGalleryService = require('../../services/image-gallery');
+var Constants = require('../../utils/constants');
 var BaseView = require('./baseView');
-
+var PostService = require('../../services/post');
 
 exports = module.exports = function (req, res) {
 
@@ -15,15 +16,26 @@ exports = module.exports = function (req, res) {
     view.on('init', function (next) {
 
         ImageGalleryService.getImagesByGalleryName('main_baner', function(err, galleryName, results) {
-            console.log('main_baner', results);
+            //console.log('main_baner', results);
 
             viewModel.mainBanner = {};
             viewModel.mainBanner.photos = results;
             viewModel.mainBanner.galleryName = galleryName;
 
+            viewModel.consts = Constants.data;
+
+
             next();
         });
 
+    });
+
+
+    view.on('init', function (next) {
+        PostService.getPostListForIndexPage(function(err, results) {
+            viewModel.lastPosts = results;
+            next();
+        });
     });
 
 

@@ -7,182 +7,77 @@ block content
       // start Basic Jquery Slider
       // image size: 620 x 310
       ul.bjqs
+          -- console.log('viewModel.lastPosts', viewModel.lastPosts);
 
           each bannerPhoto, i in viewModel.mainBanner.photos
               li
                   a(href='')
-                      img.fpimg(src='/uploads/gallery/img/' + viewModel.mainBanner.galleryName + '/' + bannerPhoto, style='width:100%;')
+                      img.fpimg(src=viewModel.consts.path.image_gallery + viewModel.mainBanner.galleryName + '/' + bannerPhoto, style='width:100%;')
                   h2.featured-title
                       a(href='') Наши фотографии
 
-          //
-          //li
-          //    a(href='')
-          //        img.fpimg(src='../assets/img/banner/r38.jpg', style='width:100%;')
-          //    h2.featured-title
-          //        a(href='') Generated caption
-          //li
-          //    a(href='')
-          //        img.fpimg(src='../assets/img/banner/r340.jpg', style='width:100%;')
-          //    h2.featured-title
-          //        a(href='') Automatically generated caption
-          //li
-          //    a(href='')
-          //        img.fpimg(src='../assets/img/banner/r29.jpg', style='width:100%;')
-          //    h2.featured-title
-          //        a(href='') Generated caption
-          //
-          //li
-          //    a(href='')
-          //        img.fpimg(src='../assets/img/banner/phoca_thumb_l_S0TFKSPBdr4.jpg', style='width:100%;')
-          //    h2.featured-title
-          //        a(href='') Automatically generated caption
-          //li
-          //    a(href='')
-          //        img.fpimg(src='../assets/img/banner/phoca_thumb_l_IMG_8184.JPG', style='width:100%;')
-          //    h2.featured-title
-          //        a(href='') Generated caption
-          //
-          //li
-          //    a(href='')
-          //        img.fpimg(src='../assets/img/banner/phoca_thumb_l_eTH0DGp4O18.jpg', style='width:100%;')
-          //    h2.featured-title
-          //        a(href='') Generated caption
-          //li
-          //    a(href='')
-          //        img.fpimg(src='../assets/img/banner/phoca_thumb_l_dsc09034.jpg', style='width:100%;')
-          //    h2.featured-title
-          //        a(href='') Automatically generated caption
-          //li
-          //    a(href='')
-          //        img.fpimg(src='../assets/img/banner/phoca_thumb_l_20.jpg', style='width:100%;')
-          //    h2.featured-title
-          //        a(href='') Generated caption
-          //
-          //li
-          //    a(href='')
-          //        img.fpimg(src='../assets/img/banner/phoca_thumb_l_1.jpg', style='width:100%;')
-          //    h2.featured-title
-          //        a(href='') Generated caption
-          //li
-          //    a(href='')
-          //        img.fpimg(src='../assets/img/banner/p45.jpg', style='width:100%;')
-          //    h2.featured-title
-          //        a(href='') Automatically generated caption
-          //
-          //
-          //li
-          //    a(href='')
-          //        img.fpimg(src='../assets/img/banner/phoca_thumb_l_IMG_8183.JPG', style='width:100%;')
-          //    h2.featured-title
-          //        a(href='') Generated caption
-          //li
-          //    a(href='')
-          //        img.fpimg(src='../assets/img/banner/phoca_thumb_l_IMG_8167.JPG', style='width:100%;')
-          //    h2.featured-title
-          //        a(href='') Automatically generated caption
-          //li
-          //    a(href='')
-          //        img.fpimg(src='../assets/img/banner/phoca_thumb_l_IMG_8155.JPG', style='width:100%;')
-          //    h2.featured-title
-          //        a(href='') Generated caption
       // end Basic jQuery Slider
   .blog-posts
       ul
-          li
-              .wrap-img
-                  img(src='../assets/img/book.jpg', alt='Post Title')
-              .entry-container
-                  h3.entry-title
-                      a(href='') Post Title
-                  p.entry-short-description
-                      | Ducimus, repudiandae impedit sapiente ex numquam
-                      | expedita alias doloribus in
-                      | incidunt sequi dignissimos odit facilis maxime aperiam
-                      | aspernatur soluta nulla adipisci...
-                  .item-label
-                      a(href='') Travel
-          li
-              .wrap-img
-                  img(src='../assets/img/book.jpg', alt='Post Title')
-              .entry-container
-                  h3.entry-title
-                      a(href='') Post Title
-                  p.entry-short-description
-                      | Ducimus, repudiandae impedit sapiente ex numquam
-                      | expedita alias doloribus in
-                      | incidunt sequi dignissimos odit facilis maxime aperiam
-                      | aspernatur soluta nulla adipisci...
-                  .item-label
-                      a(href='') Travel
-          li
-              .wrap-img
-                  img(src='../assets/img/book.jpg', alt='Post Title')
-              .entry-container
-                  h3.entry-title
-                      a(href='') Post Title
-                  p.entry-short-description
-                      | Ducimus, repudiandae impedit sapiente ex numquam
-                      | expedita alias doloribus in
-                      | incidunt sequi dignissimos odit facilis maxime aperiam
-                      | aspernatur soluta nulla adipisci...
-                  .item-label
-                      a(href='') Travel
-          li
-              .wrap-img
-                  img(src='../assets/img/book.jpg', alt='Post Title')
-              .entry-container
-                  h3.entry-title
-                      a(href='') Post Title
-                  p.entry-short-description
-                      | Ducimus, repudiandae impedit sapiente ex numquam
-                      | expedita alias doloribus in
-                      | incidunt sequi dignissimos odit facilis maxime aperiam
-                      | aspernatur soluta nulla adipisci...
-                  .item-label
-                      a(href='') Travel
-          li
-              .wrap-img
-                  img(src='../assets/img/book.jpg', alt='Post Title')
-              .entry-container
-                  h3.entry-title
-                      a(href='') Post Title
-                  p.entry-short-description
-                      | Ducimus, repudiandae impedit sapiente ex numquam
-                      | expedita alias doloribus in
-                      | incidunt sequi dignissimos odit facilis maxime aperiam
-                      | aspernatur soluta nulla adipisci...
-                  .item-label
-                      a(href='') Travel
-          li
-              .wrap-img
-                  img(src='../assets/img/book.jpg', alt='Post Title')
-              .entry-container
-                  h3.entry-title
-                      a(href='') Post Title
-                  p.entry-short-description
-                      | Ducimus, repudiandae impedit sapiente ex numquam
-                      | expedita alias doloribus in
-                      | incidunt sequi dignissimos odit facilis maxime aperiam
-                      | aspernatur soluta nulla adipisci...
-                  .item-label
-                      a(href='') Travel
+          each lastPost, i in viewModel.lastPosts.results
+              -- console.log('lastPost', lastPost);
+
+              li
+                  .wrap-img
+                      a(href=lastPost.key)
+                          if lastPost.image && lastPost.image.filename
+                             img(src='/uploads/viewModel.lastPosts/img/' + lastPost.image.filename)
+                          else
+                              if lastPost.author && lastPost.author.photo && lastPost.author.photo.filename
+                                    img(src='/uploads/users/img/' + lastPost.author.photo.filename, alt=lastPost.author.name.full)
+
+                  .entry-container
+                      h3.entry-title
+                          a(href=lastPost.key)=lastPost.name
+                      p.entry-short-description
+                          | #{lastPost.content.brief}
+                      .item-label
+                            if lastPost.publishedDate || lastPost.author
+                                if lastPost.author
+                                    | #{lastPost.author.name.full}
+
+                                if lastPost.publishedDate
+                                    | #{ ' - ' + lastPost._.publishedDate.format('MM/D/YYYY')}
+
+
   .clear
   .blog-pager
-      span.showpageOf Page 1 of 5
-      span.showpageNum
-          a(href='#', onclick='redirectpage(0);return false') «
-      span.showpageNum
-          a(href='#', onclick='redirectpage(1);return false') 1
-      span.showpagePoint
-          a(href='#', onclick='redirectpage(2);return false') 2
-      span.showpageNum
-          a(href='#', onclick='redirectpage(3);return false') 3
-      span.showpageNum
-          a(href='#', onclick='redirectpage(5);return false') 5
-      span.showpageNum
-          a(href='#', onclick='redirectpage(2);return false') »
+      //span.showpageOf Page 1 of 5
+      //span.showpageNum
+      //    a(href='#', onclick='redirectpage(0);return false') «
+      //span.showpageNum
+      //    a(href='#', onclick='redirectpage(1);return false') 1
+      //span.showpagePoint
+      //    a(href='#', onclick='redirectpage(2);return false') 2
+      //span.showpageNum
+      //    a(href='#', onclick='redirectpage(3);return false') 3
+      //span.showpageNum
+      //    a(href='#', onclick='redirectpage(5);return false') 5
+      //span.showpageNum
+      //    a(href='#', onclick='redirectpage(2);return false') »
 
+
+      if viewModel.lastPosts.totalPages > 1
+          if viewModel.lastPosts.previous
+              span: a(href='?page=' + viewModel.lastPosts.previous): span.glyphicon.glyphicon-chevron-left
+          else
+              span.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
+
+
+          each p, i in viewModel.lastPosts.pages
+              span(class=viewModel.lastPosts.currentPage === p ? 'showpagePoint' : 'showpageNum')
+                  a(href='?page=' + (p === '...' ? (i ? viewModel.lastPosts.totalPages : 1) : p ))= p
+
+
+          if viewModel.lastPosts.next
+              span: a(href='?page=' + viewModel.lastPosts.next): span.glyphicon.glyphicon-chevron-right
+          else
+              span.disabled: a(href='?page=' + viewModel.lastPosts.totalPages): span.glyphicon.glyphicon-chevron-right
 
 
 
