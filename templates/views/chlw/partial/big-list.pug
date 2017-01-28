@@ -3,7 +3,7 @@
 
 .big-list
     ul
-        each listItem, i in items.results
+        each listItem, i in viewModel.items.results
 
             -- console.log('listItem', listItem)
 
@@ -209,16 +209,37 @@
             .clear
 .clear
 .blog-pager
-    span.showpageOf Page 1 of 5
-    span.showpageNum
-        a(href='#', onclick='redirectpage(0);return false') «
-    span.showpageNum
-        a(href='#', onclick='redirectpage(1);return false') 1
-    span.showpagePoint
-        a(href='#', onclick='redirectpage(2);return false') 2
-    span.showpageNum
-        a(href='#', onclick='redirectpage(3);return false') 3
-    span.showpageNum
-        a(href='#', onclick='redirectpage(5);return false') 5
-    span.showpageNum
-        a(href='#', onclick='redirectpage(2);return false') »
+
+    if viewModel.items.totalPages > 1
+        if viewModel.items.previous
+            span: a(href='?page=' + viewModel.items.previous): span.glyphicon.glyphicon-chevron-left
+        else
+            span.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
+
+
+        each p, i in viewModel.items.pages
+            span(class=viewModel.items.currentPage === p ? 'showpagePoint' : 'showpageNum')
+                a(href='?page=' + (p === '...' ? (i ? viewModel.items.totalPages : 1) : p ))= p
+
+
+        if viewModel.items.next
+            span: a(href='?page=' + viewModel.items.next): span.glyphicon.glyphicon-chevron-right
+        else
+            span.disabled: a(href='?page=' + viewModel.items.totalPages): span.glyphicon.glyphicon-chevron-right
+
+
+
+
+    //span.showpageOf Page 1 of 5
+    //span.showpageNum
+    //    a(href='#', onclick='redirectpage(0);return false') «
+    //span.showpageNum
+    //    a(href='#', onclick='redirectpage(1);return false') 1
+    //span.showpagePoint
+    //    a(href='#', onclick='redirectpage(2);return false') 2
+    //span.showpageNum
+    //    a(href='#', onclick='redirectpage(3);return false') 3
+    //span.showpageNum
+    //    a(href='#', onclick='redirectpage(5);return false') 5
+    //span.showpageNum
+    //    a(href='#', onclick='redirectpage(2);return false') »

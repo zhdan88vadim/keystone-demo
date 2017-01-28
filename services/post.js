@@ -83,10 +83,10 @@ exports.getPostListByCategoryKey = function (categoryKey, callback) {
 /**
  * Get PostList for Index Page
  */
-exports.getPostListForIndexPage = function (callback) {
+exports.getPostListForIndexPage = function (pageNumber, callback) {
 
     var q = Post.paginate({
-        page: 1,   //req.query.page || 1,
+        page: pageNumber || 1,
         perPage: 10,
         maxPages: 10,
     })

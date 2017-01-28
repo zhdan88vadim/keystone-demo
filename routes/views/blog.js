@@ -77,24 +77,32 @@ exports.category = function (req, res) {
 	// Load the posts
 	view.on('init', function (next) {
 
+		var filters = {};
+		if (locals.tag)
+			filters.tags = locals.tag;
+
+		if (locals.category)
+			filters.categories = locals.category;
+
 		var q = Post.paginate({
 			page: req.query.page || 1,
-			perPage: 10,
-			maxPages: 10,
+			perPage: 5,
+			maxPages: 7,
+			filters: filters
 		})
 			.where('state', 'published')
 			.sort('-publishedDate')
 			.populate('author categories tags');
 
-		if (locals.category) {
-			q.where('categories').in([locals.category]);
-		}
-		if (locals.tag) {
-			q.where('tags').in([locals.tag]);
-		}
+		// if (locals.category) {
+		// 	q.where('categories').in([locals.category]);
+		// }
+		// if (locals.tag) {
+		// 	q.where('tags').in([locals.tag]);
+		// }
 
 		q.exec(function (err, results) {
-			locals.items = results;
+			viewModel.items = results;
 			next(err);
 		});
 

@@ -32,7 +32,9 @@ exports = module.exports = function (req, res) {
 
 
     view.on('init', function (next) {
-        PostService.getPostListForIndexPage(function(err, results) {
+        var pageNumber = req.query.page;
+
+        PostService.getPostListForIndexPage(pageNumber, function(err, results) {
             viewModel.lastPosts = results;
             next();
         });
