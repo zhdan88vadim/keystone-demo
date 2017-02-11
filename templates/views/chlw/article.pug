@@ -8,7 +8,7 @@ block content
 			if (viewModel.post.image.filename && '/uploads/posts/img/' + viewModel.post.image.filename.exists)
 				img(src='/uploads/posts/img/' + viewModel.post.image.filename).main-img
 			div.content
-				| #{viewModel.post.content.full}
+				| !{viewModel.post.content.full}
 
 
 	.article-footer

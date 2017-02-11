@@ -375,7 +375,7 @@ module.exports = function (done) {
     });
 
 
-    keystone.createItems(importData, function (err, stats) {
+    keystone.createItems({}, function (err, stats) {
         stats && console.log(stats.message);
         done(err);
     });
