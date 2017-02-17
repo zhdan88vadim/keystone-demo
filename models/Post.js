@@ -26,12 +26,15 @@ Post.add({
     image: {
         type: Types.File, storage: myStorage
     },
+    urls: { type: Types.TextArray },
+    urlsPodfm: { type: Types.TextArray },
     content: {
         brief: {type: Types.Html, wysiwyg: true, height: 150},
         extended: {type: Types.Html, wysiwyg: true, height: 400},
     },
     categories: {type: Types.Relationship, ref: 'PostCategory', many: true},
     tags: {type: Types.Relationship, ref: 'Tag', many: true},
+    hits: {type: Types.Number, default: 0, required: true},
 });
 
 Post.schema.virtual('content.full').get(function () {

@@ -14,12 +14,12 @@
     //min-width: 100%;
     border-radius: 4px;
     width: 150px;
-    height: 150px;
+    //height: 150px;
     // ?? border: 1px solid #cfcfcf;
 }
 
 .big-list .wrap-img {
-    height: 150px;
+    max-height: 150px;
     overflow: hidden;
     float: left;
     margin: 5px 20px 5px 0;

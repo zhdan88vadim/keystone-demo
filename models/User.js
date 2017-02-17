@@ -20,6 +20,7 @@ User.add({
 	name: { type: Types.Name, required: true, index: true },
 	email: { type: Types.Email, initial: true, required: true, index: true, unique: true },
 	phone: { type: String, width: 'short' },
+	showOnPage: { type: Boolean, required: true, default: true },
 	photo: { type: Types.File, storage: myStorage, collapse: true },
 	password: { type: Types.Password, initial: true, required: false },
 }, 'Permissions', {
@@ -57,5 +58,5 @@ function protect (path) {
  */
 
 User.track = true;
-User.defaultColumns = 'name, email, phone, photo';
+User.defaultColumns = 'name, email, phone, photo, showOnPage';
 User.register();

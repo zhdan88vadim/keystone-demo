@@ -3,6 +3,7 @@ var User = keystone.list('User');
 
 module.exports = function (done) {
 	new User.model({
+		showOnPage: false,
 		name: {
 			first: 'Demo',
 			last: 'User'

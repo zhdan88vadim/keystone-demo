@@ -1,10 +1,14 @@
 var keystone = require('keystone');
 var Enquiry = keystone.list('Enquiry');
+var BaseView = require('./baseView');
 
 exports = module.exports = function (req, res) {
 
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
+	var viewModel = locals.viewModel = {};
+
+	BaseView.addBaseActions(view, viewModel);
 
 	locals.section = 'contact';
 	locals.enquiryTypes = Enquiry.fields.enquiryType.ops;

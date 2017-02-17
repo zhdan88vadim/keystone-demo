@@ -137,12 +137,15 @@ exports.tag = function (req, res) {
 
 
 	// Render the view
-	view.render('blog');
+	view.render('chlw/sermons');
 }
 
 exports.author = function (req, res) {
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
+	var viewModel = locals.viewModel = {};
+
+    BaseView.addBaseActions(view, viewModel);
 
 	// Init locals
 	locals.section = 'blog author';
@@ -155,14 +158,14 @@ exports.author = function (req, res) {
 	// Load all categories
 	view.on('init', function (next) {
 
-		PostService.getPostListByAuthorKey(locals.filters.author, function(err, results) {
-			locals.posts.results = results;
+		PostService.getPostListByAuthorKey(locals.filters.author, req.query.page,  function(err, results) {
+			viewModel.items = results;
 			next(err);
 		});
 	});
 
 
 	// Render the view
-	view.render('blog');
+	view.render('chlw/sermons');
 }
 

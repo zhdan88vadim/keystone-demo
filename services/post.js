@@ -5,7 +5,7 @@ var Users = keystone.list('User');
 var PostCategory = keystone.list('PostCategory');
 
 
-exports.getAll = function(callback) {
+exports.getAll = function (callback) {
 
     Tag.model.find().exec(function (err, results) {
         if (err) {
@@ -16,27 +16,47 @@ exports.getAll = function(callback) {
     });
 
 }
+exports.getAllCategories = function (callback) {
+
+    PostCategory.model.find({showOnPage: true}).exec(function (err, results) {
+        if (err) {
+            callback(err);
+        } else {
+            callback(null, results);
+        }
+    });
+}
 
 
 /**
  * Get PostList by Tag
  */
-exports.getPostListByAuthorKey = function (name, callback) {
-    Users.model.findOne().where('key', name).exec(function (err, item) {
+exports.getPostListByAuthorKey = function (authorName, pageNumber, callback) {
 
-        if (err) return callback('database error');
-        if (!item) return callback('not found');
+    Users.model.findOne().where('key', authorName).exec(function (err, authorItem) {
 
-        var author = item;
+        var filters = {};
+        if (authorName)
+            filters.author = authorItem;
 
-        Post.model.find().populate('author categories').where('author').in([author.id]).exec(function (err, items) {
+        var q = Post.paginate({
+            page: pageNumber || 1,
+            perPage: 10,
+            maxPages: 10,
+            filters: filters
+        })
+            .where('state', 'published')
+            .sort('-publishedDate')
+            .populate('author categories tags');
+
+
+        q.exec(function (err, results) {
             if (err) return callback('database error', err);
-            if (!items || items.length === 0) return callback('not found');
-
-            callback(null, items);
+            callback(null, results);
         });
+
     });
-};
+}
 
 
 /**

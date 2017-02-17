@@ -53,18 +53,21 @@ html(lang='en')
                     ul
                         li.highlight
                             a(href='/') Главная
-                        li
-                            a(href='/blog/category/testimonies') Свидетельства
-                        li
-                            a(href='sluzheniya.html') Служения
-                        li
-                            a(href='/blog/category/materials') Материалы
-                        li
-                            a(href='/blog/category/sermons') Проповеди
+
+
+                        each mainCategory, i in viewModel.allCategories
+                            li
+                                a(href='/blog/category/' + mainCategory.key)=mainCategory.title
+                        //li
+                        //    a(href='/blog/category/service') Служения
+                        //li
+                        //    a(href='/blog/category/materials') Материалы
+                        //li
+                        //    a(href='/blog/category/sermons') Проповеди
                         li
                             a(href='/gallery') Фото
-                        li
-                            a(href='#') Библия
+                        //li
+                        //    a(href='#') Библия
                         li
                             a(href='/contact') Контакты
                     //

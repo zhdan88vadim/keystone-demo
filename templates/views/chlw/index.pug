@@ -24,7 +24,7 @@ block content
 
               li
                   .wrap-img
-                      a(href=lastPost.key)
+                      a(href='/blog/post/' + lastPost.key)
                           if lastPost.image && lastPost.image.filename
                              img(src='/uploads/viewModel.lastPosts/img/' + lastPost.image.filename)
                           else
@@ -33,7 +33,7 @@ block content
 
                   .entry-container
                       h3.entry-title
-                          a(href=lastPost.key)=lastPost.name
+                          a(href='/blog/post/' + lastPost.key)=lastPost.name
                       p.entry-short-description
                           | #{lastPost.content.brief}
                       .item-label
