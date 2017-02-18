@@ -33,6 +33,7 @@ keystone.import('models');
 
 keystone.set('locals', {
 	_: require('lodash'),
+	siteUtils: require('./utils/siteUtils'),
 	env: keystone.get('env'),
 	utils: keystone.utils,
 	editable: keystone.content.editable,

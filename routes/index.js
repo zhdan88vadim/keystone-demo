@@ -64,11 +64,16 @@ exports = module.exports = function(app) {
     // Views
     app.all('/', routes.views.index);
 
-    app.get('/blog/tag/:tag', routes.views.blog.tag);
+    app.get('/blog/tag/:tag', routes.views.blog.category);
+    app.get('/blog/author/:author', routes.views.blog.category);
     app.get('/blog/category/:category', routes.views.blog.category);
-    app.get('/blog/category/:category/tag/:tag', routes.views.blog.category);
 
-    app.get('/blog/author/:author', routes.views.blog.author);
+    //app.get('/blog/category/:category/tag/:tag', routes.views.blog.category);
+
+
+
+
+
     //app.get('/blog', routes.views.blog.category);
 
 

@@ -1,6 +1,9 @@
+var keystone = require('keystone');
 var TagService = require('../../services/tag');
 var UserService = require('../../services/user');
 var PostService = require('../../services/post');
+var Post = keystone.list('Post');
+
 
 exports.addBaseActions = function (view, viewModel) {
 
@@ -42,4 +45,24 @@ exports.addBaseActions = function (view, viewModel) {
             next();
         });
     });
+
+
+    // Load most populat posts
+
+    view.on('init', function (next) {
+
+        Post.model.find()
+            .where('state', 'published')
+            .sort('-hits')
+            .populate('categories')
+            .limit(7)
+            .exec(function (err, posts) {
+                if (err) return res.err(err);
+
+                viewModel.mostPopularPosts = posts;
+
+                next();
+            });
+    });
+
 }

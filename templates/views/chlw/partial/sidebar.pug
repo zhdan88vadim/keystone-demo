@@ -1,6 +1,6 @@
 .widget.about-us
     h2 наше служение
-    .widget-content
+    .widget-content.clearfix
         | Богослужения проходят каждое воскресенье в 12-00 по адресу: г.Минск ул.Медвежино 11/3. Служители
         | нашей церкви готовы посетить больных, оказать им молитвенную поддержку и другую посильную
         | помощь.
@@ -15,27 +15,22 @@
         a(href='/') далее..
 .widget.popular-posts
     h2 популярные посты
-    .widget-content
+    .widget-content.clearfix
         ul
-            li
-                a(href='') Позитивные последствия кризиса
-            li
-                a(href='') Воскресная проповедь — христианин на работе 18.09.2016
-            li
-                a(href='') Пророческое слово на 2013 год
-            li
-                a(href='') Конференция - (22.10.2016 - 23.10.2016) - Олег Ремез
-            li
-                a(href='') Воскресная проповедь — Воля Божья в Библии - часть 1 - 09.10.2016
-            li
-                a(href='') Воскресная проповедь — природа христианской любви — часть 2 — 30.10.2016
+            each popularPost, i in viewModel.mostPopularPosts
+
+                li
+                    a(href='/blog/post/' + popularPost.key)
+                        | !{siteUtils.getCategoryTitle(popularPost.categories, popularPost.name)}
+
+
 .widget.cloud-labels
     h2 Метки
-    .widget-content
+    .widget-content.clearfix
         ul
             each tag, i in viewModel.allTags
                 li
-                    a(href='/blog/category/sermons/tag/' + tag.key)=tag.name
+                    a(href='/blog/tag/' + tag.key)=tag.name
 
 
             //li
@@ -70,7 +65,7 @@
             //    a(href='') Погода
 .widget.cloud-authors
     h2 Авторы
-    .widget-content
+    .widget-content.clearfix
         ul
             each user in viewModel.allUsers
                 li
