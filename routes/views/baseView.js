@@ -2,6 +2,7 @@ var keystone = require('keystone');
 var TagService = require('../../services/tag');
 var UserService = require('../../services/user');
 var PostService = require('../../services/post');
+var ImageGallery = require('../../services/image-gallery');
 var Post = keystone.list('Post');
 
 
@@ -63,6 +64,23 @@ exports.addBaseActions = function (view, viewModel) {
 
                 next();
             });
+    })
+
+
+    // Load random gallery images
+
+    view.on('init', function (next) {
+
+        ImageGallery.getRandomImages(9, function(err, galleryName, images) {
+            if (err) return res.err(err);
+
+            viewModel.randomGallery = {};
+            viewModel.randomGallery.galleryName = galleryName;
+            viewModel.randomGallery.images = images;
+
+            next();
+        });
+
     });
 
 }

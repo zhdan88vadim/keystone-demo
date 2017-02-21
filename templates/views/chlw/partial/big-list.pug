@@ -209,9 +209,12 @@
         //    a(href='') читать полностью
             .clear
 .clear
-.blog-pager
 
-    if viewModel.items.totalPages > 1
+
+if viewModel.items.totalPages > 1
+    .blog-pager
+
+
         if viewModel.items.previous
             span: a(href='?page=' + viewModel.items.previous): span.glyphicon.glyphicon-chevron-left
         else

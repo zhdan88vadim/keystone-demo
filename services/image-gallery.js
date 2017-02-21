@@ -43,6 +43,44 @@ exports.getImagesByGalleryName = function (name, callback) {
     });
 }
 
+exports.getRandomImages = function (count, callback) {
+
+    var getGalleryCount = new Promise(function (resolve, reject) {
+            Gallery.model.find({}).count().exec(function (err, result) {
+                err ? reject(err) : resolve(result);
+            })
+        }
+    );
+
+    function getImages(countGallery) {
+
+        Gallery.model.find({})
+            .skip(Math.random() * countGallery).limit(1)
+            .exec(function (err, item) {
+                if (err) {
+                    callback(err);
+                } else {
+
+                    if (!item[0])
+                        return callback('item not found');
+
+                    var files = item[0].uploadFiles.slice(0, count);
+                    var fileUrls = [];
+
+                    files.forEach(function (file) {
+                        fileUrls.push(file.filename);
+                    });
+
+                    callback(null, item[0].name, fileUrls);
+                }
+            });
+    }
+
+    getGalleryCount.then(function (result) {
+        getImages(result);
+    });
+}
+
 exports.updateGallery = function (err, callback) {
 
     DeleteAllGallaries();
@@ -114,8 +152,6 @@ function createPreviewImg(galleryName, files) {
                 //nextFn();
             });
     });
-
-
 }
 
 function DeleteAllGallaries() {
