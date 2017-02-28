@@ -30,8 +30,9 @@
         ul
             each tag, i in viewModel.allTags
                 li
-                    a(href='/blog/tag/' + tag.key)=tag.name
+                    a(href=siteConst.routes.tag + tag.key)=tag.name
 
+            -- console.log(siteConst)
 
             //li
             //    a(href='') Погода

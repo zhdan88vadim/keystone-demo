@@ -33,7 +33,7 @@
                         ul
                             each tag, i in listItem.tags
                                 li
-                                    a(href='/blog/category/sermons/tag/' + tag.key)=tag.name
+                                    a(href=siteConst.routes.tag + tag.key)=tag.name
                     .clear
                 .clear
 
