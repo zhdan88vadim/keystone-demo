@@ -6,12 +6,13 @@ block content
     .photo-album
 
         if images.length
-            ul
+            div
                 each image, i in images
-                    li
-                        a(title='Heading Level', href='photo-album.html')
-                            img(src='/uploads/gallery/img/' + galleryName + '/preview/' + image)
-
+                    div.box
+                        div.box-inner
+                            a(title='', rel='gallery', href='/uploads/gallery/img/' + galleryName + '/' + image).fancy-img
+                                img(src='/uploads/gallery/img/' + galleryName + '/preview/' + image)
+                                //div(bacground='gray', width='200px', height='100px')='/uploads/gallery/img/' + galleryName + '/preview/' + image
         else
             h3 В этом альбоме еще нет фотографий.
 
