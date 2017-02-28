@@ -19,6 +19,6 @@
   },
   "scripts": {
     "start": "node keystone.js",
-    "postinstall": "bower install"
+    "postinstall": "bower cache clean && bower install"
   }
 }
