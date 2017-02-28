@@ -1,14 +1,11 @@
 var keystone = require('keystone');
 var fs = require('fs');
 var ImageConverting = require('../services/image-converting');
+var path = require('path');
 
 var Gallery = keystone.list('Gallery');
 
-
-// var fullFileName = keystone.expandPath(filename);
-// var fullOutputFile = keystone.expandPath(outputFile);
-
-var galleryFilePath = 'w:\\work_new\\keystonejs\\my\\public\\uploads\\gallery\\img\\';
+var galleryFilePath = path.normalize(__dirname + '\\..') +  '\\public\\uploads\\gallery\\img\\';
 
 
 exports.getAll = function (callback) {
@@ -143,11 +140,16 @@ function createAlbum(name, files) {
 
 function createPreviewImg(galleryName, files) {
     var albumDir = galleryFilePath + galleryName + '\\';
+    var previewDir = albumDir + 'preview\\';
+
+    if(!fs.existsSync(previewDir)) {
+        fs.mkdirSync(previewDir);
+    }
 
     files.forEach(function (file) {
 
         ImageConverting.createPreviewImage(albumDir + file,
-            albumDir + 'preview\\' + file,
+            previewDir + file,
             function () {
                 //nextFn();
             });

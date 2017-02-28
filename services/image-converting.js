@@ -15,7 +15,10 @@ exports.createPreviewImage = function (filename, outputFile, callback) {
         .resize(240, 240)
         .noProfile()
         .write(fullOutputFile, function (err) {
-            if (err) callback(err);
+            if (err) {
+                console.err(err);
+                callback(err);
+            }
             callback(null);
         });
 }

@@ -24,17 +24,15 @@ exports.list = function (req, res) {
         });
     });
 
-
-    view.on('get', {action: 'update'}, function (next) {
-
-        console.log('action update');
-
-        ImageGallery.updateGallery();
-        next();
-    });
+    // view.on('get', {action: 'update'}, function (next) {
+    //
+    //     console.log('action update');
+    //
+    //     ImageGallery.updateGallery();
+    //     next();
+    // });
 
     view.render('chlw/gallery');
-
 }
 
 
@@ -59,6 +57,21 @@ exports.album = function (req, res) {
             console.log('album', images);
             next();
         });
+    });
+
+    view.render('chlw/photo-album');
+}
+
+exports.update = function (req, res) {
+    var view = new keystone.View(req, res);
+    var locals = res.locals;
+    var viewModel = locals.viewModel = {};
+
+    view.on('get', function (next) {
+
+        console.log('action update');
+        ImageGallery.updateGallery();
+        next();
     });
 
     view.render('chlw/photo-album');
