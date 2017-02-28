@@ -14,9 +14,11 @@
     "jade": "^1.11.0",
     "keystone": "^4.0.0-beta.1",
     "lodash": "^3.10.1",
-    "pug": "^2.0.0-beta6"
+    "pug": "^2.0.0-beta6",
+    "bower": ""
   },
   "scripts": {
-    "start": "node keystone.js"
+    "start": "node keystone.js",
+    "postinstall": "bower install"
   }
 }
