@@ -16,7 +16,6 @@ exports.createPreviewImage = function (filename, outputFile, callback) {
         .noProfile()
         .write(fullOutputFile, function (err) {
             if (err) {
-                console.err(err);
                 callback(err);
             }
             callback(null);
