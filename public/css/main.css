@@ -763,15 +763,14 @@ body {
 .article .main-img {
   width: 100%; }
 
-.article .article-body {
-  text-align: justify;
-  text-indent: 5%; }
-  .article .article-body p {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em; }
+.article .article-body p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em; }
 
 .article .content {
-  margin-top: 20px; }
+  margin-top: 20px;
+  text-align: justify;
+  text-indent: 5%; }
 
 .files-download {
   margin-top: 40px; }

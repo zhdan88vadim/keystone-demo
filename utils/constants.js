@@ -5,6 +5,7 @@ module.exports = {
         'image_gallery': '/uploads/gallery/img/'
     },
     routes: {
-        'tag': '/blog/tag/'
+        'tag': '/blog/tag/',
+        'blog_post': '/blog/post/'
     }
 }

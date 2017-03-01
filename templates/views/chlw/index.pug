@@ -24,16 +24,16 @@ block content
 
               li
                   .wrap-img
-                      a(href='/blog/post/' + lastPost.key)
+                      a(href=siteConst.routes.blog_post + lastPost.key)
                           if lastPost.image && lastPost.image.filename
-                             img(src='/uploads/viewModel.lastPosts/img/' + lastPost.image.filename)
+                             img(src=siteConst.path.image_posts + lastPost.image.filename)
                           else
                               if lastPost.author && lastPost.author.photo && lastPost.author.photo.filename
-                                    img(src='/uploads/users/img/' + lastPost.author.photo.filename, alt=lastPost.author.name.full)
+                                    img(src=siteConst.path.image_users + lastPost.author.photo.filename, alt=lastPost.author.name.full)
 
                   .entry-container
                       h3.entry-title
-                          a(href='/blog/post/' + lastPost.key)=lastPost.name
+                          a(href=siteConst.routes.blog_post + lastPost.key)=lastPost.name
                       p.entry-short-description
                           | #{lastPost.content.brief}
                       .item-label
