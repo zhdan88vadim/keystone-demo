@@ -10,7 +10,8 @@ exports = module.exports = function (req, res) {
 
 	BaseView.addBaseActions(view, viewModel);
 
-	locals.section = 'contact';
+    viewModel.activeRoute = 'contact';
+
 	locals.enquiryTypes = Enquiry.fields.enquiryType.ops;
 	locals.formData = req.body || {};
 	locals.validationErrors = {};
@@ -34,8 +35,5 @@ exports = module.exports = function (req, res) {
 
 	});
 
-	view.render('chlw/contact', {
-		section: 'contact',
-	});
-
+	view.render('chlw/contact');
 }

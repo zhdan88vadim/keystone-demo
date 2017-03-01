@@ -11,7 +11,7 @@ exports.list = function (req, res) {
 
     BaseView.addBaseActions(view, viewModel);
 
-    locals.section = 'gallery';
+    viewModel.activeRoute = 'gallery';
 
     //view.query('galleries', Gallery.model.find().sort('sortOrder'));
 
@@ -42,6 +42,8 @@ exports.album = function (req, res) {
     var viewModel = locals.viewModel = {};
 
     BaseView.addBaseActions(view, viewModel);
+    
+    viewModel.activeRoute = 'gallery';
 
     locals.filters = {
         album: req.params.album,

@@ -11,9 +11,6 @@ exports = module.exports = function (req, res) {
 
     BaseView.addBaseActions(view, viewModel);
 
-
-    // Init locals
-    locals.section = 'blog';
     locals.filters = {
         post: req.params.post,
     };
@@ -154,5 +151,4 @@ exports = module.exports = function (req, res) {
     //locals.currentTheme = 'Bootstrap';
     // Render the view
     view.render('chlw/article');
-
 }

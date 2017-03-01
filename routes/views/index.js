@@ -11,6 +11,8 @@ exports = module.exports = function (req, res) {
 
     BaseView.addBaseActions(view, viewModel);
 
+    viewModel.activeRoute = 'main';
+
     // Load main banner
     view.on('init', function (next) {
 

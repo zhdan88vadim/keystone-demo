@@ -6,6 +6,10 @@ module.exports = {
     },
     routes: {
         'tag': '/blog/tag/',
-        'blog_post': '/blog/post/'
+        'blog_post': '/blog/post/',
+        'blog_category': '/blog/category/',
+        'gallery': '/gallery',
+        'contact': '/contact',
+
     }
 }

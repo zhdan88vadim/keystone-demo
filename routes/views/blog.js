@@ -15,13 +15,13 @@ exports.category = function (req, res) {
 
     BaseView.addBaseActions(view, viewModel);
 
-    // Init locals
-    locals.section = 'blog category';
     locals.filters = {
         category: req.params.category,
         tag: req.params.tag,
         author: req.params.author
     };
+
+    viewModel.activeRoute = locals.filters.category;
 
 
     // Load all categories

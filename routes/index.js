@@ -31,7 +31,6 @@ exports = module.exports = function(app) {
 
     app.all(middleware.theme);
 
-
     // NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
     // app.get('/protected', middleware.requireUser, routes.views.protected);
 
@@ -70,14 +69,7 @@ exports = module.exports = function(app) {
 
     //app.get('/blog/category/:category/tag/:tag', routes.views.blog.category);
 
-
-
-
-
     //app.get('/blog', routes.views.blog.category);
-
-
-
 
     // app.post('/blog/post/:post', function(req, res, next) {
     //     console.log('blog/post/my')
@@ -99,5 +91,4 @@ exports = module.exports = function(app) {
 
     // Downloads
     app.get('/download/users', routes.download.users);
-
 }

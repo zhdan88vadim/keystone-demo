@@ -54,25 +54,19 @@ html(lang='en')
             .menu-holder
                 .main-menu
                     ul
-                        li.highlight
+                        li(class=(viewModel.activeRoute === 'main' ? 'highlight' : ''))
                             a(href='/') Главная
 
 
                         each mainCategory, i in viewModel.allCategories
-                            li
-                                a(href='/blog/category/' + mainCategory.key)=mainCategory.title
-                        //li
-                        //    a(href='/blog/category/service') Служения
-                        //li
-                        //    a(href='/blog/category/materials') Материалы
-                        //li
-                        //    a(href='/blog/category/sermons') Проповеди
-                        li
-                            a(href='/gallery') Фото
-                        //li
-                        //    a(href='#') Библия
-                        li
-                            a(href='/contact') Контакты
+                            li(class=(viewModel.activeRoute === mainCategory.key ? 'highlight' : ''))
+                                a(href=siteConst.routes.blog_category + mainCategory.key)=mainCategory.title
+                        
+                        li(class=(viewModel.activeRoute === 'gallery' ? 'highlight' : ''))
+                            a(href=siteConst.routes.gallery) Фото
+                        li(class=(viewModel.activeRoute === 'contact' ? 'highlight' : ''))
+                            a(href=siteConst.routes.contact) Контакты
+                   
                     //
                         <select class="nav-select">
                         <option>Navigation</option>
