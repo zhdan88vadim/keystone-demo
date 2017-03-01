@@ -1,6 +1,5 @@
 var keystone = require('keystone');
 var ImageGalleryService = require('../../services/image-gallery');
-var Constants = require('../../utils/constants');
 var BaseView = require('./baseView');
 var PostService = require('../../services/post');
 
@@ -21,9 +20,6 @@ exports = module.exports = function (req, res) {
             viewModel.mainBanner = {};
             viewModel.mainBanner.photos = results;
             viewModel.mainBanner.galleryName = galleryName;
-
-            viewModel.consts = Constants.data;
-
 
             next();
         });

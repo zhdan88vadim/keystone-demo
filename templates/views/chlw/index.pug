@@ -12,7 +12,7 @@ block content
           each bannerPhoto, i in viewModel.mainBanner.photos
               li
                   a(href='')
-                      img.fpimg(src=viewModel.consts.path.image_gallery + viewModel.mainBanner.galleryName + '/' + bannerPhoto, style='width:100%;')
+                      img.fpimg(src=siteConst.path.image_gallery + viewModel.mainBanner.galleryName + '/' + bannerPhoto, style='width:100%;')
                   h2.featured-title
                       a(href='') Наши фотографии
 
