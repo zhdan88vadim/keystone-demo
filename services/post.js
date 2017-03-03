@@ -36,7 +36,7 @@ exports.getPostListForIndexPage = function (pageNumber, callback) {
 
     var q = Post.paginate({
         page: pageNumber || 1,
-        perPage: 10,
+        perPage: 6,
         maxPages: 10,
     })
         .where('state', 'published')

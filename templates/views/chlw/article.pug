@@ -12,6 +12,13 @@ block content
 
 
         if (viewModel.post.urls.length)
+            .files-audio
+                each url, i in viewModel.post.urls
+                    audio(controls)
+                        source(src=url, type="audio/mpeg")
+                        | Тег audio не поддерживается вашим браузером. 
+                        <a href="audio/music.mp3">Скачайте музыку</a>.
+
             .files-download
                 | Файлы для скачивания:
 
@@ -19,7 +26,7 @@ block content
                     a(href=url) !{ siteUtils.getUrlTitle(url, 'Скачать файл') }
 
     .article-footer
-        h2.relatedpost Похожие статьи
+        h3.relatedpost Похожие статьи
         .related-content
             each relatedPost, i in viewModel.relatedPosts
                 a(href=relatedPost.key)

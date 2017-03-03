@@ -28,7 +28,6 @@ exports = module.exports = function (req, res) {
 
     });
 
-
     view.on('init', function (next) {
         var pageNumber = req.query.page;
 
@@ -38,28 +37,21 @@ exports = module.exports = function (req, res) {
         });
     });
 
-
     view.on('get', function (next) {
-
         next();
-
     });
-
 
     view.on('post', { action: 'comment.save'}, function (next) {
         console.log('post!');
         next();
     });
 
-
     view.on('post', function (next) {
         console.log('post!');
         next();
     });
 
-
     view.render('chlw/index', {
         section: 'home',
     });
-
 }

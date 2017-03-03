@@ -19,30 +19,67 @@ block content
       // end Basic jQuery Slider
   .blog-posts
       ul
-          each lastPost, i in viewModel.lastPosts.results
-              -- console.log('lastPost', lastPost);
+         li
+            .wrap-img
+               a(href='/blog/category/sermons')
+                  img(src='http://cdn.tvc.ru/pictures/o/195/709.jpg', alt='Проповеди')
+            .entry-container
+               h3.entry-title
+                  a(href='/blog/category/sermons') Проповеди
+               p.entry-short-description
+                  | Этот раздел содержит проповеди, отражающие духовные проблемы верующих людей, с целью разобраться в их причинах.
+         li
+            .wrap-img
+               a(href='/blog/category/testimonies')
+                  img(src='https://thumbs.dreamstime.com/t/%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B2%D1%8C%D1%8E-%D1%87%D0%B5-%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0-36350597.jpg', alt='Свидетельства')
+            .entry-container
+               h3.entry-title
+                  a(href='/blog/category/testimonies') Свидетельства
+               p.entry-short-description
+                  | Люди своими рассказами деляться о славе Божьей в своих жизнях.
+         li
+            .wrap-img
+               a(href='/blog/category/service')
+                  img(src='https://krugomgolova.club/images/36e2b914-2928-4ed9-9d76-31c725d1fe4a.jpg', alt='Служения')
+            .entry-container
+               h3.entry-title
+                  a(href='/blog/category/service') Служения
+               p.entry-short-description
+                  | Чем занимается наша церковь.
+         li
+            .wrap-img
+               a(href='/blog/category/news')
+                  img(src='http://hronika.info/uploads/posts/2015-09/1442829655_marsh.jpg', alt='Новости')
+            .entry-container
+               h3.entry-title
+                  a(href='/blog/category/news') Новости
+               p.entry-short-description
+                  | Делимся событиями нашей жизни.
 
-              li
-                  .wrap-img
-                      a(href=siteConst.routes.blog_post + lastPost.key)
-                          if lastPost.image && lastPost.image.filename
-                             img(src=siteConst.path.image_posts + lastPost.image.filename)
-                          else
-                              if lastPost.author && lastPost.author.photo && lastPost.author.photo.filename
-                                    img(src=siteConst.path.image_users + lastPost.author.photo.filename, alt=lastPost.author.name.full)
+      h2 Последние события
+      ul
+         each lastPost, i in viewModel.lastPosts.results
+            li
+               .wrap-img
+                     a(href=siteConst.routes.blog_post + lastPost.key)
+                        if lastPost.image && lastPost.image.filename
+                           img(src=siteConst.path.image_posts + lastPost.image.filename)
+                        else
+                           if lastPost.author && lastPost.author.photo && lastPost.author.photo.filename
+                                 img(src=siteConst.path.image_users + lastPost.author.photo.filename, alt=lastPost.author.name.full)
 
-                  .entry-container
-                      h3.entry-title
-                          a(href=siteConst.routes.blog_post + lastPost.key)=lastPost.name
-                      p.entry-short-description
-                          | #{lastPost.content.brief}
-                      .item-label
-                            if lastPost.publishedDate || lastPost.author
-                                if lastPost.author
-                                    | #{lastPost.author.name.full}
+               .entry-container
+                     h3.entry-title
+                        a(href=siteConst.routes.blog_post + lastPost.key)=lastPost.name
+                     p.entry-short-description
+                        | #{lastPost.content.brief}
+                     .item-label
+                           if lastPost.publishedDate || lastPost.author
+                              if lastPost.author
+                                 | #{lastPost.author.name.full}
 
-                                if lastPost.publishedDate
-                                    | #{ ' - ' + lastPost._.publishedDate.format('MM/D/YYYY')}
+                              if lastPost.publishedDate
+                                 | #{ ' - ' + lastPost._.publishedDate.format('MM/D/YYYY')}
 
 
   .clear
