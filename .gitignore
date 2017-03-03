@@ -23,3 +23,7 @@ ACCOUNTS
 .idea/
 .vscode/
 /public/uploads/gallery/img
+public/uploads/posts/img/*
+!public/uploads/posts/img/upload_*.*
+public/uploads/posts/img/*/preview/*
+

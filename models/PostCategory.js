@@ -10,6 +10,7 @@ PostCategory.add({
 	name: { type: String, required: true },
 	title: { type: String, required: true, initial: true },
     showOnPage: { type: Boolean, required: true, default: true },
+	importRef: { type: String, hidden: true }
 });
 
 PostCategory.relationship({ ref: 'Post', refPath: 'categories' });

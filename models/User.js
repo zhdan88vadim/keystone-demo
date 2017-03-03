@@ -16,6 +16,9 @@ var User = new keystone.List('User', {
 	autokey: { from: 'name', path: 'key', unique: true }
 });
 
+
+//TODO: allowedTypes: ['jpg', 'png', 'jpg', 'gif'], for image
+
 User.add({
 	name: { type: Types.Name, required: true, index: true },
 	email: { type: Types.Email, initial: true, required: true, index: true, unique: true },
@@ -25,6 +28,7 @@ User.add({
 	password: { type: Types.Password, initial: true, required: false },
 }, 'Permissions', {
 	isProtected: { type: Boolean, noedit: true },
+	importRef: { type: String, hidden: true }
 });
 
 // Provide access to Keystone

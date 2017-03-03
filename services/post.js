@@ -4,7 +4,7 @@ var Post = keystone.list('Post');
 var Users = keystone.list('User');
 var PostCategory = keystone.list('PostCategory');
 
-
+// TODO: may be it can be delete
 exports.getAll = function (callback) {
 
     Tag.model.find().exec(function (err, results) {

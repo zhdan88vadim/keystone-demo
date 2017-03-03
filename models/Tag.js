@@ -8,6 +8,7 @@ var Tag = new keystone.List('Tag', {
 
 Tag.add({
 	name: { type: String, required: true },
+	importRef: { type: String, hidden: true }
 });
 
 Tag.relationship({ ref: 'Post', refPath: 'tags' });

@@ -8,116 +8,151 @@ module.exports = function (done) {
         "PostCategory": [{
             "title": "Проповеди",
             "name": "sermons",
-            "__ref": "sermons"
+            "__ref": "sermons",
+            "importRef": "sermons"
         }, {
             "title": "Материалы",
             "name": "materials",
-            "__ref": "materials"
+            "__ref": "materials",
+            "importRef": "materials"
         }, {
             "title": "Свидетельства",
             "name": "testimonies",
-            "__ref": "testimonies"
+            "__ref": "testimonies",
+            "importRef": "testimonies"
         }, {
             "title": "Новости",
             "name": "news",
-            "__ref": "news"
+            "__ref": "news",
+            "importRef": "news"
         }, {
             "title": "Служения",
             "name": "service",
-            "__ref": "service"
+            "__ref": "service",
+            "importRef": "service"
         }, {
             "showOnPage": false,
             "title": "Добро пожаловать",
             "name": "welcome",
-            "__ref": "welcome"
+            "__ref": "welcome",
+            "importRef": "welcome"
         }],
         "Tag": [{
             "name": "Исцеление",
-            "__ref": "iscelenie"
+            "__ref": "iscelenie",
+            "importRef": "iscelenie"
         }, {
             "name": "Библейская школа",
-            "__ref": "bible_school"
+            "__ref": "bible_school",
+            "importRef": "bible_school"
         }, {
             "name": "Работа",
-            "__ref": "rabota"
+            "__ref": "rabota",
+            "importRef": "rabota"
         }, {
             "name": "Деньги",
-            "__ref": "dengi"
+            "__ref": "dengi",
+            "importRef": "dengi"
         }, {
             "name": "Семья",
-            "__ref": "semya"
+            "__ref": "semya",
+            "importRef": "semya"
         }, {
             "name": "Служение",
-            "__ref": "sluzhenie"
+            "__ref": "sluzhenie",
+            "importRef": "sluzhenie"
         }, {
             "name": "Работа над собой",
-            "__ref": "rabota_nad_soboi"
+            "__ref": "rabota_nad_soboi",
+            "importRef": "rabota_nad_soboi"
         }, {
             "name": "Призвание",
-            "__ref": "prizvanie"
+            "__ref": "prizvanie",
+            "importRef": "prizvanie"
         }, {
             "name": "Борьба",
-            "__ref": "borba"
+            "__ref": "borba",
+            "importRef": "borba",
         }, {
             "name": "Здоровье",
-            "__ref": "zdorovie"
+            "__ref": "zdorovie",
+            "importRef": "zdorovie"
         }, {
             "name": "Упорство",
-            "__ref": "uporstvo"
+            "__ref": "uporstvo",
+            "importRef": "uporstvo"
         }, {
             "name": "Любовь",
-            "__ref": "lubovi"
+            "__ref": "lubovi",
+            "importRef": "lubovi"
         }, {
             "name": "Молитва",
-            "__ref": "molitva"
+            "__ref": "molitva",
+            "importRef": "molitva"
         }, {
             "name": "Упование",
-            "__ref": "hope"
+            "__ref": "hope",
+            "importRef": "hope"
         }, {
             "name": "Победа",
-            "__ref": "victory"
+            "__ref": "victory",
+            "importRef": "victory"
         }, {
             "name": "Слово",
-            "__ref": "word"
+            "__ref": "word",
+            "importRef": "word"
         }, {
             "name": "Беспокойство",
-            "__ref": "anxiety"
+            "__ref": "anxiety",
+            "importRef": "anxiety"
         }, {
             "name": "Покой/Мир",
-            "__ref": "quietude"
+            "__ref": "quietude",
+            "importRef": "quietude"
         }, {
             "name": "Вера",
-            "__ref": "faith"
+            "__ref": "faith",
+            "importRef": "faith"
         }, {
             "name": "Время",
-            "__ref": "time"
+            "__ref": "time",
+            "importRef": "time"
         }, {
             "name": "Разум",
-            "__ref": "mind"
+            "__ref": "mind",
+            "importRef": "mind"
         }, {
             "name": "Плод",
-            "__ref": "fruit"
+            "__ref": "fruit",
+            "importRef": "fruit"
         }, {
             "name": "Мудрость",
-            "__ref": "wisdom"
+            "__ref": "wisdom",
+            "importRef": "wisdom"
         }, {
             "name": "Наши гости",
-            "__ref": "guest"
+            "__ref": "guest",
+            "importRef": "guest"
         }, {
             "name": "Благословение",
-            "__ref": "blessing"
+            "__ref": "blessing",
+            "importRef": "blessing"
         }, {
             "name": "Поиск истины",
-            "__ref": "search_for_truth"
+            "__ref": "search_for_truth",
+            "importRef": "search_for_truth"
         }, {
             "name": "Жизнь по духу",
-            "__ref": "life_in_spirit"
+            "__ref": "life_in_spirit",
+            "importRef": "life_in_spirit"
         }, {
             "name": "Праздник",
-            "__ref": "celebration"
+            "__ref": "celebration",
+            "importRef": "celebration"
         }, {
             "name": "Послушание",
-            "__ref": "obedience"
+            "__ref": "obedience",
+            "importRef": "obedience"
         }],
         "User": [{
             "showOnPage": false,
@@ -130,10 +165,12 @@ module.exports = function (done) {
                 "size": 10622,
                 "mimetype": "image/jpeg"
             },
-            "__ref": "adminuser"
+            "__ref": "adminuser",
+            "importRef": "adminuser"
         }, {
             "name.full": "Administrator",
             "__ref": "administrator",
+            "importRef": "administrator",
             "password": "1qaz!QAZ__2wsx@WSXadministrator",
             "isAdmin": false,
             "email": "administrator@administrator.com",
@@ -145,6 +182,7 @@ module.exports = function (done) {
         }, {
             "name.full": "Пастор Андрей",
             "__ref": "pastor_andrey",
+            "importRef": "pastor_andrey",
             "password": "1qaz!QAZ__2wsx@WSXpastor_andrey",
             "isAdmin": false,
             "email": "pastorandrey@pastorandrey.com",
@@ -156,6 +194,7 @@ module.exports = function (done) {
         }, {
             "name.full": "Валентина Козлова",
             "__ref": "valentina_kozlova",
+            "importRef": "valentina_kozlova",
             "password": "1qaz!QAZ__2wsx@WSXvalentina_kozlova",
             "isAdmin": false,
             "email": "valentinakozlova@valentinakozlova.com",
@@ -167,6 +206,7 @@ module.exports = function (done) {
         }, {
             "name.full": "Олег Козлов",
             "__ref": "oleg_kozlov",
+            "importRef": "oleg_kozlov",
             "password": "1qaz!QAZ__2wsx@WSXoleg_kozlov",
             "isAdmin": false,
             "email": "olegkozlov@olegkozlov.com",
@@ -178,6 +218,7 @@ module.exports = function (done) {
         }, {
             "name.full": "Ирина Фролова",
             "__ref": "irina_frolova",
+            "importRef": "irina_frolova",
             "password": "1qaz!QAZ__2wsx@WSXirina_frolova",
             "isAdmin": false,
             "email": "irinafrolova@irinafrolova.com",
@@ -189,6 +230,7 @@ module.exports = function (done) {
         }, {
             "name.full": "КисИлина",
             "__ref": "kisilina",
+            "importRef": "kisilina",
             "password": "1qaz!QAZ__2wsx@WSXkisilina",
             "isAdmin": false,
             "email": "kisilina@kisilina.com",
@@ -200,6 +242,7 @@ module.exports = function (done) {
         }, {
             "name.full": "Евгений Шитов",
             "__ref": "evgeniy_shitov",
+            "importRef": "evgeniy_shitov",
             "password": "1qaz!QAZ__2wsx@WSXevgeniy_shitov",
             "isAdmin": false,
             "email": "evgeniyshitov@evgeniyshitov.com",
@@ -211,6 +254,7 @@ module.exports = function (done) {
         }, {
             "name.full": "Екатерина Субботина",
             "__ref": "ekaterina_subbotina",
+            "importRef": "ekaterina_subbotina",
             "password": "1qaz!QAZ__2wsx@WSXekaterina_subbotina",
             "isAdmin": false,
             "email": "ekaterinasubbotina@ekaterinasubbotina.com",
@@ -222,6 +266,7 @@ module.exports = function (done) {
         }, {
             "name.full": "Сергей Федосик",
             "__ref": "sergey_fedosik",
+            "importRef": "sergey_fedosik",
             "password": "1qaz!QAZ__2wsx@WSXsergey_fedosik",
             "isAdmin": false,
             "email": "sergeyfedosik@sergeyfedosik.com",
@@ -233,6 +278,7 @@ module.exports = function (done) {
         }, {
             "name.full": "Александр Аскерко",
             "__ref": "aleksandr_askerko",
+            "importRef": "aleksandr_askerko",
             "password": "1qaz!QAZ__2wsx@WSXaleksandr_askerko",
             "isAdmin": false,
             "email": "aleksandraskerko@aleksandraskerko.com",
@@ -244,6 +290,7 @@ module.exports = function (done) {
         }, {
             "name.full": "Полина Помидоркина",
             "__ref": "polina_pomidorkina",
+            "importRef": "polina_pomidorkina",
             "password": "1qaz!QAZ__2wsx@WSXpolina_pomidorkina",
             "isAdmin": false,
             "email": "polinapomidorkina@polinapomidorkina.com",
