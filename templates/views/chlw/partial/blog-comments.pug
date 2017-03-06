@@ -3,7 +3,7 @@
 
 	h4 12 Комментарии:
 	.comments-content
-		ul
+		//ul
 			li.comment-item
 				.avator-img-container
 					img(src='/../assets/img/gl2_sm.jpg')
@@ -45,11 +45,14 @@
 					.comment-content
 						| Sed vulputate diam vitae velit pharetra tempus. Cras eget ipsum non tellus consectetur condimentum. Nunc lobortis sollicitudin nulla, non semper lectus eleifend sed. Sed hendrerit, turpis ac consequat commodo, erat libero ultricies risus, id posuere lectus tellus vel neque.
 
-		form(action="save").submit-form
+		form(action="" method='POST').submit-form
 			.head
-				textarea(rows='5' cols='50' placeholder='Введите ваш комментарий...')
-			.controls
-				input(type='button' value='Отправить').publish-button
+				input(type='hidden', name='action', value='comment.create')
+				input(type="text" placeholder='Введите ваше имя' name='username').user-name
+				textarea(rows='5' cols='50' placeholder='Введите ваш комментарий...' name='content')
+			.controls.clearfix
+				.g-recaptcha(data-sitekey="6Les1RcUAAAAABlxc4-1a7FReWsU_N8nk_5L6mzz")
+				input(type='submit' value='Отправить').publish-button
 
 
 

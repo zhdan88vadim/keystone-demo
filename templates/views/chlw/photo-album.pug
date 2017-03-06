@@ -10,9 +10,9 @@ block content
                 each image, i in images
                     div.box
                         div.box-inner
-                            a(title='', rel='gallery', href='/uploads/gallery/img/' + galleryName + '/' + image).fancy-img
-                                img(src='/uploads/gallery/img/' + galleryName + '/preview/' + image)
-                                //div(bacground='gray', width='200px', height='100px')='/uploads/gallery/img/' + galleryName + '/preview/' + image
+                            a(title='', rel='gallery', href=siteConst.path.image_gallery + galleryName + '/' + image).fancy-img
+                                img(src=siteConst.path.image_gallery + galleryName + '/preview/' + image)
+                                //div(bacground='gray', width='200px', height='100px')=siteConst.path.image_gallery + galleryName + '/preview/' + image
         else
             h3 В этом альбоме еще нет фотографий.
 
