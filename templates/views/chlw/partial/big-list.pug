@@ -24,7 +24,7 @@
                             | #{ ' - ' + listItem._.publishedDate.format('MM, D, YYYY')}
 
                 .entry-container
-                    | #{listItem.content.brief}
+                    | !{listItem.content.brief}
                 a(href=siteConst.routes.blog_post + listItem.key) читать полностью
                 if (listItem.tags && listItem.tags.length)
                     .tags.cloud-labels

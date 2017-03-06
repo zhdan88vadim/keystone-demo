@@ -47,7 +47,7 @@ html(lang='en')
                     .logo-holder
                         h1 Церковь Свет Миру
                     .search-form-default
-                        form(action='/search', method='get')
+                        form(action='/search', method='get' onsubmit='return false;')
                             input(type='text', value='SEARCH')
                             input(type='submit', value=' ')
         .ct-wrapper
