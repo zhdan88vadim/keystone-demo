@@ -2,8 +2,8 @@ var keystone = require('keystone');
 
 keystone.init({
 
-	'name': 'ZHV keystonejs site',
-	'brand': 'ZHV',
+	'name': 'Церковь Свет Миру - Минск',
+	'brand': 'chlw',
 
 	'favicon': 'public/favicon.ico',
 	'less': 'public',
@@ -25,7 +25,15 @@ keystone.init({
 	'ga domain': process.env.GA_DOMAIN,
 
 	'chartbeat property': process.env.CHARTBEAT_PROPERTY,
-	'chartbeat domain': process.env.CHARTBEAT_DOMAIN
+	'chartbeat domain': process.env.CHARTBEAT_DOMAIN,
+
+	// http://stackoverflow.com/questions/13841986/tinymce-adding-p-tags-automatically
+	// http://keystonejs.com/docs/configuration/#options-ui
+	'wysiwyg additional options': {
+ 		force_br_newlines : false,
+		force_p_newlines : false,
+		forced_root_block : '',
+	}
 
 });
 

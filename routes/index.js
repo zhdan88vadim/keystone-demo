@@ -17,7 +17,7 @@ keystone.pre('render', middleware.theme);
 keystone.pre('render', middleware.flashMessages);
 
 keystone.set('404', function(req, res, next) {
-    res.status(404).render('errors/404');
+    res.status(404).render('chlw/errors/404');
 });
 
 // Load Routes

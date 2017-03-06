@@ -1,6 +1,4 @@
 
-- var blogPostRoute = '/blog/post/';
-
 .big-list
     ul
         each listItem, i in viewModel.items.results
@@ -9,14 +7,14 @@
 
             li.list-item
                 h3.entry-title
-                    a(href=blogPostRoute + listItem.key)
+                    a(href=siteConst.routes.blog_post + listItem.key)
                         | #{listItem.name}
                 .wrap-img
-                    a(href=blogPostRoute + listItem.key)
+                    a(href=siteConst.routes.blog_post + listItem.key)
                         if listItem.image.filename
                             img(src='/uploads/posts/img/' + listItem.image.filename)
                         else
-                            img(src='/uploads/users/img/' + listItem.author.photo.filename, alt=listItem.author.name.full)
+                            img(src=siteConst.path.image_users + listItem.author.photo.filename, alt=listItem.author.name.full)
                 .info
                     if listItem.publishedDate || listItem.author
                         if listItem.author
@@ -27,7 +25,7 @@
 
                 .entry-container
                     | #{listItem.content.brief}
-                a(href=blogPostRoute + listItem.key) читать полностью
+                a(href=siteConst.routes.blog_post + listItem.key) читать полностью
                 if (listItem.tags && listItem.tags.length)
                     .tags.cloud-labels
                         ul

@@ -6,7 +6,7 @@ mixin post(post)
 		div
 		.media-left
 
-			a(href='/blog/post/' + post.key)
+			a(href=siteConst.routes.blog_post + post.key)
 				if (post.image.filename)
 					if '/uploads/images/' + post.image.filename.exists
 						img(src='/uploads/images/' + post.image.filename).media-object
@@ -14,7 +14,7 @@ mixin post(post)
 						img(src="http://placehold.it/80x80").media-object
 		.media-body
 			h3.media-heading
-				a(href='/blog/post/' + post.key)= post.name
+				a(href=siteConst.routes.blog_post + post.key)= post.name
 			if post.publishedDate || post.author
 				p.text-muted.text-small
 					if post.publishedDate

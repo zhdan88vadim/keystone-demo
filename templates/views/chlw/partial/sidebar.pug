@@ -12,7 +12,7 @@
         | Богослужения проходят каждое воскресенье в 12-00 по адресу: г.Минск ул.Медвежино 11/3. Служители
         | нашей церкви готовы посетить больных, оказать им молитвенную поддержку и другую посильную
         | помощь.
-        a(href='/') далее..
+        
 .widget.popular-posts
     h2 популярные посты
     .widget-content.clearfix
@@ -20,7 +20,7 @@
             each popularPost, i in viewModel.mostPopularPosts
 
                 li
-                    a(href='/blog/post/' + popularPost.key)
+                    a(href=siteConst.routes.blog_post + popularPost.key)
                         | !{siteUtils.getCategoryTitle(popularPost.categories, popularPost.name)}
 
 
@@ -32,38 +32,6 @@
                 li
                     a(href=siteConst.routes.tag + tag.key)=tag.name
 
-            -- console.log(siteConst)
-
-            //li
-            //    a(href='') Погода
-            //li
-            //    a(href='') Учеба
-            //li
-            //    a(href='') Свидетельства
-            //li
-            //    a(href='') Финансы
-            //li
-            //    a(href='') Здоровье
-            //li
-            //    a(href='') Достижение цели
-            //li
-            //    a(href='') Упорство
-            //li
-            //    a(href='') Борьба
-            //li
-            //    a(href='') Стремление
-            //li
-            //    a(href='') Победа
-            //li
-            //    a(href='') Погода
-            //li
-            //    a(href='') Учеба
-            //li
-            //    a(href='') Свидетельства
-            //li
-            //    a(href='') Победа
-            //li
-            //    a(href='') Погода
 .widget.cloud-authors
     h2 Авторы
     .widget-content.clearfix
@@ -71,26 +39,5 @@
             each user in viewModel.allUsers
                 li
                     a(href='/blog/author/' + user.key)
-                        img(src=src='/uploads/users/img/' + user.photo.filename, alt=user.name.full)
+                        img(src=siteConst.path.image_users + user.photo.filename, alt=user.name.full)
                         span.title=user.name.full
-
-            //li
-            //    a(href='')
-            //        img(src='../assets/img/authors/oleg1.jpg', alt='')
-            //        span.title ОлегОлег ОлегОлег
-            //li
-            //    a(href='')
-            //        img(src='../assets/img/authors/pastor.jpg', alt='')
-            //        span.title Пастор Андрей
-            //li
-            //    a(href='')
-            //        img(src='../assets/img/authors/oleg1.jpg', alt='')
-            //        span.title Пастор Генадий (Польша)
-            //li
-            //    a(href='')
-            //        img(src='../assets/img/authors/shitov.jpg', alt='')
-            //        span.title Евгений Шитов
-            //li
-            //    a(href='')
-            //        img(src='../assets/img/authors/pastor.jpg', alt='')
-            //        span.title Пастор Андрей

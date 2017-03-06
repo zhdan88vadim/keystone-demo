@@ -71,8 +71,11 @@ block content
                .entry-container
                      h3.entry-title
                         a(href=siteConst.routes.blog_post + lastPost.key)=lastPost.name
-                     p.entry-short-description
+                     .entry-short-description !{lastPost.content.brief}
+
+                     //p.entry-short-description // old version becouse tinymce adds tag p which wrapped text string
                         | #{lastPost.content.brief}
+
                      .item-label
                            if lastPost.publishedDate || lastPost.author
                               if lastPost.author

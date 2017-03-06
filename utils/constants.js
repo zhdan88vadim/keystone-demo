@@ -13,3 +13,12 @@ module.exports = {
 
     }
 }
+
+/* 
+
+siteConst.routes.tag
+siteConst.routes.blog_post
+
+siteConst.path.image_gallery
+
+*/

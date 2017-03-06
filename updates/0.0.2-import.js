@@ -288,6 +288,7 @@ module.exports = function (done) {
                 "mimetype": "image/jpeg"
             }
         }, {
+            "showOnPage": false,            
             "name.full": "Полина Помидоркина",
             "__ref": "polina_pomidorkina",
             "importRef": "polina_pomidorkina",

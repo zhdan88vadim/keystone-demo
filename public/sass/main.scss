@@ -27,7 +27,8 @@
 'components/slider';
 // 6. Page-specific styles
 @import 'pages/home',
-'pages/contacts';
+'pages/contacts',
+'pages/error';
 // 7. Themes
 @import 'themes/default',
 'layout/mediaqueries';

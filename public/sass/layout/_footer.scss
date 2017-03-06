@@ -58,6 +58,11 @@
     color: #fff;
   }
 
+  .footer-social-icons img {
+    border-radius: 50%;
+    width: 50px;
+  }
+
   .widget-gallery {
     .ptitle {
       visibility: hidden;
@@ -129,6 +134,7 @@
 }
 
 .bottom-thing {
+  text-align: center;
   padding: 20px;
   font-family: 'Lato', sans-serif;
   font-size: 1.6rem;

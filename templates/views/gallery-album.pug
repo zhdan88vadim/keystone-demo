@@ -10,7 +10,7 @@ block content
 
     if images.length
         each image, i in images
-            img(src='/uploads/gallery/img/' + galleryName + '/preview/' + image max-height='200px')
+            img(src=siteConst.path.image_gallery + galleryName + '/preview/' + image max-height='200px')
 
     else
         .jumbotron.text-center

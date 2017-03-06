@@ -12,9 +12,9 @@ block content
                 each gallery, i in galleries
                     //-- console.log('gallery', gallery.uploadFiles[0])
                     li
-                        a(title=gallery.name, href='gallery/' + gallery.key)
+                        a(title=gallery.name, href='/gallery/' + gallery.key)
                             if (gallery.uploadFiles[0])
-                                img(src='/uploads/gallery/img/' + gallery.name + '/preview/' + gallery.uploadFiles[0].filename)
+                                img(src=siteConst.path.image_gallery + gallery.name + '/preview/' + gallery.uploadFiles[0].filename)
 
             else
                 h3(style="margin-bottom:0;margin-top:0;") There are no albums yet.
