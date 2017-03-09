@@ -1,10 +1,11 @@
 .search-form-default {
   display: block;
   height: 36px;
-  width: 228px;
+  width: 35%;
   float: right;
   margin-top: 18px;
-  background: url(#{$image-url}/icon-sprite.png) no-repeat -370px 0;
+  background: url(#{$image-url}/search.png) no-repeat 98% 50%;  
+  background-size: 14px;
 }
 
 .search-form-default input[type="text"] {
@@ -17,7 +18,8 @@
   height: 25px;
   margin-left: 10px;
   margin-top: 6px;
-  width: 188px;
+  border: 3px solid #FFEB3B;
+  width: 97%;
   margin-right: 0;
 }
 
