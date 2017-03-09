@@ -18,7 +18,7 @@ block content
 
       // end Basic jQuery Slider
   .blog-posts
-      ul
+      ul.clearfix
          li
             .wrap-img
                a(href='/blog/category/sermons')
@@ -57,7 +57,7 @@ block content
                   | Делимся событиями нашей жизни.
 
       h2 Последние события
-      ul
+      ul.clearfix
          each lastPost, i in viewModel.lastPosts.results
             li
                .wrap-img
@@ -76,13 +76,13 @@ block content
                      //p.entry-short-description // old version becouse tinymce adds tag p which wrapped text string
                         | #{lastPost.content.brief}
 
-                     .item-label
-                           if lastPost.publishedDate || lastPost.author
-                              if lastPost.author
-                                 | #{lastPost.author.name.full}
+               .item-label
+                  if lastPost.publishedDate || lastPost.author
+                     if lastPost.author
+                           | #{lastPost.author.name.full}
 
-                              if lastPost.publishedDate
-                                 | #{ ' - ' + lastPost._.publishedDate.format('MM/D/YYYY')}
+                     if lastPost.publishedDate
+                           | #{ ' - ' + lastPost._.publishedDate.format('MM/D/YYYY')}
 
 
   .clear

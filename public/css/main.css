@@ -629,7 +629,6 @@ body {
   min-width: 100%; }
 
 .blog-posts .wrap-img {
-  height: 200px;
   overflow: hidden; }
 
 .blog-posts .entry-title {
@@ -640,8 +639,8 @@ body {
     text-decoration: none; }
 
 .blog-posts li {
+  margin-bottom: 20px;
   display: inline-block;
-  height: 364px;
   position: relative;
   float: left;
   width: 48%; }
@@ -800,7 +799,7 @@ body {
       margin: 0 18px 18px 0;
       display: inline-block;
       float: left;
-      width: 22%; }
+      width: 21.4%; }
     .article-footer .related-content img {
       width: 100%; }
   .article-footer .relatedtitle {
@@ -872,7 +871,8 @@ body {
     vertical-align: top; }
   .blog-comments .submit-form .controls {
     background-color: #f5f5f5;
-    padding: 10px 10px 4px 10px; }
+    padding: 10px 10px 4px 10px;
+    overflow: hidden; }
   .blog-comments .submit-form .g-recaptcha {
     float: left; }
   .blog-comments .submit-form .publish-button {
@@ -1166,6 +1166,14 @@ p.bjqs-caption {
 @media (max-width: 620px) {
   .blog-posts li {
     width: 100%; }
+  .blog-posts .entry-container {
+    padding-left: 10px;
+    padding-right: 10px; }
+  .blog-posts li {
+    border: 1px dashed;
+    border-color: #9E9E9E; }
+  .article-footer .related-content a {
+    width: 45%; }
   .small-list li {
     width: 46%; } }
 
@@ -1174,6 +1182,14 @@ p.bjqs-caption {
     float: none; }
     .menu-holder li a {
       display: block; }
+  .article-footer .related-content a {
+    width: 100%; }
+  .article-footer .related-content img {
+    width: 30%;
+    float: left;
+    margin-right: 4%; }
+  .article-footer .related-content .relatedtitle {
+    text-align: left; }
   .small-list li {
     width: 100%; } }
 
