@@ -1168,8 +1168,7 @@ p.bjqs-caption {
   .blog-posts li {
     width: 100%; }
   .blog-posts .entry-container {
-    padding-left: 10px;
-    padding-right: 10px; }
+    padding: 0 10px 8px 10px; }
   .blog-posts li {
     border: 1px dashed;
     border-color: #9E9E9E; }

@@ -30,7 +30,12 @@ block content
         .related-content
             each relatedPost, i in viewModel.relatedPosts
                 a(href=relatedPost.key)
-                    img(src='/uploads/users/img/' + relatedPost.author.photo.filename)
+                    if relatedPost.image && relatedPost.image.filename
+                        img(src=siteConst.path.image_posts + relatedPost.image.filename)
+                    else
+                        if relatedPost.author && relatedPost.author.photo && relatedPost.author.photo.filename
+                                img(src=siteConst.path.image_users + relatedPost.author.photo.filename, alt=relatedPost.author.name.full)                    
+
                     div.relatedtitle= relatedPost.name
             .clear
 
