@@ -1,58 +1,30 @@
 .blog-comments
-	.under-line
+    .under-line
 
-	h4 12 Комментарии:
-	.comments-content
-		//ul
-			li.comment-item
-				.avator-img-container
-					img(src='/../assets/img/gl2_sm.jpg')
-				.comment-block
-					.comment-header
-						a.user Вадим Ждан
-						.datetime 2 Апрель 2016
-					.comment-content
-						| Sed vulputate diam vitae velit pharetra tempus. Cras eget ipsum non tellus consectetur condimentum. Nunc lobortis sollicitudin nulla, non semper lectus eleifend sed. Sed hendrerit, turpis ac consequat commodo, erat libero ultricies risus, id posuere lectus tellus vel neque.
-			li.comment-item
-				.avator-img-container
-					img(src='/../assets/img/gl2_sm.jpg')
-				.comment-block
-					.comment-header
-						a.user Олег Козлов
-						.datetime 23 Август 2016
-					.comment-content
-						| Sed vulputate diam vitae velit pharetra tempus. Cras eget ipsum non tellus consectetur condimentum. Nunc lobortis sollicitudin nulla, non semper lectus eleifend sed. Sed hendrerit, turpis ac consequat commodo, erat libero ultricies risus, id posuere lectus tellus vel neque.
-						| Sed vulputate diam vitae velit pharetra tempus. Cras eget ipsum non tellus consectetur condimentum. Nunc lobortis sollicitudin nulla, non semper lectus eleifend sed. Sed hendrerit, turpis ac consequat commodo, erat libero ultricies risus, id posuere lectus tellus vel neque.
-						br
-						br
-						| Sed vulputate diam vitae velit pharetra tempus. Cras eget ipsum non tellus consectetur condimentum. Nunc lobortis sollicitudin nulla, non semper lectus eleifend sed. Sed hendrerit, turpis ac consequat commodo, erat libero ultricies risus, id posuere lectus tellus vel neque.
-			li.comment-item
-				.avator-img-container
-					img(src='/../assets/img/gl2_sm.jpg')
-				.comment-block
-					.comment-header
-						a.user Олег Козлов
-						.datetime 23 Август 2016
-					.comment-content
-						| Sed vulputate diam vitae velit pharetra tempus. Cras eget ipsum non tellus consectetur condimentum. Nunc lobortis sollicitudin nulla, non semper lectus eleifend sed. Sed hendrerit, turpis ac consequat commodo, erat libero ultricies risus, id posuere lectus tellus vel neque.
-			li.comment-item
-				.avator-img-container
-					img(src='/../assets/img/gl2_sm.jpg')
-				.comment-block
-					.comment-header
-						a.user Олег Козлов
-						.datetime 23 Август 2016
-					.comment-content
-						| Sed vulputate diam vitae velit pharetra tempus. Cras eget ipsum non tellus consectetur condimentum. Nunc lobortis sollicitudin nulla, non semper lectus eleifend sed. Sed hendrerit, turpis ac consequat commodo, erat libero ultricies risus, id posuere lectus tellus vel neque.
+    h4 #{viewModel.comments.length} Комментарии:
+    .comments-content
+        ul
+            each comment, i in viewModel.comments
+                li.comment-item
+                    a(id='comment-id-' + comment.id)
+                    .avator-img-container
+                        img(src='http://s1.iconbird.com/ico/0912/Radium/w256h2561348762817User.png')
+                    .comment-block
+                        .comment-header
+                            .user
+                                | #{comment.authorAnonymName || 'AnonymName'}
+                            .datetime 2 Апрель 2016
+                        .comment-content= comment.content
 
-		form(action="" method='POST').submit-form
-			.head
-				input(type='hidden', name='action', value='comment.create')
-				input(type="text" placeholder='Введите ваше имя' name='username').user-name
-				textarea(rows='5' cols='50' placeholder='Введите ваш комментарий...' name='content')
-			.controls.clearfix
-				.g-recaptcha(data-sitekey="6Les1RcUAAAAABlxc4-1a7FReWsU_N8nk_5L6mzz")
-				input(type='submit' value='Отправить').publish-button
+
+        form(action="" method='POST').submit-form
+            .head
+                input(type='hidden', name='action', value='comment.create')
+                input(type="text" placeholder='Введите ваше имя' name='username').user-name
+                textarea(rows='5' cols='50' placeholder='Введите ваш комментарий...' name='content')
+            .controls.clearfix
+                .g-recaptcha(data-sitekey="6Les1RcUAAAAABlxc4-1a7FReWsU_N8nk_5L6mzz")
+                input(type='submit' value='Отправить').publish-button
 
 
 

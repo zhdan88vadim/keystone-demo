@@ -1,13 +1,17 @@
 var keystone = require('keystone');
+var request = require('request');
+
 var Post = keystone.list('Post');
 var PostComment = keystone.list('PostComment');
 var BaseView = require('./baseView');
+
 
 exports = module.exports = function (req, res) {
 
     var view = new keystone.View(req, res);
     var locals = res.locals;
     var viewModel = locals.viewModel = {};
+    viewModel.validationErrors = []
 
     BaseView.addBaseActions(view, viewModel);
 
@@ -49,32 +53,28 @@ exports = module.exports = function (req, res) {
     // Load comments on the Post
     view.on('init', function (next) {
         PostComment.model.find()
-            .where('post', locals.post)
+            .where('post', viewModel.post)
             .where('commentState', 'published')
-            .where('author').ne(null)
+            //.where('author').ne(null)
             .populate('author', 'name photo')
             .sort('-publishedOn')
             .exec(function (err, comments) {
                 if (err) return res.err(err);
                 if (!comments) return res.notfound('Post comments not found');
-                locals.comments = comments;
+                viewModel.comments = comments;
                 next();
             });
     });
-
 
     // view.on(true, function (next) {
     //     console.log('all!');
     //     next();
     // });
-    //
-    //
-    //
+
     view.on('get', function (next) {
         console.log('GOT!');
         next();
     });
-
 
     view.on('post', function (next) {
         console.log('post!');
@@ -83,33 +83,68 @@ exports = module.exports = function (req, res) {
 
 
     // Create a Comment
-    view.on('post', function (next) { //{action: 'comment.create'},
+    view.on('post', {action: 'comment.create'}, function (next) { //{action: 'comment.create'},
 
-        console.log('test post from post action');
+        function verifyReCaptcha() {
 
-        var newComment = new PostComment.model({
-            state: 'published',
-            post: locals.post.id,
-            author: locals.user.id,
-        });
+            // https://www.google.com/recaptcha/
+            // https://codeforgeek.com/2016/03/google-recaptcha-node-js-tutorial/
 
-        var updater = newComment.getUpdateHandler(req);
+            if(req.body['g-recaptcha-response'] === undefined
+                || req.body['g-recaptcha-response'] === ''
+                || req.body['g-recaptcha-response'] === null) {
+                viewModel.validationErrors.push('Пожалуйста заполните капчу');
+                next();
 
-        updater.process(req.body, {
-            fields: 'content',
-            flashErrors: true,
-            logErrors: true,
-        }, function (err) {
-            if (err) {
-                validationErrors = err.errors;
             } else {
-                req.flash('success', 'Your comment was added.');
-                return res.redirect('/blog/post/' + locals.post.key + '#comment-id-' + newComment.id);
+
+                var secretKey = keystone.get('google_reCaptcha');
+                var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey
+                    + "&response=" + req.body['g-recaptcha-response']
+                    + "&remoteip=" + req.connection.remoteAddress;
+
+                request(verificationUrl,function(error,response, body) {
+                    body = JSON.parse(body);
+                    // Success will be true or false depending upon captcha validation.
+                    if(body.success !== undefined && !body.success) {
+                        viewModel.validationErrors.push('Капча не прошла валидацию');
+                    } else {
+                        addComment();
+                    }
+                });
             }
-            next();
-        });
+        }
+
+        function addComment() {
+
+            var newComment = new PostComment.model({
+                state: 'published',
+                post: viewModel.post.id,
+                author: null,
+                authorAnonymName: req.body.username
+            });
+
+            var updater = newComment.getUpdateHandler(req);
+
+            updater.process(req.body, {
+                fields: 'content',
+                flashErrors: true,
+                logErrors: true,
+            }, function (err) {
+                if (err) {
+                    viewModel.validationErrors = err.errors;
+                } else {
+                    req.flash('success', 'Your comment was added.');
+                    return res.redirect('/blog/post/' + viewModel.post.key + '#comment-id-' + newComment.id);
+                }
+                next();
+            });
+        }
+
+        addComment();
 
     });
+
 
     // Delete a Comment
     view.on('get', {remove: 'comment'}, function (next) {
@@ -148,7 +183,6 @@ exports = module.exports = function (req, res) {
             });
     });
 
-    //locals.currentTheme = 'Bootstrap';
     // Render the view
     view.render('chlw/article');
 }

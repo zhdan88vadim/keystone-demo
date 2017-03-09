@@ -845,7 +845,8 @@ body {
 .blog-comments .comments-content .avator-img-container {
   float: left; }
   .blog-comments .comments-content .avator-img-container img {
-    border-radius: 50%; }
+    border-radius: 50%;
+    width: 75px; }
 
 .blog-comments .submit-form {
   margin-bottom: 80px;

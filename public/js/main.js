@@ -21,4 +21,10 @@ $(document).ready(function () {
         'overlayShow': false
     });
 
+    if (location.hash && $(location.hash).length) {
+        $('html, body').scrollTop(0).animate({
+            'scrollTop':   $(location.hash).offset().top
+        }, 1000);
+    }
+
 });

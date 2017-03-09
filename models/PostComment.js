@@ -11,9 +11,9 @@ var PostComment = new keystone.List('PostComment', {
 });
 
 PostComment.add({
-	author: { type: Types.Relationship, initial: true, ref: 'User', index: true },
+	author: { type: Types.Relationship, ref: 'User', index: true },
 	authorAnonymName: {type: String},
-	post: { type: Types.Relationship, initial: true, ref: 'Post', index: true },
+	post: { type: Types.Relationship, ref: 'Post', index: true },
 	commentState: { type: Types.Select, options: ['published', 'draft', 'archived'], default: 'published', index: true },
 	publishedOn: { type: Types.Date, default: Date.now, noedit: true, index: true },
 });
