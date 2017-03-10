@@ -52,7 +52,8 @@ exports.album = function (req, res) {
 
     view.on('get', function (next) {
 
-        ImageGallery.getImagesByGalleryName(locals.filters.album, function(err, galleryName, images) {
+        ImageGallery.getImagesByGalleryKey(locals.filters.album, function(err, galleryKey, galleryName, images) {
+            locals.galleryKey = galleryKey;
             locals.galleryName = galleryName;
             locals.images = images;
 

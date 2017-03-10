@@ -16,11 +16,12 @@ exports = module.exports = function (req, res) {
     // Load main banner
     view.on('init', function (next) {
 
-        ImageGalleryService.getImagesByGalleryName('main_baner', function(err, galleryName, results) {
+        ImageGalleryService.getImagesByGalleryKey('main_baner', function(err, galleryKey, galleryName, results) {
             //console.log('main_baner', results);
 
             viewModel.mainBanner = {};
             viewModel.mainBanner.photos = results;
+            viewModel.mainBanner.galleryKey = galleryKey;
             viewModel.mainBanner.galleryName = galleryName;
 
             next();

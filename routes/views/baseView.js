@@ -71,12 +71,13 @@ exports.addBaseActions = function (view, viewModel) {
 
     view.on('init', function (next) {
 
-        ImageGallery.getRandomImages(9, function(err, galleryName, images) {
+        ImageGallery.getRandomImages(9, function(err, galleryKey, galleryName, images) {
             if (err) return images = [];
 
             viewModel.randomGallery = {};
-            viewModel.randomGallery.galleryName = galleryName;
             viewModel.randomGallery.images = images;
+            viewModel.randomGallery.galleryName = galleryName;
+            viewModel.randomGallery.galleryKey = galleryKey;
 
             next();
         });

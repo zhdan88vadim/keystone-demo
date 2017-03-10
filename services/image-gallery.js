@@ -18,9 +18,9 @@ exports.getAll = function (callback) {
     });
 }
 
-exports.getImagesByGalleryName = function (name, callback) {
+exports.getImagesByGalleryKey = function (key, callback) {
 
-    Gallery.model.findOne().where('key', name).exec(function (err, item) {
+    Gallery.model.findOne().where('key', key).exec(function (err, item) {
         if (err) {
             callback(err);
         } else {
@@ -35,7 +35,7 @@ exports.getImagesByGalleryName = function (name, callback) {
                 fileUrls.push(file.filename);
             });
 
-            callback(null, item.name, fileUrls);
+            callback(null, item.key, item.name, fileUrls);
         }
     });
 }
@@ -68,7 +68,7 @@ exports.getRandomImages = function (count, callback) {
                         fileUrls.push(file.filename);
                     });
 
-                    callback(null, item[0].name, fileUrls);
+                    callback(null, item[0].key, item[0].name, fileUrls);
                 }
             });
     }

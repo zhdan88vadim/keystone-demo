@@ -26,7 +26,7 @@
             .footer-content
 
                 each image, i in viewModel.randomGallery.images
-                    a(href='/gallery/' + viewModel.randomGallery.galleryName)
+                    a(href='/gallery/' + viewModel.randomGallery.galleryKey)
                         img(src=siteConst.path.image_gallery + viewModel.randomGallery.galleryName + '/preview/' + image)
                         span.ptitle наши фото
 
