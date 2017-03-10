@@ -995,11 +995,14 @@ ul.polaroids img {
   background: none repeat scroll 0 0 transparent;
   border: 0 none;
   color: #B3B3B3;
+  background: #fff;
   height: 25px;
   margin-left: 10px;
   margin-top: 6px;
-  border: 3px solid #FFEB3B;
+  border: 3px solid #fcf298;
   width: 97%;
+  padding-left: 4px;
+  padding-right: 4px;
   margin-right: 0; }
 
 .search-form-default input[type="submit"] {
@@ -1193,6 +1196,8 @@ p.bjqs-caption {
   .article-footer .related-content .relatedtitle {
     text-align: left; }
   .small-list li {
+    width: 100%; }
+  .search-form-default {
     width: 100%; } }
 
 @media (max-width: 1023px) {
