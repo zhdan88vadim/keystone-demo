@@ -14,7 +14,7 @@ block content
         if (viewModel.post.urls.length)
             .files-audio
                 each url, i in viewModel.post.urls
-                    audio(controls)
+                    audio(controls  preload="none")
                         source(src=url, type="audio/mpeg")
                         | Тег audio не поддерживается вашим браузером. 
                         <a href="audio/music.mp3">Скачайте музыку</a>.
