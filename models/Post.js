@@ -32,9 +32,9 @@ var FileStorage = new keystone.Storage({
         originalname: true
     },
     fs: {
-        // generateFilename: function(a1, a2, a3, a4) {
-        //     return a1;
-        // },
+        generateFilename: function(file, i, callback) {
+             return callback(null, file.size + '_' + file.originalname);
+        },
         path: keystone.expandPath(postFileDir), // required; path where the files should be stored
         publicPath: postFileDir // path where files will be served
     }
