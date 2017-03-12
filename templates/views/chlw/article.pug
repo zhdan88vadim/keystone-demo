@@ -1,7 +1,7 @@
 extends layout.pug
 
 block content
-
+    -- console.log(viewModel.post)
     .article
         h1.under-line= viewModel.post.name
         div.article-body
@@ -9,6 +9,33 @@ block content
                 img(src='/uploads/posts/img/' + viewModel.post.image.filename).main-img
             div.content
                 | !{viewModel.post.content.full}
+
+
+        .files-audio
+            if (viewModel.post.file0.filename)
+                audio(controls  preload="none")
+                    source(src='/uploads/posts/files/' + viewModel.post.file0.filename, type=viewModel.post.file0.mimetype)
+                    | Тег audio не поддерживается вашим браузером.
+                    <a href=#{'/public/uploads/posts/files/' + viewModel.post.file0.filename}>Скачайте музыку</a>.
+
+            if (viewModel.post.file1.filename)
+                audio(controls  preload="none")
+                    source(src='/uploads/posts/files/' + viewModel.post.file1.filename, type=viewModel.post.file1.mimetype)
+                    | Тег audio не поддерживается вашим браузером.
+                    <a href=#{'/public/uploads/posts/files/' + viewModel.post.file1.filename}>Скачайте музыку</a>.
+
+            if (viewModel.post.file2.filename)
+                audio(controls  preload="none")
+                    source(src='/uploads/posts/files/' + viewModel.post.file2.filename, type=viewModel.post.file2.mimetype)
+                    | Тег audio не поддерживается вашим браузером.
+                    <a href=#{'/public/uploads/posts/files/' + viewModel.post.file2.filename}>Скачайте музыку</a>.
+
+            if (viewModel.post.file3.filename)
+                audio(controls  preload="none")
+                    source(src='/uploads/posts/files/' + viewModel.post.file3.filename, type=viewModel.post.file3.mimetype)
+                    | Тег audio не поддерживается вашим браузером.
+                    <a href=#{'/public/uploads/posts/files/' + viewModel.post.file3.filename}>Скачайте музыку</a>.
+
 
 
         if (viewModel.post.urls.length)
