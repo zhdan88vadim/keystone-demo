@@ -1,6 +1,7 @@
 module.exports = {
     path: {
         'image_posts': '/uploads/posts/img/',
+        'file_posts': '/uploads/posts/files/',
         'image_users': '/uploads/users/img/',
         'image_gallery': '/uploads/gallery/img/'
     },

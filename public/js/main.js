@@ -27,4 +27,17 @@ $(document).ready(function () {
         }, 1000);
     }
 
+    $('.article .main-img').one('load', function() {
+        if (this.naturalWidth > 380) {
+            $(this).removeClass('small');
+        }
+
+    }).each(function() {
+        if(this.complete) $(this).trigger('load');
+    });
+
 });
+
+// fix for podfm flash player
+function SetCookie(a1, a2, a3) {
+}

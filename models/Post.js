@@ -70,7 +70,7 @@ Post.add({
     urlsPodfm: { type: Types.TextArray },
     categories: {type: Types.Relationship, ref: 'PostCategory', many: true},
     tags: {type: Types.Relationship, ref: 'Tag', many: true},
-    hits: {type: Types.Number, default: 0},
+    hits: {type: Types.Number, default: 0, readonly: true},
 });
 
 Post.schema.virtual('content.full').get(function () {

@@ -5,8 +5,8 @@ block content
     .article
         h1.under-line= viewModel.post.name
         div.article-body
-            if (viewModel.post.image.filename && '/uploads/posts/img/' + viewModel.post.image.filename.exists)
-                img(src='/uploads/posts/img/' + viewModel.post.image.filename).main-img
+            if (viewModel.post.image.filename && siteConst.path.image_posts + viewModel.post.image.filename.exists)
+                img(src=siteConst.path.image_posts + viewModel.post.image.filename).main-img.small
             div.content
                 | !{viewModel.post.content.full}
 
@@ -14,27 +14,27 @@ block content
         .files-audio
             if (viewModel.post.file0.filename)
                 audio(controls  preload="none")
-                    source(src='/uploads/posts/files/' + viewModel.post.file0.filename, type=viewModel.post.file0.mimetype)
+                    source(src=siteConst.path.file_posts + viewModel.post.file0.filename, type=viewModel.post.file0.mimetype)
                     | Тег audio не поддерживается вашим браузером.
-                    <a href=#{'/public/uploads/posts/files/' + viewModel.post.file0.filename}>Скачайте музыку</a>.
+                    <a href=#{siteConst.path.file_posts + viewModel.post.file0.filename}>Скачайте файл</a>.
 
             if (viewModel.post.file1.filename)
                 audio(controls  preload="none")
-                    source(src='/uploads/posts/files/' + viewModel.post.file1.filename, type=viewModel.post.file1.mimetype)
+                    source(src=siteConst.path.file_posts + viewModel.post.file1.filename, type=viewModel.post.file1.mimetype)
                     | Тег audio не поддерживается вашим браузером.
-                    <a href=#{'/public/uploads/posts/files/' + viewModel.post.file1.filename}>Скачайте музыку</a>.
+                    <a href=#{siteConst.path.file_posts + viewModel.post.file1.filename}>Скачайте файл</a>.
 
             if (viewModel.post.file2.filename)
                 audio(controls  preload="none")
-                    source(src='/uploads/posts/files/' + viewModel.post.file2.filename, type=viewModel.post.file2.mimetype)
+                    source(src=siteConst.path.file_posts + viewModel.post.file2.filename, type=viewModel.post.file2.mimetype)
                     | Тег audio не поддерживается вашим браузером.
-                    <a href=#{'/public/uploads/posts/files/' + viewModel.post.file2.filename}>Скачайте музыку</a>.
+                    <a href=#{siteConst.path.file_posts + viewModel.post.file2.filename}>Скачайте файл</a>.
 
             if (viewModel.post.file3.filename)
                 audio(controls  preload="none")
-                    source(src='/uploads/posts/files/' + viewModel.post.file3.filename, type=viewModel.post.file3.mimetype)
+                    source(src=siteConst.path.file_posts + viewModel.post.file3.filename, type=viewModel.post.file3.mimetype)
                     | Тег audio не поддерживается вашим браузером.
-                    <a href=#{'/public/uploads/posts/files/' + viewModel.post.file3.filename}>Скачайте музыку</a>.
+                    <a href=#{siteConst.path.file_posts + viewModel.post.file3.filename}>Скачайте файл</a>.
 
 
 
@@ -44,13 +44,28 @@ block content
                     audio(controls  preload="none")
                         source(src=url, type="audio/mpeg")
                         | Тег audio не поддерживается вашим браузером. 
-                        <a href="audio/music.mp3">Скачайте музыку</a>.
+                        <a href=#{url}>Скачайте файл</a>.
 
             .files-download
                 | Файлы для скачивания:
 
                 each url, i in viewModel.post.urls
                     a(href=url) !{ siteUtils.getUrlTitle(url, 'Скачать файл') }
+
+        if (viewModel.post.urlsPodfm.length)
+            each url, i in viewModel.post.urlsPodfm
+                object#slide_426778(data='http://file.podfm.ru/player.swf', type='application/x-shockwave-flash', width='450', height='53')
+                    param(name='align', value='middle')
+                    param(name='allowScriptAccess', value='always')
+                    param(name='menu', value='false')
+                    param(name='WMode', value='transparent')
+                    param(name='quality', value='high')
+                    param(name='FlashVars', value='xmlurl=' + url)
+                    param(name='name', value='slide_426778')
+                    param(name='flashvars', value='xmlurl=' + url)
+                    param(name='wmode', value='transparent')
+                    param(name='movie', value='http://file.podfm.ru/player.swf')
+
 
     .article-footer
         h3.relatedpost Похожие статьи
@@ -67,6 +82,4 @@ block content
             .clear
 
     include partial/blog-comments.pug
-
-
 

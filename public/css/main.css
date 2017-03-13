@@ -751,6 +751,12 @@ body {
 .article .main-img {
   width: 100%; }
 
+.article .main-img.small {
+  width: 50%;
+  float: left;
+  margin-right: 18px;
+  margin-bottom: 16px; }
+
 .article .article-body p {
   margin-top: 0.5em;
   margin-bottom: 0.5em; }

@@ -167,6 +167,12 @@
     .main-img {
         width: 100%;
     }
+    .main-img.small {
+        width: 50%;
+        float: left;
+        margin-right: 18px;
+        margin-bottom: 16px;
+    }
     .article-body {
         p {            
             margin-top: 0.5em;

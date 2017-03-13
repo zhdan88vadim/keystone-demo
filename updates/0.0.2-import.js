@@ -360,7 +360,12 @@ module.exports = function (done) {
             "categories": "testimonies",
             "tags": [],
             "urlsPodfm": [],
-            "urls": []
+            "urls": [],
+            "image": {
+                "filename": "upload_shitov.jpg",
+                "size": 10500,
+                "mimetype": "image/jpeg"
+            }
         }, {
             "name": "Ирина Кисель",
             "state": "published",
@@ -372,7 +377,12 @@ module.exports = function (done) {
             "categories": "testimonies",
             "tags": [],
             "urlsPodfm": [],
-            "urls": []
+            "urls": [],
+            "image": {
+                "filename": "upload_kisel.jpg",
+                "size": 10500,
+                "mimetype": "image/jpeg"
+            }            
         }, {
             "name": "Воскресная школа",
             "state": "published",
@@ -564,7 +574,12 @@ module.exports = function (done) {
             "categories": "testimonies",
             "tags": [],
             "urlsPodfm": [],
-            "urls": []
+            "urls": [],
+            "image": {
+                "filename": "upload_valy.jpg",
+                "size": 10500,
+                "mimetype": "image/jpeg"
+            }
         }, {
             "name": "Первый шаг к Богу.",
             "state": "published",
@@ -744,7 +759,12 @@ module.exports = function (done) {
             "categories": "testimonies",
             "tags": [],
             "urlsPodfm": [],
-            "urls": []
+            "urls": [],
+            "image": {
+                "filename": "upload_robert.jpg",
+                "size": 10500,
+                "mimetype": "image/jpeg"
+            }
         }, {
             "name": "Не противься злому",
             "state": "published",
@@ -768,7 +788,12 @@ module.exports = function (done) {
             "categories": "testimonies",
             "tags": [],
             "urlsPodfm": [],
-            "urls": []
+            "urls": [],
+            "image": {
+                "filename": "upload_askerko.jpg",
+                "size": 10500,
+                "mimetype": "image/jpeg"
+            }
         }, {
             "name": "Твоё призвание начинается сегодня",
             "state": "published",
@@ -912,7 +937,12 @@ module.exports = function (done) {
             "categories": "testimonies",
             "tags": [],
             "urlsPodfm": [],
-            "urls": []
+            "urls": [],
+            "image": {
+                "filename": "upload_dima.jpg",
+                "size": 10500,
+                "mimetype": "image/jpeg"
+            }            
         }, {
             "name": "Давид Вилкерсон — Обращение к христианам, переживающим трудные времена",
             "state": "published",
@@ -1008,7 +1038,12 @@ module.exports = function (done) {
             "categories": "testimonies",
             "tags": [],
             "urlsPodfm": [],
-            "urls": []
+            "urls": [],
+            "image": {
+                "filename": "upload_irapold.jpg",
+                "size": 10500,
+                "mimetype": "image/jpeg"
+            }
         }, {
             "name": "Рожденные побеждать",
             "state": "published",
@@ -1968,7 +2003,12 @@ module.exports = function (done) {
             "categories": "testimonies",
             "tags": [],
             "urlsPodfm": [],
-            "urls": []
+            "urls": [],
+            "image": {
+                "filename": "upload_natasha.jpg",
+                "size": 10500,
+                "mimetype": "image/jpeg"
+            }            
         }, {
             "name": "Ты бы простил это?",
             "state": "published",
