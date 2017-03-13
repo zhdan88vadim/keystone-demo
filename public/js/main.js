@@ -1,6 +1,24 @@
-$(document).ready(function () {
+function scrollToAnchor() {
+    if (location.hash && $(location.hash).length) {
+        $('html, body').scrollTop(0).animate({
+            'scrollTop':   $(location.hash).offset().top
+        }, 1000);
+    }
+}
 
-    $('#slide').bjqs({
+function setGoodLookingImgOnArticle() {
+    $('.article .main-img').one('load', function() {
+        if (this.naturalWidth < 380) {
+            $(this).addClass('small');
+        }
+
+    }).each(function() {
+        if(this.complete) $(this).trigger('load');
+    });
+}
+
+function initJSControls() {
+        $('#slide').bjqs({
         // animtype: 'slide',
         //height: 400,
         width: null,
@@ -20,22 +38,13 @@ $(document).ready(function () {
         'speedOut': 200,
         'overlayShow': false
     });
+}
 
-    if (location.hash && $(location.hash).length) {
-        $('html, body').scrollTop(0).animate({
-            'scrollTop':   $(location.hash).offset().top
-        }, 1000);
-    }
+$(document).ready(function () {
+    initJSControls();
 
-    $('.article .main-img').one('load', function() {
-        if (this.naturalWidth > 380) {
-            $(this).removeClass('small');
-        }
-
-    }).each(function() {
-        if(this.complete) $(this).trigger('load');
-    });
-
+    scrollToAnchor();
+    setGoodLookingImgOnArticle();
 });
 
 // fix for podfm flash player

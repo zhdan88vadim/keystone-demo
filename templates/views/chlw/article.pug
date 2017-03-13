@@ -6,7 +6,7 @@ block content
         h1.under-line= viewModel.post.name
         div.article-body
             if (viewModel.post.image.filename && siteConst.path.image_posts + viewModel.post.image.filename.exists)
-                img(src=siteConst.path.image_posts + viewModel.post.image.filename).main-img.small
+                img(src=siteConst.path.image_posts + viewModel.post.image.filename).main-img
             div.content
                 | !{viewModel.post.content.full}
 
