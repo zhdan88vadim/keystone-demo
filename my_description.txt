@@ -1,3 +1,12 @@
+
+for testing display podfm or audio players
+http://localhost:3000/blog/post/prazdnik-cerkvi-voskresene-28-09-2014
+
+http://localhost:3000/blog/post/tvoyo-prizvanie-nachinaetsya-segodnya
+
+
+
+
 =help for admin
 
 --

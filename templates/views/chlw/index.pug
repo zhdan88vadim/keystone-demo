@@ -36,7 +36,8 @@ block content
                h3.entry-title
                   a(href='/blog/category/testimonies') Свидетельства
                p.entry-short-description
-                  | Люди своими рассказами деляться о славе Божьей в своих жизнях.
+                  | Господь совершил много чудес в жизни людей, многие получили поддержку и ответы на свои молитвы. Этот раздел содержит некоторые свидетельства Божьих чудес в жизни верующих людей.
+                  
          li
             .wrap-img
                a(href='/blog/category/service')
@@ -66,7 +67,9 @@ block content
                            img(src=siteConst.path.image_posts + lastPost.image.filename)
                         else
                            if lastPost.author && lastPost.author.photo && lastPost.author.photo.filename
-                                 img(src=siteConst.path.image_users + lastPost.author.photo.filename, alt=lastPost.author.name.full)
+                                 img(src=siteConst.path.image_users + lastPost.author.photo.filename, alt=lastPost.author.name.full).author-img                                
+                                 img(src='http://img0.liveinternet.ru/images/attach/c/8/102/70/102070604_Kak_sdelat_vintazhnuyy_svitok_iz_bumagi__1_.jpg')
+
 
                .entry-container
                      h3.entry-title
@@ -118,10 +121,3 @@ block content
               span: a(href='?page=' + viewModel.lastPosts.next): span.glyphicon.glyphicon-chevron-right
           else
               span.disabled: a(href='?page=' + viewModel.lastPosts.totalPages): span.glyphicon.glyphicon-chevron-right
-
-
-
-
-
-
-

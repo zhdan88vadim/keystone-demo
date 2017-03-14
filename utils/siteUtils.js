@@ -2,6 +2,7 @@
 module.exports = {
     getUrlTitle: getUrlTitle,
     getCategoryTitle: getCategoryTitle,
+    getFileNameFromPath: getFileNameFromPath
 };
 
 function getParameterByName(name, url) {
@@ -18,6 +19,10 @@ function getUrlTitle(url, defaultTitle) {
 
     return  title ? title : defaultTitle;
 
+}
+
+function getFileNameFromPath(path) {
+    return decodeURIComponent(path.replace(/^.*[\\\/]/, ''));
 }
 
 function getCategoryTitle(categories, defaultTitle) {

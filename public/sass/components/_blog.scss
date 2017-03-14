@@ -6,12 +6,23 @@
 }
 
 .blog-posts img {
-    max-width: 100%;
-    min-width: 100%;
+    width: 100%;
+    // max-width: 100%;
+    // min-width: 100%;
     // border-radius: 2px;
 }
 
+.blog-posts img.author-img {
+    position: absolute;
+    width: 34%;
+    z-index: 90;
+    bottom: 0;
+    right: 0;
+    border: 1px solid rgba(255, 255, 255, 0.66);
+}
+
 .blog-posts .wrap-img {
+    position: relative;
     //height: 200px;
     //overflow: hidden;
 }
@@ -193,10 +204,17 @@
     }
 }
 
-.files-audio {
+.files-audio, .podfm-audio {
     margin-top: 40px;
     audio {
+        margin-top: 4px;
+        margin-bottom: 14px;
         display: block;
+    }
+    .file-info {
+        color: #b9b9b9;
+        font-size: 1.1rem;
+        word-break: break-word;
     }
 }
 

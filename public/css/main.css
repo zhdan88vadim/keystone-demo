@@ -620,8 +620,18 @@ body {
     margin-right: 4%; }
 
 .blog-posts img {
-  max-width: 100%;
-  min-width: 100%; }
+  width: 100%; }
+
+.blog-posts img.author-img {
+  position: absolute;
+  width: 34%;
+  z-index: 90;
+  bottom: 0;
+  right: 0;
+  border: 1px solid rgba(255, 255, 255, 0.66); }
+
+.blog-posts .wrap-img {
+  position: relative; }
 
 .blog-posts .entry-title {
   text-align: center; }
@@ -771,10 +781,16 @@ body {
   .files-download a {
     display: block; }
 
-.files-audio {
+.files-audio, .podfm-audio {
   margin-top: 40px; }
-  .files-audio audio {
+  .files-audio audio, .podfm-audio audio {
+    margin-top: 4px;
+    margin-bottom: 14px;
     display: block; }
+  .files-audio .file-info, .podfm-audio .file-info {
+    color: #b9b9b9;
+    font-size: 1.1rem;
+    word-break: break-word; }
 
 .article-footer {
   margin-top: 60px;
@@ -1184,6 +1200,8 @@ p.bjqs-caption {
     float: none; }
     .menu-holder li a {
       display: block; }
+  .files-audio audio, .podfm-audio audio {
+    width: 100%; }
   .article-footer .related-content a {
     width: 100%; }
   .article-footer .related-content img {

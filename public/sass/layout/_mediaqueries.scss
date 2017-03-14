@@ -67,12 +67,18 @@
             display: block;
         }
     }
-
+        
+    .files-audio, .podfm-audio {
+        audio {
+            width: 100%;
+        }
+    }
+    
     .article-footer .related-content {
         a {
             width: 100%;
         }
-        
+
         img {
             width: 30%;
             float: left;

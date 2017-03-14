@@ -1,5 +1,16 @@
 extends layout.pug
 
+mixin file-field(field)
+    if (field.filename)
+        .file-info Имя файла: #{field.originalname}
+        .file-info размер, мб: #{ (field.size / 1000 / 1000).toFixed(2) }
+        audio(controls  preload="none")
+            source(src=siteConst.path.file_posts + field.filename, type=field.mimetype)
+            | Тег audio не поддерживается вашим браузером.
+            <a href=#{siteConst.path.file_posts + field.filename}>Скачайте файл</a>.
+
+
+
 block content
     -- console.log(viewModel.post)
     .article
@@ -10,37 +21,17 @@ block content
             div.content
                 | !{viewModel.post.content.full}
 
-
         .files-audio
-            if (viewModel.post.file0.filename)
-                audio(controls  preload="none")
-                    source(src=siteConst.path.file_posts + viewModel.post.file0.filename, type=viewModel.post.file0.mimetype)
-                    | Тег audio не поддерживается вашим браузером.
-                    <a href=#{siteConst.path.file_posts + viewModel.post.file0.filename}>Скачайте файл</a>.
-
-            if (viewModel.post.file1.filename)
-                audio(controls  preload="none")
-                    source(src=siteConst.path.file_posts + viewModel.post.file1.filename, type=viewModel.post.file1.mimetype)
-                    | Тег audio не поддерживается вашим браузером.
-                    <a href=#{siteConst.path.file_posts + viewModel.post.file1.filename}>Скачайте файл</a>.
-
-            if (viewModel.post.file2.filename)
-                audio(controls  preload="none")
-                    source(src=siteConst.path.file_posts + viewModel.post.file2.filename, type=viewModel.post.file2.mimetype)
-                    | Тег audio не поддерживается вашим браузером.
-                    <a href=#{siteConst.path.file_posts + viewModel.post.file2.filename}>Скачайте файл</a>.
-
-            if (viewModel.post.file3.filename)
-                audio(controls  preload="none")
-                    source(src=siteConst.path.file_posts + viewModel.post.file3.filename, type=viewModel.post.file3.mimetype)
-                    | Тег audio не поддерживается вашим браузером.
-                    <a href=#{siteConst.path.file_posts + viewModel.post.file3.filename}>Скачайте файл</a>.
-
+            +file-field(viewModel.post.file0)
+            +file-field(viewModel.post.file1)
+            +file-field(viewModel.post.file2)
+            +file-field(viewModel.post.file3)
 
 
         if (viewModel.post.urls.length)
             .files-audio
                 each url, i in viewModel.post.urls
+                    .file-info Имя файла: #{siteUtils.getUrlTitle(url, siteUtils.getFileNameFromPath(url))}
                     audio(controls  preload="none")
                         source(src=url, type="audio/mpeg")
                         | Тег audio не поддерживается вашим браузером. 
@@ -52,19 +43,20 @@ block content
                 each url, i in viewModel.post.urls
                     a(href=url) !{ siteUtils.getUrlTitle(url, 'Скачать файл') }
 
-        if (viewModel.post.urlsPodfm.length)
-            each url, i in viewModel.post.urlsPodfm
-                object#slide_426778(data='http://file.podfm.ru/player.swf', type='application/x-shockwave-flash', width='450', height='53')
-                    param(name='align', value='middle')
-                    param(name='allowScriptAccess', value='always')
-                    param(name='menu', value='false')
-                    param(name='WMode', value='transparent')
-                    param(name='quality', value='high')
-                    param(name='FlashVars', value='xmlurl=' + url)
-                    param(name='name', value='slide_426778')
-                    param(name='flashvars', value='xmlurl=' + url)
-                    param(name='wmode', value='transparent')
-                    param(name='movie', value='http://file.podfm.ru/player.swf')
+        .podfm-audio
+            if (viewModel.post.urls.length === 0 && viewModel.post.urlsPodfm.length)
+                each url, i in viewModel.post.urlsPodfm
+                    object#slide_426778(data='http://file.podfm.ru/player.swf', type='application/x-shockwave-flash', width='450', height='53')
+                        param(name='align', value='middle')
+                        param(name='allowScriptAccess', value='always')
+                        param(name='menu', value='false')
+                        param(name='WMode', value='transparent')
+                        param(name='quality', value='high')
+                        param(name='FlashVars', value='xmlurl=' + url)
+                        param(name='name', value='slide_426778')
+                        param(name='flashvars', value='xmlurl=' + url)
+                        param(name='wmode', value='transparent')
+                        param(name='movie', value='http://file.podfm.ru/player.swf')
 
 
     .article-footer
