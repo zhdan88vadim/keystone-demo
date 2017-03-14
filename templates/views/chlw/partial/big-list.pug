@@ -1,211 +1,45 @@
 
 .big-list
-    ul
-        each listItem, i in viewModel.items.results
+    if (!viewModel.items.results.length)
+        .data-empty
+            | Поиск не дал результатов
+    
+    if (viewModel.items.results.length)
+        ul
+            each listItem, i in viewModel.items.results
 
-            -- console.log('listItem', listItem)
+                -- console.log('listItem', listItem)
 
-            li.list-item
-                h3.entry-title
-                    a(href=siteConst.routes.blog_post + listItem.key)
-                        | #{listItem.name}
-                .wrap-img
-                    a(href=siteConst.routes.blog_post + listItem.key)
-                        if listItem.image.filename
-                            img(src='/uploads/posts/img/' + listItem.image.filename)
-                        else
-                            img(src=siteConst.path.image_users + listItem.author.photo.filename, alt=listItem.author.name.full)
-                .info
-                    if listItem.publishedDate || listItem.author
-                        if listItem.author
-                            | #{listItem.author.name.full}
+                li.list-item
+                    h3.entry-title
+                        a(href=siteConst.routes.blog_post + listItem.key)
+                            | #{listItem.name}
+                    .wrap-img
+                        a(href=siteConst.routes.blog_post + listItem.key)
+                            if listItem.image.filename
+                                img(src='/uploads/posts/img/' + listItem.image.filename)
+                            else
+                                img(src=siteConst.path.image_users + listItem.author.photo.filename, alt=listItem.author.name.full)
+                    .info
+                        if listItem.publishedDate || listItem.author
+                            if listItem.author
+                                | #{listItem.author.name.full}
 
-                        if listItem.publishedDate
-                            | #{ ' - ' + listItem._.publishedDate.format('MM, D, YYYY')}
+                            if listItem.publishedDate
+                                | #{ ' - ' + listItem._.publishedDate.format('MM, D, YYYY')}
 
-                .entry-container
-                    | !{listItem.content.brief}
-                a(href=siteConst.routes.blog_post + listItem.key) читать полностью
-                if (listItem.tags && listItem.tags.length)
-                    .tags.cloud-labels
-                        ul
-                            each tag, i in listItem.tags
-                                li
-                                    a(href=siteConst.routes.tag + tag.key)=tag.name
+                    .entry-container
+                        | !{listItem.content.brief}
+                    a(href=siteConst.routes.blog_post + listItem.key) читать полностью
+                    if (listItem.tags && listItem.tags.length)
+                        .tags.cloud-labels
+                            ul
+                                each tag, i in listItem.tags
+                                    li
+                                        a(href=siteConst.routes.tag + tag.key)=tag.name
+                        .clear
                     .clear
-                .clear
 
-
-
-
-        //li.list-item
-        //    h3.entry-title
-        //        a(href='article.html')
-        //            | Воскресная проповедь — Воля Божья в Библии - часть 1 -
-        //            | 09.10.2016
-        //    .wrap-img
-        //        a(href='')
-        //            img(src='../assets/img/authors/pastor.jpg', alt='Post Title')
-        //    .info Пастор Андрей - 14.02.2017
-        //    .entry-container
-        //        | Ducimus, repudiandae impedit sapiente ex numquam
-        //        | expedita alias doloribus in
-        //        | expedita alias doloribus in
-        //        | incidunt sequi dignissimos odit facilis maxime aperiam
-        //        | aspernatur soluta nulla adipisci...
-        //        | expedita alias doloribus in
-        //        | incidunt sequi dignissimos odit facilis maxime aperiam
-        //        | aspernatur soluta nulla adipisci...
-        //        | expedita alias doloribus in
-        //        | incidunt sequi dignissimos odit facilis maxime aperiam
-        //        | aspernatur soluta nulla adipisci...
-        //        | expedita alias doloribus in
-        //        | incidunt sequi dignissimos odit facilis maxime aperiam
-        //        | aspernatur soluta nulla adipisci...
-        //        | expedita alias doloribus in
-        //        | incidunt sequi dignissimos odit facilis maxime aperiam
-        //        | aspernatur soluta nulla adipisci...
-        //        | expedita alias doloribus in
-        //        | incidunt sequi dignissimos odit facilis maxime aperiam
-        //        | aspernatur soluta nulla adipisci...
-        //    a(href='') читать полностью
-        //    .tags.cloud-labels
-        //        ul
-        //            li
-        //                a(href='') Достижение цели
-        //            li
-        //                a(href='') Учеба
-        //            li
-        //                a(href='') Свидетельства
-        //            li
-        //                a(href='') Финансы
-        //    .clear
-        //li.list-item
-        //    h3.entry-title
-        //        a(href='')
-        //            | Воскресная проповедь — Воля Божья в Библии - часть 1 -
-        //            | 09.10.2016
-        //    .wrap-img
-        //        a(href='')
-        //            img(src='../assets/img/authors/shitov.jpg', alt='Post Title')
-        //    .info Евгений Шитов - 14.12.2017
-        //    .entry-container
-        //        | Ducimus, repudiandae impedit sapiente ex numquam
-        //        | expedita alias doloribus in
-        //        | expedita alias doloribus in
-        //        | incidunt sequi dignissimos odit facilis maxime aperiam
-        //        | aspernatur soluta nulla adipisci...
-        //        | expedita alias doloribus in
-        //    a(href='') читать полностью
-        //    br
-        //    a(href='') просмотреть все серии
-        //    .tags.cloud-labels
-        //        ul
-        //            li
-        //                a(href='') Финансы
-        //    .clear
-        //li.list-item
-        //    h3.entry-title
-        //        a(href='')
-        //            | Воскресная проповедь — Воля Божья в Библии - часть 1 -
-        //            | 09.10.2016
-        //    .wrap-img
-        //        a(href='')
-        //            img(src='../assets/img/authors/oleg1.jpg', alt='Post Title')
-        //    .info Олег - 14.02.2017
-        //    .entry-container
-        //        | Ducimus, repudiandae impedit sapiente ex numquam
-        //        | expedita alias doloribus in
-        //        | expedita alias doloribus in
-        //        | incidunt sequi dignissimos odit facilis maxime aperiam
-        //        | aspernatur soluta nulla adipisci...
-        //        | expedita alias doloribus in
-        //    a(href='') читать полностью
-        //    br
-        //    a(href='') просмотреть все серии
-        //    .clear
-        //li.list-item
-        //    h3.entry-title
-        //        a(href='')
-        //            | Воскресная проповедь — Воля Божья в Библии - часть 1 -
-        //            | 09.10.2016
-        //    .wrap-img
-        //        a(href='')
-        //            img(src='../assets/img/sluzheniya/01.jpg', alt='Post Title')
-        //    .info Пастор Андрей - 14.02.2017
-        //    .entry-container
-        //        | Ducimus, repudiandae impedit sapiente ex numquam
-        //        | expedita alias doloribus in
-        //        | expedita alias doloribus in
-        //        | incidunt sequi dignissimos odit facilis maxime aperiam
-        //        | aspernatur soluta nulla adipisci...
-        //        | expedita alias doloribus in
-        //    a(href='') читать полностью
-        //    .tags.cloud-labels
-        //        ul
-        //            li
-        //                a(href='') Достижение цели
-        //            li
-        //                a(href='') Учеба
-        //            li
-        //                a(href='') Свидетельства
-        //            li
-        //                a(href='') Финансы
-        //    .clear
-        //li.list-item
-        //    h3.entry-title
-        //        a(href='')
-        //            | Воскресная проповедь — Воля Божья в Библии - часть 1 -
-        //            | 09.10.2016
-        //    .wrap-img
-        //        a(href='')
-        //            img(src='../assets/img/sluzheniya/01.jpg', alt='Post Title')
-        //    .info Пастор Андрей - 14.02.2017
-        //    .entry-container
-        //        | Ducimus, repudiandae impedit sapiente ex numquam
-        //        | expedita alias doloribus in
-        //        | expedita alias doloribus in
-        //        | incidunt sequi dignissimos odit facilis maxime aperiam
-        //        | aspernatur soluta nulla adipisci...
-        //        | expedita alias doloribus in
-        //    a(href='') читать полностью
-        //    .clear
-        //li.list-item
-        //    h3.entry-title
-        //        a(href='')
-        //            | Воскресная проповедь — Воля Божья в Библии - часть 1 -
-        //            | 09.10.2016
-        //    .wrap-img
-        //        a(href='')
-        //            img(src='../assets/img/sluzheniya/01.jpg', alt='Post Title')
-        //    .info Пастор Андрей - 14.02.2017
-        //    .entry-container
-        //        | Ducimus, repudiandae impedit sapiente ex numquam
-        //        | expedita alias doloribus in
-        //        | expedita alias doloribus in
-        //        | incidunt sequi dignissimos odit facilis maxime aperiam
-        //        | aspernatur soluta nulla adipisci...
-        //        | expedita alias doloribus in
-        //    a(href='') читать полностью
-        //    .clear
-        //li.list-item
-        //    h3.entry-title
-        //        a(href='')
-        //            | Воскресная проповедь — Воля Божья в Библии - часть 1 -
-        //            | 09.10.2016
-        //    .wrap-img
-        //        a(href='')
-        //            img(src='../assets/img/sluzheniya/01.jpg', alt='Post Title')
-        //    .info Пастор Андрей - 14.02.2017
-        //    .entry-container
-        //        | Ducimus, repudiandae impedit sapiente ex numquam
-        //        | expedita alias doloribus in
-        //        | expedita alias doloribus in
-        //        | incidunt sequi dignissimos odit facilis maxime aperiam
-        //        | aspernatur soluta nulla adipisci...
-        //        | expedita alias doloribus in
-        //    a(href='') читать полностью
-            .clear
 .clear
 
 

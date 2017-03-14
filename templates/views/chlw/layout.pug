@@ -4,6 +4,12 @@ block head_content
 
     .main-wrapper
         //(class=(viewModel.mainWrapperClass ? viewModel.mainWrapperClass : ''))
+        
+        .error-messages
+            if(viewModel.validationErrors.length)
+                each error, i in viewModel.validationErrors
+                    div=error
+
         block content
 
     .sidebar-wrapper

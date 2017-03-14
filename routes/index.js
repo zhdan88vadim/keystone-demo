@@ -87,6 +87,8 @@ exports = module.exports = function(app) {
     app.get('/gallery/:album', routes.views.gallery.album);
     app.get('/gallery', routes.views.gallery.list);
 
+
+    app.all('/search', routes.views.search);
     app.all('/contact', routes.views.contact);
 
     // Downloads

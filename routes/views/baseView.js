@@ -8,6 +8,8 @@ var Post = keystone.list('Post');
 
 exports.addBaseActions = function (view, viewModel) {
 
+    viewModel.validationErrors = [];
+
 
     // Load all tags
 
