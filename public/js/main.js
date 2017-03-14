@@ -17,6 +17,10 @@ function setGoodLookingImgOnArticle() {
     });
 }
 
+function resizeMainBanner() {
+    $('#slide').height($('#slide').width()/1.6);
+}
+
 function initJSControls() {
         $('#slide').bjqs({
         // animtype: 'slide',
@@ -45,6 +49,12 @@ $(document).ready(function () {
 
     scrollToAnchor();
     setGoodLookingImgOnArticle();
+
+    
+    resizeMainBanner();
+    $(window).resize(function(){
+        resizeMainBanner();
+    });
 });
 
 // fix for podfm flash player
