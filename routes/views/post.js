@@ -28,10 +28,14 @@ exports = module.exports = function (req, res) {
         }).populate('author categories');
 
         q.exec(function (err, result) {
-            viewModel.post = result;
-            next(err);
-        });
 
+            if (result || err) {
+                viewModel.post = result;
+                next(err);
+            } else {
+                return res.redirect('/error/404');
+            }
+        });
     });
 
     // Load other posts

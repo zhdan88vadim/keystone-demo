@@ -89,6 +89,7 @@ exports = module.exports = function(app) {
 
 
     app.all('/search', routes.views.search);
+    app.all('/error/:error', routes.views.error);
     app.all('/contact', routes.views.contact);
 
     // Downloads
