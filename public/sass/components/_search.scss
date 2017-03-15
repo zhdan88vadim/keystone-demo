@@ -1,28 +1,25 @@
 .search-form-default {
   display: block;
-  height: 36px;
+  height: 30px;
   width: 35%;
   float: right;
   margin-top: 18px;
+  margin-bottom: 10px;
   background: url(#{$image-url}/search.png) no-repeat 98% 50%;  
   background-size: 14px;
+  border: 3px solid #fcf298;
 }
 
 .search-form-default input[type="text"] {
   float: left;
   font-family: "verdana", helvetica, Tahoma, Arial, sans-serif;
   font-size: 1.2rem;
-  background: none repeat scroll 0 0 transparent;
+  //background: none repeat scroll 0 0 transparent;
+  background: rgba(255, 255, 255, 0.85);
   border: 0 none;
   color: #B3B3B3;
-  //background: #fff;
-  height: 25px;
-  margin-left: 10px;
-  margin-top: 6px;
-  border: 3px solid #fcf298;
-  width: 97%;
-  padding-left: 4px;
-  padding-right: 22px;
+  width: 91.2%;
+  padding: 4px 8px 3px 8px;
   margin-right: 0;
 }
 

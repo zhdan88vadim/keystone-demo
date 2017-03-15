@@ -875,23 +875,24 @@ body {
     padding: 18px 22px 18px 22px; }
   .blog-comments .submit-form .user-name {
     width: 50%;
-    padding: 5px 2px 2px 5px;
+    padding: 8px 16px 8px 16px;
     background-color: #fff;
     border: 1px solid #e5e5e5;
     color: #222;
-    margin-bottom: 12px; }
+    margin-bottom: 18px; }
   .blog-comments .submit-form textarea {
     width: 100%;
     background-color: #fff;
     border: 1px solid #e5e5e5;
     color: #222;
     display: inline-block;
-    padding: 5px 2px 2px 5px;
+    padding: 8px 16px 8px 16px;
     vertical-align: top; }
   .blog-comments .submit-form .controls {
     background-color: #f5f5f5;
-    padding: 10px 10px 4px 10px;
-    overflow: hidden; }
+    padding: 18px 22px 12px 22px;
+    overflow: hidden;
+    position: relative; }
   .blog-comments .submit-form .g-recaptcha {
     float: left; }
   .blog-comments .submit-form .publish-button {
@@ -900,11 +901,13 @@ body {
     border: 1px solid #3079ed;
     color: #fff;
     font-weight: bold;
-    margin: 0 8px 6px 0;
     height: 27px;
     border-radius: 2px;
-    margin-top: 46px;
-    float: right; }
+    margin-bottom: 12px;
+    margin-right: 22px;
+    position: absolute;
+    bottom: 0;
+    right: 0; }
 
 ul.polaroids li {
   display: inline; }
@@ -999,27 +1002,24 @@ ul.polaroids img {
 
 .search-form-default {
   display: block;
-  height: 36px;
+  height: 30px;
   width: 35%;
   float: right;
   margin-top: 18px;
+  margin-bottom: 10px;
   background: url(../assets/img/search.png) no-repeat 98% 50%;
-  background-size: 14px; }
+  background-size: 14px;
+  border: 3px solid #fcf298; }
 
 .search-form-default input[type="text"] {
   float: left;
   font-family: "verdana", helvetica, Tahoma, Arial, sans-serif;
   font-size: 1.2rem;
-  background: none repeat scroll 0 0 transparent;
+  background: rgba(255, 255, 255, 0.85);
   border: 0 none;
   color: #B3B3B3;
-  height: 25px;
-  margin-left: 10px;
-  margin-top: 6px;
-  border: 3px solid #fcf298;
-  width: 97%;
-  padding-left: 4px;
-  padding-right: 22px;
+  width: 91.2%;
+  padding: 4px 8px 3px 8px;
   margin-right: 0; }
 
 .search-form-default input[type="submit"] {

@@ -20,8 +20,8 @@
         form(action="" method='POST').submit-form
             .head
                 input(type='hidden', name='action', value='comment.create')
-                input(type="text" placeholder='Введите ваше имя' name='username').user-name
-                textarea(rows='5' cols='50' placeholder='Введите ваш комментарий...' name='content')
+                input(type="text" autocomplete="off" placeholder='Введите ваше имя' name='username' pattern=".{4,20}" required title="Длина имени должна быть от 4 до 20 символов").user-name
+                textarea(rows='5' autocomplete="off" cols='50' placeholder='Введите ваш комментарий...' name='content' maxlength="600" minlength="20" required title="Длина комментария должна быть от 20 до 600 символов")
             .controls.clearfix
                 .g-recaptcha(data-sitekey="6Les1RcUAAAAABlxc4-1a7FReWsU_N8nk_5L6mzz")
                 input(type='submit' value='Отправить').publish-button

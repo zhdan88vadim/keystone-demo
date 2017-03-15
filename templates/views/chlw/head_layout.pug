@@ -50,7 +50,7 @@ html(lang='en')
                         h1 Церковь Свет Миру
                     .search-form-default
                         form(action='/search', method='get' onsubmit='return true;')
-                            input(type='text', placeholder='SEARCH' name='search')
+                            input(type='text', placeholder='SEARCH' name='search' maxlength="40" minlength="3" required title="Длина слова для поиска должна быть от 3 до 40 символов")
                             input(type='submit', value=' ')
         .ct-wrapper
             .menu-holder
