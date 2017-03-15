@@ -903,11 +903,14 @@ body {
     font-weight: bold;
     height: 27px;
     border-radius: 2px;
-    margin-bottom: 12px;
-    margin-right: 22px;
-    position: absolute;
-    bottom: 0;
-    right: 0; }
+    float: right;
+    margin-top: 50px; }
+  @media (max-width: 400px) {
+    .blog-comments .submit-form .publish-button {
+      width: 100%;
+      margin-top: 26px; }
+    .blog-comments .submit-form .user-name {
+      width: 100%; } }
 
 ul.polaroids li {
   display: inline; }
