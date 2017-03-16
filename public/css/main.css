@@ -1060,6 +1060,9 @@ ul.polaroids img {
 .search-form-default input:active, .search-form-default input:focus {
   outline: none; }
 
+.slider {
+  max-height: 450px; }
+
 ul.bjqs {
   position: relative;
   list-style: none;
