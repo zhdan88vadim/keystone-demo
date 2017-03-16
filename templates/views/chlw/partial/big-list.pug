@@ -14,7 +14,7 @@
                     h3.entry-title
                         a(href=siteConst.routes.blog_post + listItem.key)
                             | #{listItem.name}
-                    .wrap-img
+                    .wrap-img(class=(viewModel.css.big_list__wrap_img ? viewModel.css.big_list__wrap_img : ''))
                         a(href=siteConst.routes.blog_post + listItem.key)
                             if listItem.image.filename
                                 img(src='/uploads/posts/img/' + listItem.image.filename)

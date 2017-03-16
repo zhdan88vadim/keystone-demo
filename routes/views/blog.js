@@ -22,6 +22,10 @@ exports.category = function (req, res) {
     };
 
     viewModel.activeRoute = locals.filters.category;
+    
+    // TODO: find better solution
+    viewModel.css.big_list__wrap_img = (locals.filters.category === 'service') ? 'big-img' : '';
+
 
 
     // Load all categories

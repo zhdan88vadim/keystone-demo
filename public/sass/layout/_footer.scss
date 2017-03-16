@@ -22,9 +22,14 @@
     float: left;
   }
 
+  .widget-footer-contact {
+    width: 24%;
+  }
+
   .widget-user-info {
     //text-align: justify;
     font-size: 1.4rem;
+    width: 35%;    
     .avatar {
       border-radius: 85px;
       height: 150px;
@@ -41,15 +46,17 @@
   }
 
   .footer-social-icons a {
+    position: relative;
     background: #fff;
     color: #333;
-    display: inline-block;
+    display: block;
+    float: left;
     text-align: center;
     font-size: 2.4rem;
     width: 50px;
     height: 50px;
     line-height: 50px;
-    margin: 0 1px 6px;
+    margin: 0 3px 6px;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
     border-radius: 100%;
@@ -58,10 +65,35 @@
     background: #e84c4c;
     color: #fff;
   }
-
+  .footer-social-icons a.margin {
+    margin-right: 32px;
+  }
+  
   .footer-social-icons img {
     border-radius: 50%;
     width: 50px;
+  }
+  
+  .footer-social-icons .info {
+    color: #000;
+    position: absolute;
+    font-size: 12px;
+    background: rgba(255, 255, 255, 0.93);
+    width: 80px;
+    height: 27px;
+    word-break: break-word;
+    line-height: 10px;
+    border-radius: 10px;
+    left: 25px;
+    top: -7px;
+    padding: 3px;
+    border: 1px solid;
+    padding: 3px;
+    z-index: 100;
+  }
+  
+  .footer-social-icons .info.pastor {
+    width: 68px;
   }
 
   .widget-gallery {
@@ -120,19 +152,19 @@
 
 }
 
-.widget-footer-labels {
+// .widget-footer-labels {
 
-  li {
-    border-bottom: 1px solid #777;
-    line-height: 22px;
-    padding: 6px;
-  }
+//   li {
+//     border-bottom: 1px solid #777;
+//     line-height: 22px;
+//     padding: 6px;
+//   }
 
-  li a {
-    text-decoration: none;
-  }
+//   li a {
+//     text-decoration: none;
+//   }
 
-}
+// }
 
 .bottom-thing {
   text-align: center;
