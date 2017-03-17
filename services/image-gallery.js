@@ -78,23 +78,77 @@ exports.getRandomImages = function (count, callback) {
     });
 }
 
-exports.updateGallery = function (err, callback) {
+exports.getAllGalleryDirNotInDB = function (callback) {
+        
+        var getGalleries = new Promise(function (resolve, reject) {
+                Gallery.model.find({}).exec(function (err, result) {
+                    err ? reject(err) : resolve(result);
+                })
+            }
+        );
+        
+        var getDirs =  new Promise(function (resolve, reject) {
+            var dirs = [];
+
+            searchFiles(galleryFilePath, function (err, searchResult) {        
+                if (err) reject(err);
+
+                if (searchResult.isDir) {
+                    dirs.push(searchResult.filename);
+                }                
+            });
+            
+             resolve(dirs);
+        });
+        
+        getGalleries.then(function(resultGalleries) {
+            getDirs.then(function(resultDirs) {
+                let dirsIsNotInDB = [];
+
+                resultDirs.forEach(function (dir) {
+
+                    let isFound = false;
+
+                    for (let i = 0; i < resultGalleries.length; i++) {
+                        if(resultGalleries[i].name === dir) {
+                            isFound = true;
+                            break;
+                        }
+                    }
+
+                    if (!isFound) {
+                        dirsIsNotInDB.push(dir);
+                    }
+
+                });
+
+                callback(null, dirsIsNotInDB);
+            });
+
+        });
+}
+
+var updateGalleryDir = function (filename, fullPath) {
+    var files = [];
+    
+    searchFiles(fullPath, function (err, innerFile) {
+
+        if (!innerFile.isDir) {
+            files.push(innerFile.filename)
+        }
+    });
+
+    createAlbum(filename, files);
+}
+
+exports.updateGallery = function () {
 
     DeleteAllGallaries();
 
     searchFiles(galleryFilePath, function (err, result) {
-        var files = [];
 
         if (result.isDir) {
-
-            searchFiles(result.fullPath, function (err, innerFile) {
-
-                if (!innerFile.isDir) {
-                    files.push(innerFile.filename)
-                }
-            })
-
-            createAlbum(result.filename, files);
+            updateGalleryDir(result.filename, result.fullPath);
         }
     });
 }
@@ -117,7 +171,7 @@ function searchFiles(dir, callback) {
         });
 
     } catch (e) {
-        callback(err);
+        callback(e);
         console.log('searchFiles: ', e);
     }
 }

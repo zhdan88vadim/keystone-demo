@@ -5,13 +5,13 @@ block content
 
     .photo-album
 
-        if images.length
+        if viewModel.images.length
             div
-                each image, i in images
+                each image, i in viewModel.images
                     div.box
                         div.box-inner
-                            a(title='', rel='gallery', href=siteConst.path.image_gallery + galleryName + '/' + image).fancy-img
-                                img(src=siteConst.path.image_gallery + galleryName + '/preview/' + image)
+                            a(title='', rel='gallery', href=siteConst.path.image_gallery + viewModel.galleryName + '/' + image).fancy-img
+                                img(src=siteConst.path.image_gallery + viewModel.galleryName + '/preview/' + image)
                                 //div(bacground='gray', width='200px', height='100px')=siteConst.path.image_gallery + galleryName + '/preview/' + image
         else
             h3 В этом альбоме еще нет фотографий.

@@ -22,6 +22,7 @@ var ImageStorage = new keystone.Storage({
     }
 });
 
+
 // Add Option for Generated Filenames
 //https://github.com/keystonejs/keystone-storage-adapter-s3/pull/12/commits/9db761ae0d138d02b7b7c59fa7e59f761f5b95e8
 //https://github.com/keystonejs/keystone-storage-adapter-azure
@@ -52,7 +53,10 @@ Post.add({
     image: {
         type: Types.File, storage: ImageStorage
     },
-
+    categories: {type: Types.Relationship, ref: 'PostCategory', many: true},
+    tags: {type: Types.Relationship, ref: 'Tag', many: true},
+    hits: {type: Types.Number, default: 0, readonly: true}
+    },'Files Upload', {
     file0: {
         type: Types.File, storage: FileStorage
     },
@@ -64,13 +68,10 @@ Post.add({
     },
     file3: {
         type: Types.File, storage: FileStorage
-    },
-
+    }},
+    'External Links', {
     urls: { type: Types.TextArray },
-    urlsPodfm: { type: Types.TextArray },
-    categories: {type: Types.Relationship, ref: 'PostCategory', many: true},
-    tags: {type: Types.Relationship, ref: 'Tag', many: true},
-    hits: {type: Types.Number, default: 0, readonly: true},
+    urlsPodfm: { type: Types.TextArray }
 });
 
 Post.schema.virtual('content.full').get(function () {

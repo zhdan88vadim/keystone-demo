@@ -11,7 +11,6 @@ exports.addBaseActions = function (view, viewModel) {
     viewModel.validationErrors = [];
     viewModel.css = {};
 
-
     // Load all tags
 
     view.on('init', function (next) {

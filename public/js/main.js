@@ -46,6 +46,7 @@ function initJSControls() {
 
 $(document).ready(function () {
     initJSControls();
+    initAdminUI();
 
     scrollToAnchor();
     setGoodLookingImgOnArticle();
@@ -59,4 +60,12 @@ $(document).ready(function () {
 
 // fix for podfm flash player
 function SetCookie(a1, a2, a3) {
+}
+
+
+function initAdminUI() {
+    
+    $('.update-album').on('click', function(e) {
+        return false;
+    });
 }

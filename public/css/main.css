@@ -1061,7 +1061,7 @@ ul.polaroids img {
   outline: none; }
 
 .slider {
-  max-height: 450px; }
+  max-height: 550px; }
 
 ul.bjqs {
   position: relative;
@@ -1179,6 +1179,14 @@ p.bjqs-caption {
     margin-top: 4px;
     margin-bottom: 18px;
     font-size: 1.4rem; }
+
+.btn-normal {
+  padding: 4px 2px 4px 2px;
+  border: 1px solid;
+  border-radius: 10px; }
+
+.btn-normal:hover {
+  background: #f5dfb5; }
 
 .error-message-container {
   font-size: 4rem;

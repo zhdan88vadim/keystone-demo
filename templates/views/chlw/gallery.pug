@@ -8,13 +8,16 @@ block content
     .photo-albums
 
         ul.polaroids
-            if galleries.length
-                each gallery, i in galleries
+            if viewModel.galleries.length
+                each gallery, i in viewModel.galleries
                     //-- console.log('gallery', gallery.uploadFiles[0])
                     li
                         a(title=gallery.name, href='/gallery/' + gallery.key)
                             if (gallery.uploadFiles[0])
                                 img(src=siteConst.path.image_gallery + gallery.name + '/preview/' + gallery.uploadFiles[0].filename)
+                            if loginUser && loginUser.canAccessKeystone
+                                div(data-gallery-key=gallery.name).btn-normal.update-album обновить альбом
+                                
 
             else
                 h3(style="margin-bottom:0;margin-top:0;") There are no albums yet.

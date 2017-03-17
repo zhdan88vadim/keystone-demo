@@ -18,16 +18,24 @@ exports.list = function (req, res) {
     // Load all galleries
     view.on('init', function (next) {
         ImageGallery.getAll(function(err, galleries) {
-            locals.galleries = galleries;
+            viewModel.galleries = galleries;
 
             next();
         });
     });
 
+    view.on('init', function (next) {
+        ImageGallery.getAllGalleryDirNotInDB(function(err, dirIsNotInDB) {
+             console.log('log', dirIsNotInDB);
+        });
+        
+        next();
+    });
+
+
+
     // view.on('get', {action: 'update'}, function (next) {
-    //
     //     console.log('action update');
-    //
     //     ImageGallery.updateGallery();
     //     next();
     // });
@@ -53,9 +61,9 @@ exports.album = function (req, res) {
     view.on('get', function (next) {
 
         ImageGallery.getImagesByGalleryKey(locals.filters.album, function(err, galleryKey, galleryName, images) {
-            locals.galleryKey = galleryKey;
-            locals.galleryName = galleryName;
-            locals.images = images;
+            viewModel.galleryKey = galleryKey;
+            viewModel.galleryName = galleryName;
+            viewModel.images = images;
 
             console.log('album', images);
             next();
@@ -67,15 +75,16 @@ exports.album = function (req, res) {
 
 exports.update = function (req, res) {
     var view = new keystone.View(req, res);
-    var locals = res.locals;
-    var viewModel = locals.viewModel = {};
-
+   
     view.on('get', function (next) {
-
-        console.log('action update');
         ImageGallery.updateGallery();
         next();
     });
 
-    view.render('chlw/photo-album');
+
+    // node_modules\keystone\lib\view.js
+
+    view.render('', null, function() {
+        return res.redirect('/gallery');
+    });
 }

@@ -68,7 +68,13 @@ html(lang='en')
                             a(href=siteConst.routes.gallery) Фото
                         li(class=(viewModel.activeRoute === 'contact' ? 'highlight' : ''))
                             a(href=siteConst.routes.contact) Контакты
-                   
+
+                        if loginUser
+                            li: a(href='/keystone') Admin UI
+                            li: a(href='/keystone/signout') Sign Out
+                        else
+                            li: a(href='/keystone/signin') Sign In
+
                     //
                         <select class="nav-select">
                         <option>Navigation</option>
