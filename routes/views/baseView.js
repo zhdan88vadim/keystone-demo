@@ -74,7 +74,7 @@ exports.addBaseActions = function (view, viewModel) {
     view.on('init', function (next) {
 
         ImageGallery.getRandomImages(9, function(err, galleryKey, galleryName, images) {
-            if (err) return images = [];
+            if (err) images = [];
 
             viewModel.randomGallery = {};
             viewModel.randomGallery.images = images;

@@ -66,6 +66,22 @@ function SetCookie(a1, a2, a3) {
 function initAdminUI() {
     
     $('.update-album').on('click', function(e) {
+        
+        var data = {
+            action: "update.gallery",
+            key: $(this).data().galleryKey,
+            dir: $(this).data().galleryDir,
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '/gallery/update',
+            data: JSON.stringify(data),
+            success: function(data) { alert('data: ' + data); },
+            contentType: "application/json",
+            dataType: 'json'
+        });
+        
         return false;
     });
 }

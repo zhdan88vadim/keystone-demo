@@ -4,7 +4,7 @@ var ImageGallery = require('../../services/image-gallery');
 var BaseView = require('./baseView');
 
 
-exports.list = function (req, res) {
+exports.list = function(req, res) {
     var view = new keystone.View(req, res);
     var locals = res.locals;
     var viewModel = locals.viewModel = {};
@@ -16,7 +16,7 @@ exports.list = function (req, res) {
     //view.query('galleries', Gallery.model.find().sort('sortOrder'));
 
     // Load all galleries
-    view.on('init', function (next) {
+    view.on('init', function(next) {
         ImageGallery.getAll(function(err, galleries) {
             viewModel.galleries = galleries;
 
@@ -24,15 +24,17 @@ exports.list = function (req, res) {
         });
     });
 
-    view.on('init', function (next) {
-        ImageGallery.getAllGalleryDirNotInDB(function(err, dirIsNotInDB) {
-             console.log('log', dirIsNotInDB);
+
+    if (locals.loginUser) {
+        view.on('init', function(next) {
+            ImageGallery.getAllGalleryDirNotInDB(function(err, dirIsNotInDB) {
+                console.log('log', dirIsNotInDB);
+                viewModel.dirIsNotInDB = dirIsNotInDB;
+
+                next();
+            });
         });
-        
-        next();
-    });
-
-
+    }
 
     // view.on('get', {action: 'update'}, function (next) {
     //     console.log('action update');
@@ -44,13 +46,13 @@ exports.list = function (req, res) {
 }
 
 
-exports.album = function (req, res) {
+exports.album = function(req, res) {
     var view = new keystone.View(req, res);
     var locals = res.locals;
     var viewModel = locals.viewModel = {};
 
     BaseView.addBaseActions(view, viewModel);
-    
+
     viewModel.activeRoute = 'gallery';
 
     locals.filters = {
@@ -58,7 +60,7 @@ exports.album = function (req, res) {
         //album: req.query.album
     };
 
-    view.on('get', function (next) {
+    view.on('get', function(next) {
 
         ImageGallery.getImagesByGalleryKey(locals.filters.album, function(err, galleryKey, galleryName, images) {
             viewModel.galleryKey = galleryKey;
@@ -73,18 +75,40 @@ exports.album = function (req, res) {
     view.render('chlw/photo-album');
 }
 
-exports.update = function (req, res) {
+exports.update = function(req, res) {
     var view = new keystone.View(req, res);
-   
-    view.on('get', function (next) {
-        ImageGallery.updateGallery();
+
+    // view.on('get', function (next) {
+    //     ImageGallery.updateGallery();
+    //     next();
+    // });
+
+    // // node_modules\keystone\lib\view.js
+    // view.render('', null, function() {
+    //     return res.redirect('/gallery');
+    // });
+
+
+    view.on('post', { action: 'update.gallery' }, function(next) {
+
+        if (req.body.dir) {
+            
+            ImageGallery.updateGalleryByDirName(req.body.dir, null, function(err) {
+                console.log(err);
+            });
+        } else if (req.body.key) {
+
+            ImageGallery.updateGalleryByDirKey(req.body.key, function(err) {
+                console.log(err);
+            });
+        }
+
         next();
     });
 
-
-    // node_modules\keystone\lib\view.js
-
     view.render('', null, function() {
-        return res.redirect('/gallery');
+        res.setHeader('Content-Type', 'application/json');
+        res.send(JSON.stringify({ status: 'ok' }));
     });
+
 }

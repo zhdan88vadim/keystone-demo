@@ -2,14 +2,12 @@ var keystone = require('keystone');
 var fs = require('fs');
 var ImageConverting = require('../services/image-converting');
 var path = require('path');
-
 var Gallery = keystone.list('Gallery');
 
-var galleryFilePath = path.normalize(__dirname + '\\..') +  '\\public\\uploads\\gallery\\img\\';
+var galleryFilePath = path.normalize(__dirname + '\\..') + '\\public\\uploads\\gallery\\img\\';
 
-
-exports.getAll = function (callback) {
-    Gallery.model.find().sort('sortOrder').exec(function (err, results) {
+var getAll = function(callback) {
+    Gallery.model.find().sort('sortOrder').exec(function(err, results) {
         if (err) {
             callback(err);
         } else {
@@ -18,9 +16,9 @@ exports.getAll = function (callback) {
     });
 }
 
-exports.getImagesByGalleryKey = function (key, callback) {
+var getImagesByGalleryKey = function(key, callback) {
 
-    Gallery.model.findOne().where('key', key).exec(function (err, item) {
+    Gallery.model.findOne().where('key', key).exec(function(err, item) {
         if (err) {
             callback(err);
         } else {
@@ -31,7 +29,7 @@ exports.getImagesByGalleryKey = function (key, callback) {
             var files = item.uploadFiles;
             var fileUrls = [];
 
-            files.forEach(function (file) {
+            files.forEach(function(file) {
                 fileUrls.push(file.filename);
             });
 
@@ -40,20 +38,19 @@ exports.getImagesByGalleryKey = function (key, callback) {
     });
 }
 
-exports.getRandomImages = function (count, callback) {
+var getRandomImages = function(count, callback) {
 
-    var getGalleryCount = new Promise(function (resolve, reject) {
-            Gallery.model.find({}).count().exec(function (err, result) {
-                err ? reject(err) : resolve(result);
-            })
-        }
-    );
+    var getGalleryCount = new Promise(function(resolve, reject) {
+        Gallery.model.find({}).count().exec(function(err, result) {
+            err ? reject(err) : resolve(result);
+        })
+    });
 
     function getImages(countGallery) {
 
         Gallery.model.find({})
             .skip(Math.random() * countGallery).limit(1)
-            .exec(function (err, item) {
+            .exec(function(err, item) {
                 if (err) {
                     callback(err);
                 } else {
@@ -64,7 +61,7 @@ exports.getRandomImages = function (count, callback) {
                     var files = item[0].uploadFiles.slice(0, count);
                     var fileUrls = [];
 
-                    files.forEach(function (file) {
+                    files.forEach(function(file) {
                         fileUrls.push(file.filename);
                     });
 
@@ -73,82 +70,89 @@ exports.getRandomImages = function (count, callback) {
             });
     }
 
-    getGalleryCount.then(function (result) {
+    getGalleryCount.then(function(result) {
         getImages(result);
     });
 }
 
-exports.getAllGalleryDirNotInDB = function (callback) {
-        
-        var getGalleries = new Promise(function (resolve, reject) {
-                Gallery.model.find({}).exec(function (err, result) {
-                    err ? reject(err) : resolve(result);
-                })
+var getAllGalleryDirNotInDB = function(callback) {
+
+    var getGalleries = new Promise(function(resolve, reject) {
+        Gallery.model.find({}).exec(function(err, result) {
+            err ? reject(err) : resolve(result);
+        })
+    });
+
+    var getDirs = new Promise(function(resolve, reject) {
+        var dirs = [];
+
+        searchFiles(galleryFilePath, function(err, searchResult) {
+            if (err) reject(err);
+
+            if (searchResult.isDir) {
+                dirs.push(searchResult.filename);
             }
-        );
-        
-        var getDirs =  new Promise(function (resolve, reject) {
-            var dirs = [];
-
-            searchFiles(galleryFilePath, function (err, searchResult) {        
-                if (err) reject(err);
-
-                if (searchResult.isDir) {
-                    dirs.push(searchResult.filename);
-                }                
-            });
-            
-             resolve(dirs);
         });
-        
-        getGalleries.then(function(resultGalleries) {
-            getDirs.then(function(resultDirs) {
-                let dirsIsNotInDB = [];
 
-                resultDirs.forEach(function (dir) {
+        resolve(dirs);
+    });
 
-                    let isFound = false;
+    getGalleries.then(function(resultGalleries) {
+        getDirs.then(function(resultDirs) {
+            let dirsIsNotInDB = [];
 
-                    for (let i = 0; i < resultGalleries.length; i++) {
-                        if(resultGalleries[i].name === dir) {
-                            isFound = true;
-                            break;
-                        }
+            resultDirs.forEach(function(dir) {
+
+                let isFound = false;
+
+                for (let i = 0; i < resultGalleries.length; i++) {
+                    if (resultGalleries[i].name === dir) {
+                        isFound = true;
+                        break;
                     }
+                }
 
-                    if (!isFound) {
-                        dirsIsNotInDB.push(dir);
-                    }
+                if (!isFound) {
+                    dirsIsNotInDB.push(dir);
+                }
 
-                });
-
-                callback(null, dirsIsNotInDB);
             });
 
+            callback(null, dirsIsNotInDB);
         });
+
+    });
 }
 
-var updateGalleryDir = function (filename, fullPath) {
+var updateGalleryByDirName = function(dirName, fullPath, callback) {
     var files = [];
-    
-    searchFiles(fullPath, function (err, innerFile) {
+
+    if (!fullPath) {
+        fullPath = galleryFilePath + '\\' + dirName;
+
+        if (!fs.existsSync(fullPath)) callback('Dir not found')
+    }
+
+    searchFiles(fullPath, function(err, innerFile) {
 
         if (!innerFile.isDir) {
             files.push(innerFile.filename)
         }
     });
 
-    createAlbum(filename, files);
+    deleteGallaryByName(dirName);
+    createAlbum(dirName, files);
 }
 
-exports.updateGallery = function () {
+var updateGalleryByDirKey = function(dirKey, callback) {
+    var files = [];
 
-    DeleteAllGallaries();
+    Gallery.model.findOne().where('key', dirKey).exec(function(err, gallery) {
 
-    searchFiles(galleryFilePath, function (err, result) {
-
-        if (result.isDir) {
-            updateGalleryDir(result.filename, result.fullPath);
+        if (!gallery) {
+            callback('gallery by key not found');
+        } else {
+            updateGalleryByDirName(gallery.name, null, callback);
         }
     });
 }
@@ -158,7 +162,7 @@ function searchFiles(dir, callback) {
     try {
         var files = fs.readdirSync(dir);
 
-        files.forEach(function (file) {
+        files.forEach(function(file) {
 
             var stats = fs.lstatSync(dir + '\\' + file);
             var isDir = stats.isDirectory();
@@ -181,11 +185,11 @@ function createAlbum(name, files) {
         name: name
     });
 
-    files.forEach(function (file) {
-        newGallery.uploadFiles.push({filename: file});
+    files.forEach(function(file) {
+        newGallery.uploadFiles.push({ filename: file });
     });
 
-    newGallery.save(function (err) {
+    newGallery.save(function(err) {
         if (!err) {
             createPreviewImg(name, files)
         }
@@ -196,22 +200,56 @@ function createPreviewImg(galleryName, files) {
     var albumDir = galleryFilePath + galleryName + '\\';
     var previewDir = albumDir + 'preview\\';
 
-    if(!fs.existsSync(previewDir)) {
+    if (!fs.existsSync(previewDir)) {
         fs.mkdirSync(previewDir);
     }
 
-    files.forEach(function (file) {
+    files.forEach(function(file) {
 
         ImageConverting.createPreviewImage(albumDir + file,
             previewDir + file,
-            function () {
+            function() {
                 //nextFn();
             });
     });
 }
 
-function DeleteAllGallaries() {
-    Gallery.model.find().remove(function (err) {
+function deleteAllGallaries() {
+    Gallery.model.find().remove(function(err) {
         console.log(err);
     });
 }
+
+function deleteGallaryByName(name) {
+    Gallery.model.find({ 'name': name }).remove(function(err) {
+        console.log(err);
+    });
+}
+
+
+
+
+
+
+
+var updateGallery = function() {
+    deleteAllGallaries();
+    searchFiles(galleryFilePath, function(err, result) {
+        if (result.isDir) {
+            updateGalleryByDirName(result.filename, result.fullPath);
+        }
+    });
+}
+
+
+
+
+
+module.exports = {
+    getRandomImages: getRandomImages,
+    getAll: getAll,
+    updateGalleryByDirName: updateGalleryByDirName,
+    getAllGalleryDirNotInDB: getAllGalleryDirNotInDB,
+    getImagesByGalleryKey: getImagesByGalleryKey,
+    updateGalleryByDirKey: updateGalleryByDirKey
+};

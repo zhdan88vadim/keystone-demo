@@ -16,14 +16,26 @@ block content
                             if (gallery.uploadFiles[0])
                                 img(src=siteConst.path.image_gallery + gallery.name + '/preview/' + gallery.uploadFiles[0].filename)
                             if loginUser && loginUser.canAccessKeystone
-                                div(data-gallery-key=gallery.name).btn-normal.update-album обновить альбом
+                                div(data-gallery-key=gallery.name).btn-normal.update-album Обновить
                                 
 
             else
-                h3(style="margin-bottom:0;margin-top:0;") There are no albums yet.
+                h3(style="margin-bottom:0;margin-top:0;") Альбомы еще не созданы.
+            
+            .clear
 
 
+        .admin-gallery
+            span Альбомы не включенные в базу данных
+            if viewModel.dirIsNotInDB && viewModel.dirIsNotInDB.length
+                ul.dir-list
+                    each dir, i in viewModel.dirIsNotInDB
+                        li
+                            .dir-name=dir
+                            .dir-action(data-gallery-dir=dir).btn-normal.update-album Добавить
 
+            else
+                h3(style="margin-bottom:0;margin-top:0;") Все альбомы включены в базу данных.
 
         //li
         //    a(title='Heading Level', href='photo-album.html')

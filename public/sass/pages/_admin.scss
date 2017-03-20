@@ -1,8 +1,31 @@
 .btn-normal {
     padding: 4px 2px 4px 2px;
-    border: 1px solid;
+    border: 1px solid #959595;
     border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
 }
+
 .btn-normal:hover {
     background: #f5dfb5;
+}
+
+.admin-gallery {
+    margin-top: 80px;
+    .dir-list {
+        margin-top: 20px;
+        li {
+            border-bottom: 1px dotted;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+    }
+    .dir-name {
+        width: 84%;
+        display: inline-block;
+    }
+    .dir-action {
+        width: 14%;
+        display: inline-block;
+    }
 }
