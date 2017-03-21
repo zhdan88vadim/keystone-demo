@@ -36,7 +36,15 @@ exports = module.exports = function(app) {
 
     app.all('/blog/post/:post', routes.views.post); // ?
 
-    app.all('/gallery/update', routes.views.gallery.update);
+
+
+
+    app.post('/gallery/file-upload/:album_key', routes.views.gallery.file_upload);
+    app.post('/api/gallery/', routes.views.gallery.create);
+    app.delete('/api/gallery/', routes.views.gallery.delete);
+    app.post('/api/gallery/update', routes.views.gallery.update);
+
+
     app.get('/gallery/:album', routes.views.gallery.album);
     app.get('/gallery', routes.views.gallery.list);
 

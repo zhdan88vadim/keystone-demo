@@ -13,10 +13,14 @@ block content
                             a(title='', rel='gallery', href=siteConst.path.image_gallery + viewModel.galleryName + '/' + image).fancy-img
                                 img(src=siteConst.path.image_gallery + viewModel.galleryName + '/preview/' + image)
                                 //div(bacground='gray', width='200px', height='100px')=siteConst.path.image_gallery + galleryName + '/preview/' + image
+            .clear                                
+        
         else
             h3 В этом альбоме еще нет фотографий.
+        
 
-
+    
+    form(action="/gallery/file-upload/" + viewModel.galleryKey, id="galleryDropzone").dropzone
 
         //li
         //    a(title='Heading Level', href='photo-album.html')

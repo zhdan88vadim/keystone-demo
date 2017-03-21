@@ -68,15 +68,49 @@ function initAdminUI() {
     $('.update-album').on('click', function(e) {
         
         var data = {
-            action: "update.gallery",
             key: $(this).data().galleryKey,
-            dir: $(this).data().galleryDir,
+            dir: $(this).data().galleryDir
         };
 
         $.ajax({
             type: 'POST',
-            url: '/gallery/update',
+            url: '/api/gallery/update',
             data: JSON.stringify(data),
+            success: function(data) { console.log(data); },
+            contentType: "application/json",
+            dataType: 'json'
+        });
+        
+        return false;
+    });
+
+    $('.delete-album').on('click', function(e) {
+
+        var data = {
+            key: $(this).data().galleryKey
+        };
+
+        $.ajax({
+            type: 'DELETE',
+            url: '/api/gallery/',
+            data: JSON.stringify(data),
+            success: function(data) { console.log(data); },
+            contentType: "application/json",
+            dataType: 'json'
+        });
+
+        return false;
+    });
+
+    $('#polaroid-new-gallery').on('click', function(e) {
+        
+        var galleryName = prompt("Введите название галерии");
+        if (!galleryName) return;
+
+        $.ajax({
+            type: 'POST',
+            url: '/api/gallery/',
+            data: JSON.stringify({name: galleryName}),
             success: function(data) { alert('data: ' + data); },
             contentType: "application/json",
             dataType: 'json'
@@ -85,3 +119,9 @@ function initAdminUI() {
         return false;
     });
 }
+
+
+Dropzone.options.galleryDropzone = {
+  maxFilesize: 2, // MB
+  parallelUploads: 10
+};

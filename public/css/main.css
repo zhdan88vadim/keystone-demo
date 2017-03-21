@@ -1013,7 +1013,7 @@ ul.polaroids a:after {
   content: attr(title); }
 
 ul.polaroids li {
-  min-height: 230px;
+  min-height: 240px;
   float: left;
   width: 25%; }
 
@@ -1204,6 +1204,16 @@ p.bjqs-caption {
   .admin-gallery .dir-action {
     width: 14%;
     display: inline-block; }
+
+.dropzone {
+  margin-top: 25px; }
+
+.polaroids .polaroid-new-gallery {
+  cursor: pointer;
+  margin: 0 0 27px 30px;
+  padding: 10px 10px 15px; }
+  .polaroids .polaroid-new-gallery img {
+    width: auto; }
 
 .error-message-container {
   font-size: 4rem;

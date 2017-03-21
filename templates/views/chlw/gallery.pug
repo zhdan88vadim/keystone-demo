@@ -15,9 +15,20 @@ block content
                         a(title=gallery.name, href='/gallery/' + gallery.key)
                             if (gallery.uploadFiles[0])
                                 img(src=siteConst.path.image_gallery + gallery.name + '/preview/' + gallery.uploadFiles[0].filename)
+                            else
+                                img(src='/../assets/img/upload_empty_folder.png')
+
                             if loginUser && loginUser.canAccessKeystone
-                                div(data-gallery-key=gallery.name).btn-normal.update-album Обновить
+                                div(data-gallery-key=gallery.key).btn-normal.update-album Обновить
+                                div(data-gallery-key=gallery.key).btn-normal.delete-album Удалить
                                 
+
+                li
+                    div.polaroid-new-gallery#polaroid-new-gallery
+                        img(src='/../assets/img/upload_add.png')
+                        if loginUser && loginUser.canAccessKeystone
+                            div Добавить галерею
+
 
             else
                 h3(style="margin-bottom:0;margin-top:0;") Альбомы еще не созданы.

@@ -24,7 +24,6 @@ exports.list = function(req, res) {
         });
     });
 
-
     if (locals.loginUser) {
         view.on('init', function(next) {
             ImageGallery.getAllGalleryDirNotInDB(function(err, dirIsNotInDB) {
@@ -36,15 +35,8 @@ exports.list = function(req, res) {
         });
     }
 
-    // view.on('get', {action: 'update'}, function (next) {
-    //     console.log('action update');
-    //     ImageGallery.updateGallery();
-    //     next();
-    // });
-
     view.render('chlw/gallery');
 }
-
 
 exports.album = function(req, res) {
     var view = new keystone.View(req, res);
@@ -75,40 +67,56 @@ exports.album = function(req, res) {
     view.render('chlw/photo-album');
 }
 
+
+// API
+
 exports.update = function(req, res) {
-    var view = new keystone.View(req, res);
+    if (req.body.dir) {
+        ImageGallery.updateGalleryByDirName(req.body.dir, null, function(err, result) {
+            res.send(JSON.stringify({ result: result, error: err }));
+        });
+    } else if (req.body.key) {
 
-    // view.on('get', function (next) {
-    //     ImageGallery.updateGallery();
-    //     next();
-    // });
+        ImageGallery.updateGalleryByDirKey(req.body.key, function(err, result) {
+            res.send(JSON.stringify({ result: result, error: err }));
+        });
+    }
 
-    // // node_modules\keystone\lib\view.js
-    // view.render('', null, function() {
-    //     return res.redirect('/gallery');
-    // });
-
-
-    view.on('post', { action: 'update.gallery' }, function(next) {
-
-        if (req.body.dir) {
-            
-            ImageGallery.updateGalleryByDirName(req.body.dir, null, function(err) {
-                console.log(err);
-            });
-        } else if (req.body.key) {
-
-            ImageGallery.updateGalleryByDirKey(req.body.key, function(err) {
-                console.log(err);
-            });
-        }
-
-        next();
-    });
-
-    view.render('', null, function() {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({ status: 'ok' }));
-    });
-
+    res.setHeader('Content-Type', 'application/json');
 }
+
+exports.create = function(req, res) {
+    ImageGallery.create(req.body.name, function(err, result) {
+        res.setHeader('Content-Type', 'application/json');
+        res.send(JSON.stringify({ result: result, error: err }));
+    });
+}
+
+exports.delete = function(req, res) {
+    ImageGallery.delete(req.body.key, function(err, result) {
+        res.setHeader('Content-Type', 'application/json');
+        res.send(JSON.stringify({ result: result, error: err }));
+    });
+}
+
+exports.file_upload = function(req, res) {
+    var newFileName = req.files.file.size + '_' + req.files.file.originalname;
+
+    ImageGallery.uploadFile(req.params.album_key, newFileName, req.files.file.path, function(err, result) {
+        res.setHeader('Content-Type', 'application/json');
+        res.send(JSON.stringify({ result: result, error: err }));
+    });
+}
+
+
+
+
+
+
+
+// help source
+
+// // node_modules\keystone\lib\view.js
+// view.render('', null, function() {
+//     return res.redirect('/gallery');
+// });
