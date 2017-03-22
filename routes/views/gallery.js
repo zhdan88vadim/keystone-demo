@@ -70,32 +70,66 @@ exports.album = function(req, res) {
 
 // API
 
-exports.update = function(req, res) {
+// List of HTTP status codes
+// https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+
+
+// TODO: use handleError for all endpoints
+
+// Generic error handler used by all endpoints.
+function handleError(res, reason, message, code) {
+    console.log("ERROR: " + reason);
+    res.status(code || 500).json({"error": message});
+}
+
+exports.updateGallery = function(req, res) {
     if (req.body.dir) {
         ImageGallery.updateGalleryByDirName(req.body.dir, null, function(err, result) {
-            res.send(JSON.stringify({ result: result, error: err }));
+            if (err)
+                handleError(res, err, 'Failed to update gallery.', 400);
+            else {
+                res.status(200).json({ result: result, error: err });
+            }
         });
     } else if (req.body.key) {
 
         ImageGallery.updateGalleryByDirKey(req.body.key, function(err, result) {
-            res.send(JSON.stringify({ result: result, error: err }));
+            if (err)
+                handleError(res, err, 'Failed to update gallery.', 400);
+            else {
+                res.status(200).json({ result: result, error: err });
+            }
         });
     }
-
-    res.setHeader('Content-Type', 'application/json');
 }
 
-exports.create = function(req, res) {
-    ImageGallery.create(req.body.name, function(err, result) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({ result: result, error: err }));
+exports.createGallery = function(req, res) {
+    ImageGallery.createGallery(req.body.name, function(err, result) {
+        if (err)
+            handleError(res, err, 'Failed to create new gallery', 400);
+        else {
+            res.status(200).json({ result: result, error: err });
+        }
     });
 }
 
-exports.delete = function(req, res) {
-    ImageGallery.delete(req.body.key, function(err, result) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({ result: result, error: err }));
+exports.deleteGallery = function(req, res) {
+    ImageGallery.deleteGallery(req.body.key, function(err, result) {
+        if (err)
+            handleError(res, err, 'Failed to delete gallery.', 400);
+        else {
+            res.status(200).json({ result: result, error: err });
+        }
+    });
+}
+
+exports.deleteImage = function(req, res) {
+    ImageGallery.deleteImage(req.body.galleryKey, req.body.image, function(err, result) {
+        if (err)
+            handleError(res, err, 'Image was not deleted.', 400);
+        else {
+            res.status(200).json({ result: result, error: err });
+        }
     });
 }
 
@@ -103,8 +137,10 @@ exports.file_upload = function(req, res) {
     var newFileName = req.files.file.size + '_' + req.files.file.originalname;
 
     ImageGallery.uploadFile(req.params.album_key, newFileName, req.files.file.path, function(err, result) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({ result: result, error: err }));
+        if (err)
+            handleError(res, err, 'Image was not uploaded.', 400);
+        else
+            res.status(200).json({ result: result, error: err });
     });
 }
 

@@ -8,16 +8,27 @@ keystone.init({
 	'favicon': 'public/favicon.ico',
 	'less': 'public',
 	'static': 'public',
-
+	//'env': 'production',
 	'views': 'templates/views',
 	'view engine': 'pug',
 
 	'auto update': true,
-	'mongo': process.env.MONGO_URI || process.env.MONGOLAB_URI || 'mongodb://localhost/keystone-zhv-site',	
+	'mongo': process.env.MONGO_URI || process.env.MONGOLAB_URI || 'mongodb://localhost/keystone-zhv-site',
 	'cloudinary config': 'cloudinary://333779167276662:_8jbSi9FB3sWYrfimcl8VKh34rI@keystone-demo',
 
 	'session': true,
+
+
+	// http://keystonejs.com/docs/configuration/
+	// When this is set to false (or not defined), Keystone's Admin UI will be open to the public (so set it!)
+	// If using a custom function, it should follow the standard for express middleware of function(req, res, next).
+	// If a user is not logged in or should not access Keystone's Admin UI, use res.redirect()
+	// to redirect them - otherwise call the next callback to enable access.
+
 	'auth': true,
+
+	//'signin url': '/in5ite'
+
 	'user model': 'User',
 	'cookie secret': process.env.COOKIE_SECRET || 'demo',
 

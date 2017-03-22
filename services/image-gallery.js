@@ -3,6 +3,7 @@ var fs = require('fs');
 var ImageConverting = require('../services/image-converting');
 var path = require('path');
 var Gallery = keystone.list('Gallery');
+var lodash = require('lodash');
 
 var galleryFilePath = path.normalize(__dirname + '\\..') + '\\public\\uploads\\gallery\\img\\';
 
@@ -271,7 +272,7 @@ function createAlbum(name, files, callback) {
     });
 }
 
-var create = function(name, callback) {
+var createGallery = function(name, callback) {
     var albumDir = getGalleryFullPath(name);
 
     if (!fs.existsSync(albumDir)) {
@@ -312,11 +313,18 @@ var deleteGallery = function(key, callback) {
     });
 }
 
+var deleteImage = function(galleryKey, image, callback) {
+    Gallery.model.update({'key': galleryKey}, { $pull: {'uploadFiles': {filename: image}}}, function(err, data) {
+        callback(err, data);
+    });
+}
+
 
 module.exports = {
     getRandomImages: getRandomImages,
-    create: create,
-    delete: deleteGallery,
+    createGallery: createGallery,
+    deleteGallery: deleteGallery,
+    deleteImage: deleteImage,
     getAll: getAll,
     uploadFile: uploadFile,
     updateGalleryByDirName: updateGalleryByDirName,

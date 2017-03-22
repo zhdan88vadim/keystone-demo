@@ -43,3 +43,17 @@
         width: auto;
     }
 }
+
+.delete-img {
+    position: absolute;
+    padding: 6px 10px 6px 10px;
+    border: 1px solid;
+    border-radius: 4px;
+    background: #FFF;
+    right: 12px;
+    top: 8px;
+    cursor: pointer;
+}
+.delete-img:hover {
+    background: #e84c4c;
+}

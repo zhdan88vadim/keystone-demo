@@ -62,6 +62,10 @@ $(document).ready(function () {
 function SetCookie(a1, a2, a3) {
 }
 
+function ajaxErrorHandling(error) {
+    console.log(error);
+    alert(error.responseText);
+}
 
 function initAdminUI() {
     
@@ -76,7 +80,7 @@ function initAdminUI() {
             type: 'POST',
             url: '/api/gallery/update',
             data: JSON.stringify(data),
-            success: function(data) { console.log(data); },
+            success: function(data) { location.reload(); },
             contentType: "application/json",
             dataType: 'json'
         });
@@ -94,7 +98,28 @@ function initAdminUI() {
             type: 'DELETE',
             url: '/api/gallery/',
             data: JSON.stringify(data),
-            success: function(data) { console.log(data); },
+            success: function(data) { location.reload(); },
+            error: ajaxErrorHandling,
+            contentType: "application/json",
+            dataType: 'json'
+        });
+
+        return false;
+    });
+
+    $('.delete-img').on('click', function(e) {
+
+        var data = {
+            image: $(this).data().galleryImage,
+            galleryKey: $(this).data().galleryKey
+        };
+
+        $.ajax({
+            type: 'DELETE',
+            url: '/api/gallery/image',
+            data: JSON.stringify(data),
+            success: function(data) { location.reload(); },
+            error: ajaxErrorHandling,
             contentType: "application/json",
             dataType: 'json'
         });
@@ -111,7 +136,8 @@ function initAdminUI() {
             type: 'POST',
             url: '/api/gallery/',
             data: JSON.stringify({name: galleryName}),
-            success: function(data) { alert('data: ' + data); },
+            success: function(data) { location.reload(); },
+            error: ajaxErrorHandling,
             contentType: "application/json",
             dataType: 'json'
         });
