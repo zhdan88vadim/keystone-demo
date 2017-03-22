@@ -19,10 +19,10 @@ block content
         
         else
             h3 В этом альбоме еще нет фотографий.
-        
 
-    
-    form(action="/gallery/file-upload/" + viewModel.galleryKey, id="galleryDropzone").dropzone
+
+    if loginUser && loginUser.canAccessKeystone
+        form(action="/api/gallery/file-upload/" + viewModel.galleryKey, id="galleryDropzone").dropzone
 
         //li
         //    a(title='Heading Level', href='photo-album.html')

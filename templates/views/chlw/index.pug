@@ -9,12 +9,13 @@ block content
       ul.bjqs
           //-- console.log('viewModel.lastPosts', viewModel.lastPosts);
 
-          each bannerPhoto, i in viewModel.mainBanner.photos
-              li
-                  a(href='')
-                      img.fpimg(src=siteConst.path.image_gallery + viewModel.mainBanner.galleryName + '/' + bannerPhoto, style='width:100%;')
-                  //h2.featured-title
-                      a(href='') Наши фотографии
+          if (viewModel.mainBanner.photos && viewModel.mainBanner.photos.length)
+              each bannerPhoto, i in viewModel.mainBanner.photos
+                  li
+                      a(href='')
+                          img.fpimg(src=siteConst.path.image_gallery + viewModel.mainBanner.galleryName + '/' + bannerPhoto, style='width:100%;')
+                      //h2.featured-title
+                          a(href='') Наши фотографии
 
       // end Basic jQuery Slider
   .blog-posts

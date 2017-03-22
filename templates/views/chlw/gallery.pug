@@ -22,11 +22,10 @@ block content
                                 div(data-gallery-key=gallery.key).btn-normal.update-album Обновить
                                 div(data-gallery-key=gallery.key).btn-normal.delete-album Удалить
                                 
-
-                li
-                    div.polaroid-new-gallery#polaroid-new-gallery
-                        img(src='/../assets/img/upload_add.png')
-                        if loginUser && loginUser.canAccessKeystone
+                if loginUser && loginUser.canAccessKeystone
+                    li
+                        div.polaroid-new-gallery#polaroid-new-gallery
+                            img(src='/../assets/img/upload_add.png')
                             div Добавить галерею
 
 
@@ -36,17 +35,16 @@ block content
             .clear
 
 
+    if viewModel.dirIsNotInDB && viewModel.dirIsNotInDB.length
         .admin-gallery
             span Альбомы не включенные в базу данных
-            if viewModel.dirIsNotInDB && viewModel.dirIsNotInDB.length
-                ul.dir-list
-                    each dir, i in viewModel.dirIsNotInDB
-                        li
-                            .dir-name=dir
-                            .dir-action(data-gallery-dir=dir).btn-normal.update-album Добавить
+            ul.dir-list
+                each dir, i in viewModel.dirIsNotInDB
+                    li
+                        .dir-name=dir
+                        .dir-action(data-gallery-dir=dir).btn-normal.update-album Добавить
 
-            else
-                h3(style="margin-bottom:0;margin-top:0;") Все альбомы включены в базу данных.
+
 
         //li
         //    a(title='Heading Level', href='photo-album.html')

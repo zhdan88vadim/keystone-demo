@@ -89,10 +89,12 @@ function initAdminUI() {
     });
 
     $('.delete-album').on('click', function(e) {
-
         var data = {
             key: $(this).data().galleryKey
         };
+
+        var r = confirm("Вы действительно хотите удалить элемент \n" + data.key + " ? \n");
+        if (!r) return;
 
         $.ajax({
             type: 'DELETE',
@@ -108,6 +110,9 @@ function initAdminUI() {
     });
 
     $('.delete-img').on('click', function(e) {
+
+        var r = confirm("Вы действительно хотите удалить элемент ? \n");
+        if (!r) return;
 
         var data = {
             image: $(this).data().galleryImage,

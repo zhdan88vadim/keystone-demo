@@ -4,7 +4,9 @@ const importRoutes = keystone.importer(__dirname);
 
 keystone.pre('routes', function(req, res, next) {  
     res.locals.loginUser = req.user;
-    res.locals.loginUser = {name: 'Fake User', canAccessKeystone: true};
+
+    if (req.query.admin)
+        res.locals.loginUser = {name: 'Fake User', canAccessKeystone: true};
         
     next();
 });
@@ -23,6 +25,15 @@ var routes = {
     views: importRoutes('./views'),
 };
 
+function requireAdminRole() {
+    return function(req, res, next) {
+        if(res.locals.loginUser && res.locals.loginUser.canAccessKeystone)
+            next();
+        else
+            res.send(403);
+    }
+}
+
 exports = module.exports = function(app) {
 
     app.all(middleware.theme);
@@ -37,11 +48,13 @@ exports = module.exports = function(app) {
     app.all('/blog/post/:post', routes.views.post); // ?
 
 
-    app.post('/gallery/file-upload/:album_key', routes.views.gallery.file_upload);
-    app.delete('/api/gallery/image', routes.views.gallery.deleteImage);
-    app.post('/api/gallery/', routes.views.gallery.createGallery);
-    app.delete('/api/gallery/', routes.views.gallery.deleteGallery);
-    app.post('/api/gallery/update', routes.views.gallery.updateGallery);
+    // API
+    app.post('/api/gallery/file-upload/:album_key', requireAdminRole(), routes.views.gallery.file_upload);
+    app.delete('/api/gallery/image', requireAdminRole(), routes.views.gallery.deleteImage);
+    app.post('/api/gallery/', requireAdminRole(), routes.views.gallery.createGallery);
+    app.delete('/api/gallery/', requireAdminRole(), routes.views.gallery.deleteGallery);
+    app.post('/api/gallery/update', requireAdminRole(), routes.views.gallery.updateGallery);
+
 
     app.get('/gallery/:album', routes.views.gallery.album);
     app.get('/gallery', routes.views.gallery.list);

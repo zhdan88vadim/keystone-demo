@@ -82,7 +82,7 @@ function handleError(res, reason, message, code) {
     res.status(code || 500).json({"error": message});
 }
 
-exports.updateGallery = function(req, res) {
+exports.updateGallery = function(req, res) {   
     if (req.body.dir) {
         ImageGallery.updateGalleryByDirName(req.body.dir, null, function(err, result) {
             if (err)
