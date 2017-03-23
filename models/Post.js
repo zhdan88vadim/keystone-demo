@@ -1,5 +1,7 @@
 var keystone = require('keystone');
 var ImageConverting = require('../services/image-converting');
+var ImageGallery = require('../services/image-gallery');
+var utils = require('keystone-utils');
 
 const postFileDir = './public/uploads/posts/files/';
 const postImgDir = './public/uploads/posts/img/';
@@ -34,7 +36,7 @@ var FileStorage = new keystone.Storage({
     },
     fs: {
         generateFilename: function(file, i, callback) {
-             return callback(null, file.size + '_' + file.originalname);
+             return callback(null, utils.transliterate(file.size + '_' + file.originalname));
         },
         path: keystone.expandPath(postFileDir), // required; path where the files should be stored
         publicPath: postFileDir // path where files will be served
@@ -91,19 +93,46 @@ Post.relationship({path: 'comments', ref: 'PostComment', refPath: 'post'});
 // http://mongoosejs.com/docs/middleware.html
 
 
-Post.schema.post('save', function(next) {
-    //var nextFn = next;
+// Post.schema.pre('save', function(q1,q2,q3) {
+//     console.log('post saved');
+//
+// });
 
-    console.log('post save');
+Post.schema.post('save', function(next) {
+    console.log('post saved');
 
     var filename = postImgDir + this.image.filename
     var outputDir = postPreviewImgDir + this.image.filename;
-
+    
+    //TODO: create directory if it doesn't exists
     ImageConverting.createPreviewImage(filename, outputDir, function() {
         //nextFn();
     });
 
 });
+
+Post.schema.post('remove', function(item) {
+    console.log('post will be removed', item);
+
+    // files
+    var files = [];
+
+    if (item._doc.file0.filename) files.push(item._doc.file0.filename);
+    if (item._doc.file1.filename) files.push(item._doc.file1.filename);
+    if (item._doc.file2.filename) files.push(item._doc.file2.filename);
+    if (item._doc.file3.filename) files.push(item._doc.file3.filename);
+
+    ImageGallery.removeFiles(keystone.expandPath(postFileDir), files);
+
+
+    // image
+    if (item._doc.image.filename) {
+        ImageGallery.removeFiles(keystone.expandPath(postImgDir), [item._doc.image.filename]);
+        ImageGallery.removeFiles(keystone.expandPath(postPreviewImgDir), [item._doc.image.filename]);
+    }
+});
+
+
 
 
 Post.track = true;

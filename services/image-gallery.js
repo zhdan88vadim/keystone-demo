@@ -319,6 +319,20 @@ var deleteImage = function(galleryKey, image, callback) {
     });
 }
 
+var removeFiles = function(path, files) {
+
+    files.forEach(function(file){
+        if(fs.existsSync(path + file)) {
+            fs.unlink(path + file, function(err){
+                if (err) console.log('Error! removesFile', path + file);
+                console.log(path + file + " deleted");
+            });
+        } else {
+            console.log('Warning! removesFile: file not found', path + file);
+        }
+    });
+}
+
 
 module.exports = {
     getRandomImages: getRandomImages,
@@ -327,6 +341,7 @@ module.exports = {
     deleteImage: deleteImage,
     getAll: getAll,
     uploadFile: uploadFile,
+    removeFiles: removeFiles,
     updateGalleryByDirName: updateGalleryByDirName,
     getAllGalleryDirNotInDB: getAllGalleryDirNotInDB,
     getImagesByGalleryKey: getImagesByGalleryKey,
