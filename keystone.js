@@ -1,5 +1,10 @@
 var keystone = require('keystone');
 
+
+exports.rootAppDir = function() {
+    return __dirname;
+}
+
 keystone.init({
 
 	'name': 'Церковь Свет Миру - Минск',
