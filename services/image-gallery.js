@@ -4,8 +4,9 @@ var ImageConverting = require('../services/image-converting');
 var path = require('path');
 var Gallery = keystone.list('Gallery');
 var lodash = require('lodash');
+var app = require('../keystone');
 
-var galleryFilePath = path.normalize(__dirname + '\\..') + '\\public\\uploads\\gallery\\img\\';
+var galleryFilePath = app.rootAppDir() + '\\public\\uploads\\gallery\\img\\';
 
 var getAll = function(callback) {
     Gallery.model.find().sort('sortOrder').exec(function(err, results) {
@@ -117,10 +118,10 @@ var getAllGalleryDirNotInDB = function(callback) {
             });
 
             callback(null, dirsIsNotInDB);
+        }, function(err) {
+            callback(err);
         });
 
-    }, function(err) {
-        callback(err);
     }, function(err) {
         callback(err);
     });
