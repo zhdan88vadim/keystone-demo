@@ -27,7 +27,7 @@ exports.list = function(req, res) {
     if (locals.loginUser) {
         view.on('init', function(next) {
             ImageGallery.getAllGalleryDirNotInDB(function(err, dirIsNotInDB) {
-                console.log('log', dirIsNotInDB);
+                if (err) console.log(err);
                 viewModel.dirIsNotInDB = dirIsNotInDB;
 
                 next();

@@ -119,6 +119,10 @@ var getAllGalleryDirNotInDB = function(callback) {
             callback(null, dirsIsNotInDB);
         });
 
+    }, function(err) {
+        callback(err);
+    }, function(err) {
+        callback(err);
     });
 }
 
