@@ -52,8 +52,13 @@ exports = module.exports = function(app) {
     app.post('/api/gallery/file-upload/:album_key', requireAdminRole(), routes.views.gallery.file_upload);
     app.delete('/api/gallery/image', requireAdminRole(), routes.views.gallery.deleteImage);
     app.post('/api/gallery/', requireAdminRole(), routes.views.gallery.createGallery);
+    
+    app.get('/api/gallery/', routes.views.gallery.api_gallery);
+    app.get('/api/gallery/:album_key', routes.views.gallery.api_gallery_detail);
+
     app.delete('/api/gallery/', requireAdminRole(), routes.views.gallery.deleteGallery);
     app.post('/api/gallery/update', requireAdminRole(), routes.views.gallery.updateGallery);
+
 
 
     app.get('/gallery/:album', routes.views.gallery.album);

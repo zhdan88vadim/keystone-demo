@@ -4,7 +4,7 @@ var ImageGallery = require('../../services/image-gallery');
 var BaseView = require('./baseView');
 
 
-exports.list = function(req, res) {
+exports.list = function (req, res) {
     var view = new keystone.View(req, res);
     var locals = res.locals;
     var viewModel = locals.viewModel = {};
@@ -16,8 +16,8 @@ exports.list = function(req, res) {
     //view.query('galleries', Gallery.model.find().sort('sortOrder'));
 
     // Load all galleries
-    view.on('init', function(next) {
-        ImageGallery.getAll(function(err, galleries) {
+    view.on('init', function (next) {
+        ImageGallery.getAll(function (err, galleries) {
             viewModel.galleries = galleries;
 
             next();
@@ -25,8 +25,8 @@ exports.list = function(req, res) {
     });
 
     if (locals.loginUser) {
-        view.on('init', function(next) {
-            ImageGallery.getAllGalleryDirNotInDB(function(err, dirIsNotInDB) {
+        view.on('init', function (next) {
+            ImageGallery.getAllGalleryDirNotInDB(function (err, dirIsNotInDB) {
                 if (err) console.log(err);
                 viewModel.dirIsNotInDB = dirIsNotInDB;
 
@@ -38,7 +38,7 @@ exports.list = function(req, res) {
     view.render('chlw/gallery');
 }
 
-exports.album = function(req, res) {
+exports.album = function (req, res) {
     var view = new keystone.View(req, res);
     var locals = res.locals;
     var viewModel = locals.viewModel = {};
@@ -52,14 +52,14 @@ exports.album = function(req, res) {
         //album: req.query.album
     };
 
-    view.on('get', function(next) {
+    view.on('get', function (next) {
 
-        ImageGallery.getImagesByGalleryKey(locals.filters.album, function(err, galleryKey, galleryName, images) {
+        ImageGallery.getImagesByGalleryKey(locals.filters.album, function (err, galleryKey, galleryName, images) {
             viewModel.galleryKey = galleryKey;
             viewModel.galleryName = galleryName;
             viewModel.images = images;
 
-            console.log('album', images);
+            //console.log('album', images);
             next();
         });
     });
@@ -79,12 +79,12 @@ exports.album = function(req, res) {
 // Generic error handler used by all endpoints.
 function handleError(res, reason, message, code) {
     console.log("ERROR: " + reason);
-    res.status(code || 500).json({"error": message});
+    res.status(code || 500).json({ "error": message });
 }
 
-exports.updateGallery = function(req, res) {   
+exports.updateGallery = function (req, res) {
     if (req.body.dir) {
-        ImageGallery.updateGalleryByDirName(req.body.dir, null, function(err, result) {
+        ImageGallery.updateGalleryByDirName(req.body.dir, null, function (err, result) {
             if (err)
                 handleError(res, err, 'Failed to update gallery.', 400);
             else {
@@ -93,7 +93,7 @@ exports.updateGallery = function(req, res) {
         });
     } else if (req.body.key) {
 
-        ImageGallery.updateGalleryByDirKey(req.body.key, function(err, result) {
+        ImageGallery.updateGalleryByDirKey(req.body.key, function (err, result) {
             if (err)
                 handleError(res, err, 'Failed to update gallery.', 400);
             else {
@@ -103,8 +103,8 @@ exports.updateGallery = function(req, res) {
     }
 }
 
-exports.createGallery = function(req, res) {
-    ImageGallery.createGallery(req.body.name, function(err, result) {
+exports.createGallery = function (req, res) {
+    ImageGallery.createGallery(req.body.name, function (err, result) {
         if (err)
             handleError(res, err, 'Failed to create new gallery', 400);
         else {
@@ -113,8 +113,8 @@ exports.createGallery = function(req, res) {
     });
 }
 
-exports.deleteGallery = function(req, res) {
-    ImageGallery.deleteGallery(req.body.key, function(err, result) {
+exports.deleteGallery = function (req, res) {
+    ImageGallery.deleteGallery(req.body.key, function (err, result) {
         if (err)
             handleError(res, err, 'Failed to delete gallery.', 400);
         else {
@@ -123,8 +123,8 @@ exports.deleteGallery = function(req, res) {
     });
 }
 
-exports.deleteImage = function(req, res) {
-    ImageGallery.deleteImage(req.body.galleryKey, req.body.image, function(err, result) {
+exports.deleteImage = function (req, res) {
+    ImageGallery.deleteImage(req.body.galleryKey, req.body.image, function (err, result) {
         if (err)
             handleError(res, err, 'Image was not deleted.', 400);
         else {
@@ -133,10 +133,10 @@ exports.deleteImage = function(req, res) {
     });
 }
 
-exports.file_upload = function(req, res) {
+exports.file_upload = function (req, res) {
     var newFileName = req.files.file.size + '_' + req.files.file.originalname;
 
-    ImageGallery.uploadFile(req.params.album_key, newFileName, req.files.file.path, function(err, result) {
+    ImageGallery.uploadFile(req.params.album_key, newFileName, req.files.file.path, function (err, result) {
         if (err)
             handleError(res, err, 'Image was not uploaded.', 400);
         else
@@ -144,6 +144,68 @@ exports.file_upload = function(req, res) {
     });
 }
 
+
+exports.api_gallery = function (req, res) {
+
+    var getGalleryDirNotInDB = new Promise(function (resolve, reject) {
+        ImageGallery.getAllGalleryDirNotInDB(function (err, dirIsNotInDB) {
+            err ? reject(err) : resolve(dirIsNotInDB);
+        });
+    });
+
+    ImageGallery.getAll(function (err, result) {
+
+        if (err)
+            handleError(res, err, 'Image was not uploaded.', 400);
+        else {
+
+            var mapGallery = result.map(function (item) {
+                return {
+                    key: item.key,
+                    name: item.name,
+                    imgUrl: item.uploadFiles[0] ? item.uploadFiles[0].filename : '',
+                    editable: !!res.locals.loginUser && !!res.locals.loginUser.canAccessKeystone
+                };
+            });
+
+            if (res.locals.loginUser) {
+                getGalleryDirNotInDB.then(function (dirs) {
+                    res.status(200).json({ result: { galleries: mapGallery, dirs: dirs }, error: err });
+                }, function (err) {
+                    handleError(res, err, 'Failed call getGalleryDirNotInDB function.', 400);
+                })
+            } else {
+                res.status(200).json({ result: { galleries: mapGallery }, error: err });
+            }
+        }
+    });
+
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+}
+
+
+exports.api_gallery_detail = function (req, res) {
+
+    ImageGallery.getImagesByGalleryKey(req.params.album_key, function (err, galleryKey, galleryName, images) {
+        if (err)
+            handleError(res, err, 'Failed call getImagesByGalleryKey function', 400);
+        else {
+
+            var response = {
+                galleryKey: galleryKey,
+                galleryName: galleryName,
+                images: images,
+                editable: !!res.locals.loginUser && !!res.locals.loginUser.canAccessKeystone
+            };
+            
+            res.status(200).json({ result: response, error: err });
+        }
+    });
+
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+}
 
 
 
