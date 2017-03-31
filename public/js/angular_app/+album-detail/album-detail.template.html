@@ -1,0 +1,13 @@
+<div class="photo-album">
+    <div class="box" ng-repeat="photo in $ctrl.photos">
+        <div class="box-inner">
+            <div class="delete-img" ng-if="$ctrl.editable" ng-click="$ctrl.delete(photo)">X</div>
+            <a class="fancy-img" href="" rel="gallery", href="{{'/uploads/gallery/img/' + $ctrl.galleryName + photo}}">
+                <img ng-src="{{'/uploads/gallery/img/' + $ctrl.galleryName + '/preview/' + photo}}" alt="{{photo.name}}" />
+            </a>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<file-upload on-album-load="$ctrl.albumLoad(result)" api-url-upload="/api/gallery/file-upload/"></file-upload>

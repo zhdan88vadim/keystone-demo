@@ -1,0 +1,30 @@
+extends layout.pug
+
+//- можно добавить кол-во фоток в альбоме
+
+block head
+    script(src='/../bower_components/angular/angular.js')
+    script(src='/../bower_components/angular-route/angular-route.js')
+    script(src='/../bower_components/angular-resource/angular-resource.js')
+
+    script(src='/../js/angular_app/app.module.js')
+    script(src='/../js/angular_app/app.config.js')
+
+    script(src='/../js/angular_app/core/core.module.js')
+    script(src='/../js/angular_app/core/gallery.service.js')
+    script(src='/../js/angular_app/core/directives/test-bind-to-controller.directive.js')
+    script(src='/../js/angular_app/core/directives/add-album.directive.js')
+    script(src='/../js/angular_app/+gallery/gallery.module.js')
+    script(src='/../js/angular_app/+gallery/gallery.component.js')
+
+    script(src='/../js/angular_app/+album-list/album-list.component.js')
+    script(src='/../js/angular_app/+album-detail/album-detail.component.js')
+    script(src='/../js/angular_app/+dir-list/dir-list.component.js')
+    script(src='/../js/angular_app/+file-upload/file-upload.component.js')
+    
+    //base(href="/gallery/app/")
+
+block content
+
+    div(ng-app="galleryApp")
+        div(ng-view class="view-frame")

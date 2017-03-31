@@ -61,6 +61,7 @@ exports = module.exports = function(app) {
 
 
 
+    app.get('/gallery/app', routes.views.gallery.app);
     app.get('/gallery/:album', routes.views.gallery.album);
     app.get('/gallery', routes.views.gallery.list);
 

@@ -67,6 +67,19 @@ exports.album = function (req, res) {
     view.render('chlw/photo-album');
 }
 
+exports.app = function (req, res) {
+    var view = new keystone.View(req, res);
+    var locals = res.locals;
+    var viewModel = locals.viewModel = {};
+
+    BaseView.addBaseActions(view, viewModel);
+
+    viewModel.activeRoute = 'gallery';
+
+    view.render('chlw/gallery_app');
+}
+
+
 
 // API
 
