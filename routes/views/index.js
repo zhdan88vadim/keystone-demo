@@ -43,12 +43,12 @@ exports = module.exports = function (req, res) {
     });
 
     view.on('post', { action: 'comment.save'}, function (next) {
-        console.log('post!');
+        //console.log('post!');
         next();
     });
 
     view.on('post', function (next) {
-        console.log('post!');
+        //console.log('post!');
         next();
     });
 

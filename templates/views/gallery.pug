@@ -8,14 +8,14 @@ block content
 		h1 Gallery
 
 	if galleries.length
-		-- console.log('galleries', galleries)
+		//-- console.log('galleries', galleries)
 		each gallery, i in galleries
 			h3
 				| #{gallery.name} 
 				//small.text-muted= gallery._.publishedDate.format('Do MMM YYYY')
 			
 			.row
-				-- console.log(gallery.images)
+				//-- console.log(gallery.images)
 
 				.col-xs-4.col-sm-3.col-md-2(style="margin-bottom: 30px;")
 					a(href='gallery/' + gallery.key, title=gallery.name + ' image ' + (i + 1), rel=gallery.key).gallery-image

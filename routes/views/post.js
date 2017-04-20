@@ -76,12 +76,12 @@ exports = module.exports = function (req, res) {
     // });
 
     view.on('get', function (next) {
-        console.log('GOT!');
+        //console.log('GOT!');
         next();
     });
 
     view.on('post', function (next) {
-        console.log('post!');
+        //console.log('post!');
         next();
     });
 

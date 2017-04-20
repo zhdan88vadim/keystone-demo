@@ -45,8 +45,8 @@ exports.create = function (req, res) {
     var data = (req.method == 'POST') ? req.body : req.query,
         item = new Enquiry.model(data);
 
-    console.log('Saving: ');
-    console.log(data);
+    //console.log('Saving: ');
+    //console.log(data);
 
     item.save(function (err) {
         if (err) return res.apiError('error', err);

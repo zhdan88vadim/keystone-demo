@@ -63,7 +63,7 @@ function SetCookie(a1, a2, a3) {
 }
 
 function ajaxErrorHandling(error) {
-    console.log(error);
+    //console.log(error);
     alert(error.responseText);
 }
 

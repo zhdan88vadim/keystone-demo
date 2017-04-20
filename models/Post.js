@@ -99,7 +99,7 @@ Post.relationship({path: 'comments', ref: 'PostComment', refPath: 'post'});
 // });
 
 Post.schema.post('save', function(next) {
-    console.log('post saved');
+    //console.log('post saved');
 
     var filename = postImgDir + this.image.filename
     var outputDir = postPreviewImgDir + this.image.filename;
@@ -112,7 +112,7 @@ Post.schema.post('save', function(next) {
 });
 
 Post.schema.post('remove', function(item) {
-    console.log('post will be removed', item);
+    //console.log('post will be removed', item);
 
     // files
     var files = [];

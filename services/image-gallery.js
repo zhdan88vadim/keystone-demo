@@ -178,7 +178,7 @@ function searchFiles(dir, callback) {
 
     } catch (e) {
         callback(e);
-        console.log('searchFiles: ', e);
+        //console.log('searchFiles: ', e);
     }
 }
 
@@ -330,10 +330,10 @@ var removeFiles = function(path, files) {
         if(fs.existsSync(path + file)) {
             fs.unlink(path + file, function(err){
                 if (err) console.log('Error! removesFile', path + file);
-                console.log(path + file + " deleted");
+                //console.log(path + file + " deleted");
             });
         } else {
-            console.log('Warning! removesFile: file not found', path + file);
+            //console.log('Warning! removesFile: file not found', path + file);
         }
     });
 }
