@@ -6,7 +6,9 @@ var Gallery = keystone.list('Gallery');
 var lodash = require('lodash');
 var app = require('../keystone');
 
-var galleryFilePath = app.rootAppDir() + '\\public\\uploads\\gallery\\img\\';
+var galleryFilePath = app.rootAppDir() + '/public/uploads/gallery/img/';
+
+console.log('galleryFilePath', galleryFilePath);
 
 var getAll = function(callback) {
     Gallery.model.find().sort('sortOrder').exec(function(err, results) {
@@ -166,12 +168,12 @@ function searchFiles(dir, callback) {
 
         files.forEach(function(file) {
 
-            var stats = fs.lstatSync(dir + '\\' + file);
+            var stats = fs.lstatSync(dir + '/' + file);
             var isDir = stats.isDirectory();
 
             callback(null, {
                 isDir: isDir,
-                fullPath: dir + '\\' + file,
+                fullPath: dir + '/' + file,
                 filename: file
             });
         });
@@ -231,7 +233,7 @@ function createPreviewImg(galleryName, files, callback) {
     var errors = [];
 
     var albumDir = getGalleryFullPath(galleryName);
-    var previewDir = albumDir + 'preview\\';
+    var previewDir = albumDir + 'preview/';
 
     if (!fs.existsSync(previewDir)) {
         fs.mkdirSync(previewDir);
@@ -250,7 +252,7 @@ function createPreviewImg(galleryName, files, callback) {
 }
 
 function getGalleryFullPath(name) {
-    return galleryFilePath + name + '\\';
+    return galleryFilePath + name + '/';
 }
 
 function deleteGallaryByName(name, callback) {

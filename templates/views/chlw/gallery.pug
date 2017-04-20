@@ -8,6 +8,12 @@ block content
     .photo-albums
 
         ul.polaroids
+            if loginUser && loginUser.canAccessKeystone
+                li
+                    div.polaroid-new-gallery#polaroid-new-gallery
+                        img(src='/../assets/img/upload_add.png')
+                        div Добавить галерею
+
             if viewModel.galleries.length
                 each gallery, i in viewModel.galleries
                     //-- console.log('gallery', gallery.uploadFiles[0])
@@ -21,12 +27,7 @@ block content
                             if loginUser && loginUser.canAccessKeystone
                                 div(data-gallery-key=gallery.key).btn-normal.update-album Обновить
                                 div(data-gallery-key=gallery.key).btn-normal.delete-album Удалить
-                                
-                if loginUser && loginUser.canAccessKeystone
-                    li
-                        div.polaroid-new-gallery#polaroid-new-gallery
-                            img(src='/../assets/img/upload_add.png')
-                            div Добавить галерею
+
 
 
             else
