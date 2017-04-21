@@ -1,4 +1,8 @@
 
+.header-backgraund {
+  background: rgba(250, 235, 215, 0.24);
+}
+
 #header {
   .social-holder a {
     /*transition*/
@@ -66,5 +70,9 @@
     font-size: 4.8rem;
     line-height: 50px;
     font-family: Tahoma, Geneva, sans-serif;
+  }
+
+  .logo-holder img {
+    width: 50%;
   }
 }

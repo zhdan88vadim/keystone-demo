@@ -26,37 +26,39 @@ html(lang='en')
     body
         .img-left
         .img-right
-        .header-wrapper.ct-wrapper
-            header
-                #header
-                    //.social-holder
-                    //    ul.social-networks
-                    //        li
-                    //            a.rss(href='#') rss
-                    //        li
-                    //            a.youtube(href='#') youtube
-                    //        li
-                    //            a.twitter(href='#') twitter
-                    //        li
-                    //            a.pinterest(href='#') pinterest
-                    //        li
-                    //            a.flickr(href='#') flickr
-                    //        li
-                    //            a.gplus(href='#') gplus
-                    //        li
-                    //            a.linkedin(href='#') linkedin
-                    //        li
-                    //            a.facebook(href='#') facebook
-                    //        li
-                    //            a.vimeo(href='#') instagram
-                    //        li
-                    //            a.tumblr(href='#') Tumblr
-                    .logo-holder
-                        h1 Церковь Свет Миру
-                    .search-form-default
-                        form(action='/search', method='get' onsubmit='return true;')
-                            input(type='text', placeholder='SEARCH' name='search' maxlength="40" minlength="3" required title="Длина слова для поиска должна быть от 3 до 40 символов")
-                            input(type='submit', value=' ')
+        .header-backgraund
+            .header-wrapper.ct-wrapper
+                header
+                    #header
+                        //.social-holder
+                        //    ul.social-networks
+                        //        li
+                        //            a.rss(href='#') rss
+                        //        li
+                        //            a.youtube(href='#') youtube
+                        //        li
+                        //            a.twitter(href='#') twitter
+                        //        li
+                        //            a.pinterest(href='#') pinterest
+                        //        li
+                        //            a.flickr(href='#') flickr
+                        //        li
+                        //            a.gplus(href='#') gplus
+                        //        li
+                        //            a.linkedin(href='#') linkedin
+                        //        li
+                        //            a.facebook(href='#') facebook
+                        //        li
+                        //            a.vimeo(href='#') instagram
+                        //        li
+                        //            a.tumblr(href='#') Tumblr
+                        .logo-holder
+                            //h1 Церковь Свет Миру
+                            img(src="http://localhost:3000/assets/img/header_title_brown.png")
+                        .search-form-default
+                            form(action='/search', method='get' onsubmit='return true;')
+                                input(type='text', placeholder='SEARCH' name='search' maxlength="40" minlength="3" required title="Длина слова для поиска должна быть от 3 до 40 символов")
+                                input(type='submit', value=' ')
         .ct-wrapper
             .menu-holder
                 .main-menu
@@ -68,7 +70,7 @@ html(lang='en')
                         each mainCategory, i in viewModel.allCategories
                             li(class=(viewModel.activeRoute === mainCategory.key ? 'highlight' : ''))
                                 a(href=siteConst.routes.blog_category + mainCategory.key)=mainCategory.title
-                        
+
                         li(class=(viewModel.activeRoute === 'gallery' ? 'highlight' : ''))
                             a(href=siteConst.routes.gallery) Фото
                         li(class=(viewModel.activeRoute === 'contact' ? 'highlight' : ''))

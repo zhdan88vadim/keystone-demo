@@ -91,10 +91,10 @@ h2 {
   width: 180px; }
 
 .header-wrapper {
-  padding: 50px 0px 0px 0px;
+  padding: 250px 0px 16px 0px;
   margin: 0 auto;
   overflow: hidden;
-  background: url(../assets/img/flower02__delete.png) no-repeat -10px 0px; }
+  background: url(../assets/img/header_flowers_1024_light.png) no-repeat -10px 0px; }
 
 .header-wrapper:after {
   content: ".";
@@ -227,6 +227,9 @@ body {
 .full-width {
   width: 100%; }
 
+.header-backgraund {
+  background: rgba(250, 235, 215, 0.24); }
+
 #header .social-holder a {
   /*transition*/
   -webkit-transition: all ease-in-out 0.2s;
@@ -279,6 +282,9 @@ body {
   font-size: 4.8rem;
   line-height: 50px;
   font-family: Tahoma, Geneva, sans-serif; }
+
+#header .logo-holder img {
+  width: 50%; }
 
 .footer {
   clear: both;
@@ -1032,7 +1038,7 @@ ul.polaroids img {
   height: 30px;
   width: 35%;
   float: right;
-  margin-top: 18px;
+  margin-top: 30px;
   margin-bottom: 10px;
   background: url(../assets/img/search.png) no-repeat 98% 50%;
   background-size: 14px;
@@ -1246,6 +1252,8 @@ p.bjqs-caption {
     width: 100%;
     float: none; }
   .header-wrapper {
+    width: 100%; }
+  #header .logo-holder img {
     width: 100%; }
   .ct-wrapper {
     width: 100%;
