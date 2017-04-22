@@ -72,7 +72,7 @@ module.exports = function (done) {
                     //"author": "oleg_kozlov",
                     //"author": "58b6783aed958650ac4786aa",
                     "author": getIdbyRef(user, ["oleg_kozlov"]),                    
-                    "publishedDate": "2017-03-03 09:03:10",
+                    "publishedDate": "2017-02-26 09:03:10",
                     "content.brief": "Воскресная проповедь - Скажи только слово - 26.02.2017",
                     "content.extended": "<p>Воскресная проповедь - Скажи только слово - 26.02.2017</p>",
                     "hits": 2,
@@ -81,11 +81,16 @@ module.exports = function (done) {
                     //"tags": ['58b6783aed958650ac478698', '58b6783aed958650ac478691'],
                     "tags": getIdbyRef(tag, ['word', 'borba']),
                     "urlsPodfm": [],
-                    "urls": ["http://chlw.org/mp3/sermons/2017/02/26.02.2017_Skazhi_tolko_slovo_OlegKozlov.mp3"],
+                    "urls": [],
                     "image": {
                         "filename": "upload_word.jpg",
                         "size": 10500,
                         "mimetype": "image/jpeg"
+                    },
+                    file0: {
+                        filename: '26.02.2017_Skazhi_tolko_slovo_OlegKozlov.mp3',
+                        size: 10622,
+                        mimetype: 'audio/mpeg'
                     }
                 }, {
                     "name": "Воскресная проповедь - 19.02.17",
@@ -93,18 +98,23 @@ module.exports = function (done) {
                     //"author": "58b6783aed958650ac4786a8",
                     //"author": "pastor_andrey",                    
                     "author": getIdbyRef(user, ["pastor_andrey"]),
-                    "publishedDate": "2017-02-17 09:03:10",
+                    "publishedDate": "2017-02-19 09:03:10",
                     "content.brief": "Воскресная проповедь - 19.02.17",
                     "content.extended": "<p>Воскресная проповедь - 19.02.17</p>",
                     "hits": 2,
                     "categories": getIdbyRef(postCategory, ["sermons"]),
                     "tags": [],
                     "urlsPodfm": [],
-                    "urls": ["http://chlw.org/mp3/sermons/2017/02/19.02.17_sermons.mp3"],
+                    "urls": [],
                     "image": {
                         "filename": "upload_kolos.jpg",
                         "size": 10500,
                         "mimetype": "image/jpeg"
+                    },
+                    file0: {
+                        filename: '19.02.17_sermons.mp3',
+                        size: 10622,
+                        mimetype: 'audio/mpeg'
                     }
                 }, {
                     "name": "Библейская школа — 6 — Церковь - 21.02.2017",
@@ -119,11 +129,16 @@ module.exports = function (done) {
                     "categories": getIdbyRef(postCategory, ["sermons"]),
                     "tags": getIdbyRef(tag, ['bible_school']),
                     "urlsPodfm": [],
-                    "urls": ["http://chlw.org/mp3/sermons/2017/02/2.21.2017-Bible_school-church-part%201-lesson%206.mp3"],
+                    "urls": [],
                     "image": {
                         "filename": "upload_bible_school.jpg",
                         "size": 10500,
                         "mimetype": "image/jpeg"
+                    },
+                    file0: {
+                        filename: '2.21.2017-Bible_school-church-part%201-lesson%206.mp3',
+                        size: 10622,
+                        mimetype: 'audio/mpeg'
                     }
                 }, {
                     "name": "Библейская школа — 5 — Молитва - 14.02.2017",
@@ -138,11 +153,16 @@ module.exports = function (done) {
                     "categories": getIdbyRef(postCategory, ["sermons"]),
                     "tags": getIdbyRef(tag, ['bible_school']),
                     "urlsPodfm": [],
-                    "urls": ["http://chlw.org/mp3/sermons/14.02.17_molitva_school-5.mp3"],
+                    "urls": [],
                     "image": {
                         "filename": "upload_bible_school.jpg",
                         "size": 10500,
                         "mimetype": "image/jpeg"
+                    },
+                    file0: {
+                        filename: '14.02.17_molitva_school-5.mp3',
+                        size: 10622,
+                        mimetype: 'audio/mpeg'
                     }
                 }]
             };
