@@ -91,10 +91,9 @@ h2 {
   width: 180px; }
 
 .header-wrapper {
-  padding: 250px 0px 16px 0px;
+  padding: 0px 0px 16px 0px;
   margin: 0 auto;
-  overflow: hidden;
-  background: url(../assets/img/header_flowers_1024_light.png) no-repeat -10px 0px; }
+  overflow: hidden; }
 
 .header-wrapper:after {
   content: ".";
@@ -228,7 +227,12 @@ body {
   width: 100%; }
 
 .header-backgraund {
-  background: rgba(250, 235, 215, 0.24); }
+  background: rgba(250, 235, 215, 0.24);
+  text-align: center; }
+
+.header-backgraund-img {
+  width: 100%;
+  max-width: 1200px; }
 
 #header .social-holder a {
   /*transition*/
@@ -1038,7 +1042,7 @@ ul.polaroids img {
   height: 30px;
   width: 35%;
   float: right;
-  margin-top: 30px;
+  margin-top: 24px;
   margin-bottom: 10px;
   background: url(../assets/img/search.png) no-repeat 98% 50%;
   background-size: 14px;
