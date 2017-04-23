@@ -824,7 +824,8 @@ body {
   .files-audio audio, .podfm-audio audio {
     margin-top: 4px;
     margin-bottom: 14px;
-    display: block; }
+    display: block;
+    width: 100%; }
   .files-audio .file-info, .podfm-audio .file-info {
     color: #b9b9b9;
     font-size: 1.1rem;
